@@ -1,0 +1,71 @@
+{
+  "assignment_id": "1",
+  "assignment_title": "Algebra I: Linear Equations",
+  "total_students": 24,
+  "completion_rate": 0.83,
+  "avg_score": 0.76,
+  "students_needing_review": 5,
+  "lo_mastery": [
+    {
+      "id": "1",
+      "tag": "ALG1-2.1.3",
+      "description": "Solve linear equations in one variable",
+      "mastery": 0.85
+    },
+    {
+      "id": "2",
+      "tag": "ALG1-2.1.4",
+      "description": "Solve equations with variables on both sides",
+      "mastery": 0.72
+    },
+    {
+      "id": "3",
+      "tag": "ALG1-2.1.5",
+      "description": "Identify no solution or infinite solutions",
+      "mastery": 0.68
+    },
+    {
+      "id": "4",
+      "tag": "ALG1-2.2.1",
+      "description": "Solve real-world problems using linear equations",
+      "mastery": 0.79
+    }
+  ],
+  "student_results": [
+    {
+      "student_id": "101",
+      "name": "Alex Johnson",
+      "score": 0.75,
+      "completed_at": "2025-12-20T14:30:00Z",
+      "needs_review": false
+    },
+    {
+      "student_id": "102",
+      "name": "Maria Garcia",
+      "score": 1.0,
+      "completed_at": "2025-12-19T16:45:00Z",
+      "needs_review": false
+    },
+    {
+      "student_id": "103",
+      "name": "Jamal Williams",
+      "score": 0.5,
+      "completed_at": "2025-12-21T09:15:00Z",
+      "needs_review": true
+    },
+    {
+      "student_id": "104",
+      "name": "Emma Chen",
+      "score": 0.88,
+      "completed_at": "2025-12-20T11:20:00Z",
+      "needs_review": false
+    },
+    {
+      "student_id": "105",
+      "name": "Noah Patel",
+      "score": 0.63,
+      "completed_at": "2025-12-22T13:10:00Z",
+      "needs_review": true
+    }
+  ]
+}
