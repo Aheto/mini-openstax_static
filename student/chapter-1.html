@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,66 +6,6 @@
   <meta name="description" content="Mini OpenStax: Student chapter view with auto-graded quiz (static)" />
   <title>Mini OpenStax — Linear Equations</title>
   <link rel="stylesheet" href="../css/main.css">
-
-<script type="module">
-  import { loadChapter, sanitizeHTML, showLoading, showError } from '../js/app.js';
-
-  // Your existing chapter-loading logic here
-  async function init() {
-    const main = document.getElementById('main-content');
-    try {
-      showLoading(main);
-      const chapter = await loadChapter('1');
-      
-      // Update title & LOs
-      document.getElementById('chapter-title').textContent = sanitizeHTML(chapter.title);
-      const loTags = document.getElementById('lo-tags');
-      loTags.innerHTML = '';
-      chapter.learning_objectives.forEach(lo => {
-        const tag = document.createElement('span');
-        tag.className = 'lo-tag';
-        tag.textContent = sanitizeHTML(lo.tag);
-        loTags.appendChild(tag);
-      });
-
-      // Render content
-      const contentDiv = document.createElement('div');
-      contentDiv.className = 'chapter-content';
-      contentDiv.innerHTML = chapter.content_html;
-      main.innerHTML = '';
-      main.appendChild(contentDiv);
-
-      // Render quiz if exists
-      if (chapter.assessment_items?.length > 0) {
-        // ... (your quiz rendering logic using functions from app.js)
-      }
-    } catch (err) {
-      showError(main, err.message);
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', init);
-</script>
-
-  
-
-<script type="module">
-  import { loadChapter, sanitizeHTML } from '../js/app.js';
-
-  async function loadChapterContent() {
-    try {
-      const chapter = await loadChapter('1');
-      document.getElementById('chapter-title').textContent = sanitizeHTML(chapter.title);
-      // ... rest of your render logic
-    } catch (err) {
-      document.getElementById('main-content').innerHTML = 
-        `<div class="error">Failed to load chapter: ${err.message}</div>`;
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', loadChapterContent);
-</script>
-  
 </head>
 <body>
   <div class="container">
@@ -84,51 +22,39 @@
     </main>
   </div>
 
-  <script type="module">
+  <!-- Load classic app.js (no modules) -->
+  <script src="../js/app.js"></script>
+  <script>
     (function() {
+      'use strict';
+
+      const main = document.getElementById('main-content');
+      const titleEl = document.getElementById('chapter-title');
+      const loTagsEl = document.getElementById('lo-tags');
+
       // ======================
-      // LOAD CHAPTER DATA
+      // LOAD & RENDER CHAPTER
       // ======================
       async function loadChapter() {
         try {
-          const res = await fetch('../data/chapters/chapter-1.json');
-          if (!res.ok) throw new Error('Chapter data not found');
-          const chapter = await res.json();
+          const chapter = await MiniOpenStax.loadChapter('1');
           renderChapter(chapter);
         } catch (err) {
-          document.getElementById('main-content').innerHTML = 
-            `<div class="error">Failed to load chapter: ${err.message}</div>`;
+          MiniOpenStax.showError(main, err.message);
         }
       }
 
-      // ======================
-      // SANITIZE HTML (BASIC)
-      // ======================
-      function sanitizeHTML(str) {
-        if (typeof str !== 'string') return '';
-        const div = document.createElement('div');
-        div.textContent = str;
-        return div.innerHTML;
-      }
-
-      // ======================
-      // RENDER CHAPTER
-      // ======================
       function renderChapter(chapter) {
-        const main = document.getElementById('main-content');
-        const title = document.getElementById('chapter-title');
-        const loTags = document.getElementById('lo-tags');
-
         // Title
-        title.textContent = sanitizeHTML(chapter.title);
+        titleEl.textContent = MiniOpenStax.sanitizeHTML(chapter.title);
 
         // LO Tags
-        loTags.innerHTML = '';
+        loTagsEl.innerHTML = '';
         chapter.learning_objectives.forEach(lo => {
           const tag = document.createElement('span');
           tag.className = 'lo-tag';
-          tag.textContent = sanitizeHTML(lo.tag);
-          loTags.appendChild(tag);
+          tag.textContent = MiniOpenStax.sanitizeHTML(lo.tag);
+          loTagsEl.appendChild(tag);
         });
 
         // Chapter Content
@@ -144,11 +70,11 @@
               <h2>Check Your Understanding</h2>
               ${chapter.assessment_items.map(item => `
                 <div class="quiz-item" data-item-id="${item.id}">
-                  <p>${sanitizeHTML(item.prompt)}</p>
+                  <p>${MiniOpenStax.sanitizeHTML(item.prompt)}</p>
                   ${item.options.map(opt => `
                     <label class="quiz-option">
                       <input type="radio" name="q-${item.id}" value="${opt.id}">
-                      ${sanitizeHTML(opt.text)}
+                      ${MiniOpenStax.sanitizeHTML(opt.text)}
                     </label>
                   `).join('')}
                 </div>
@@ -168,24 +94,22 @@
       }
 
       // ======================
-      // QUIZ LOGIC (STATIC)
+      // QUIZ LOGIC
       // ======================
       function setupQuizListeners(chapter) {
         const submitBtn = document.getElementById('submit-quiz-btn');
         const answers = {};
 
-        // Track selections
         chapter.assessment_items.forEach(item => {
           const inputs = document.querySelectorAll(`input[name="q-${item.id}"]`);
           inputs.forEach(input => {
             input.addEventListener('change', (e) => {
               answers[item.id] = e.target.value;
-              updateSubmitButton(submitBtn, answers, chapter.assessment_items.length);
+              updateSubmitButton(submitBtn, Object.keys(answers).length, chapter.assessment_items.length);
             });
           });
         });
 
-        // Handle submission
         if (submitBtn) {
           submitBtn.addEventListener('click', () => {
             showFeedback(chapter, answers);
@@ -193,40 +117,37 @@
         }
       }
 
-      function updateSubmitButton(button, answers, totalItems) {
+      function updateSubmitButton(button, answered, total) {
         if (button) {
-          button.disabled = Object.keys(answers).length !== totalItems;
+          button.disabled = answered !== total;
         }
       }
 
       function showFeedback(chapter, answers) {
-        const main = document.getElementById('main-content');
-
-        // Calculate score & feedback
         let correctCount = 0;
         const total = chapter.assessment_items.length;
 
         const feedbackHTML = chapter.assessment_items.map(item => {
-          const selectedOptionId = answers[item.id];
-          const selectedOption = item.options.find(opt => opt.id === selectedOptionId);
-          const correctOption = item.options.find(opt => opt.is_correct);
-          const isCorrect = selectedOption?.is_correct || false;
+          const selectedId = answers[item.id];
+          const selectedOpt = item.options.find(opt => opt.id === selectedId);
+          const correctOpt = item.options.find(opt => opt.is_correct);
+          const isCorrect = selectedOpt?.is_correct || false;
 
           if (isCorrect) correctCount++;
 
           return `
             <div class="quiz-item" data-item-id="${item.id}">
-              <p>${sanitizeHTML(item.prompt)}</p>
+              <p>${MiniOpenStax.sanitizeHTML(item.prompt)}</p>
               ${item.options.map(opt => `
                 <label class="quiz-option">
                   <input type="radio" name="q-${item.id}" value="${opt.id}" disabled
-                    ${opt.id === selectedOptionId ? 'checked' : ''}>
-                  ${sanitizeHTML(opt.text)}
+                    ${opt.id === selectedId ? 'checked' : ''}>
+                  ${MiniOpenStax.sanitizeHTML(opt.text)}
                   ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
                 </label>
               `).join('')}
               <div class="quiz-feedback ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
-                ${isCorrect ? '✅ Correct!' : `❌ Incorrect. The correct answer is: ${sanitizeHTML(correctOption?.text || '—')}`}
+                ${isCorrect ? '✅ Correct!' : `❌ Incorrect. The correct answer is: ${MiniOpenStax.sanitizeHTML(correctOpt?.text || '—')}`}
               </div>
             </div>
           `;
@@ -240,22 +161,20 @@
           </div>
         `;
 
-        // Re-render with feedback
-        const title = document.getElementById('chapter-title');
-        const loTags = document.getElementById('lo-tags');
+        // Re-render
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'chapter-content';
+        contentDiv.innerHTML = chapter.content_html;
 
-        main.innerHTML = `
-          <div class="chapter-content">${chapter.content_html}</div>
+        main.innerHTML = '';
+        main.appendChild(contentDiv);
+        main.innerHTML += `
           <section class="card quiz-section">
             <h2>Check Your Understanding</h2>
             ${feedbackHTML}
             ${scoreHTML}
           </section>
         `;
-
-        // Restore header
-        document.querySelector('.header h1').textContent = title.textContent;
-        document.querySelector('.header .lo-tags').innerHTML = loTags.innerHTML;
       }
 
       // ======================
