@@ -10,6 +10,48 @@
   <link rel="stylesheet" href="../css/main.css">
 
 <script type="module">
+  import { loadChapter, sanitizeHTML, showLoading, showError } from '../js/app.js';
+
+  // Your existing chapter-loading logic here
+  async function init() {
+    const main = document.getElementById('main-content');
+    try {
+      showLoading(main);
+      const chapter = await loadChapter('1');
+      
+      // Update title & LOs
+      document.getElementById('chapter-title').textContent = sanitizeHTML(chapter.title);
+      const loTags = document.getElementById('lo-tags');
+      loTags.innerHTML = '';
+      chapter.learning_objectives.forEach(lo => {
+        const tag = document.createElement('span');
+        tag.className = 'lo-tag';
+        tag.textContent = sanitizeHTML(lo.tag);
+        loTags.appendChild(tag);
+      });
+
+      // Render content
+      const contentDiv = document.createElement('div');
+      contentDiv.className = 'chapter-content';
+      contentDiv.innerHTML = chapter.content_html;
+      main.innerHTML = '';
+      main.appendChild(contentDiv);
+
+      // Render quiz if exists
+      if (chapter.assessment_items?.length > 0) {
+        // ... (your quiz rendering logic using functions from app.js)
+      }
+    } catch (err) {
+      showError(main, err.message);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+</script>
+
+  
+
+<script type="module">
   import { loadChapter, sanitizeHTML } from '../js/app.js';
 
   async function loadChapterContent() {
