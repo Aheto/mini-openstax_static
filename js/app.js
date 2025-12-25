@@ -54,12 +54,7 @@ export function showError(el, msg) {
 // STATIC DATA CLIENT (NO BACKEND)
 // ======================
 
-/**
- * Load chapter data from static JSON
- * @param {string} chapterId - e.g., '1'
- * @returns {Promise<Object>}
- */
-/ ✅ CORRECT: Works on any GitHub Pages subpath
+// ✅ CORRECT: Works on any GitHub Pages subpath
 export async function loadChapter(chapterId) {
   // Resolve relative to current page, not root
   const url = new URL(`../data/chapters/chapter-${chapterId}.json`, import.meta.url);
