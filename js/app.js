@@ -59,8 +59,11 @@ export function showError(el, msg) {
  * @param {string} chapterId - e.g., '1'
  * @returns {Promise<Object>}
  */
+// ✅ CORRECT: Works on any GitHub Pages subpath
 export async function loadChapter(chapterId) {
-  const response = await fetch(`/data/chapters/chapter-${chapterId}.json`);
+  // Resolve relative to current page, not root
+  const url = new URL(`../data/chapters/chapter-${chapterId}.json`, import.meta.url);
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Chapter ${chapterId} not found`);
   }
