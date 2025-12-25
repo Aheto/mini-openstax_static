@@ -9,8 +9,22 @@
   <title>Mini OpenStax — Linear Equations</title>
   <link rel="stylesheet" href="../css/main.css">
 
-<!-- If you load app.js -->
-<script src="../js/app.js"></script>
+<script type="module">
+  import { loadChapter, sanitizeHTML } from '../js/app.js';
+
+  async function loadChapterContent() {
+    try {
+      const chapter = await loadChapter('1');
+      document.getElementById('chapter-title').textContent = sanitizeHTML(chapter.title);
+      // ... rest of your render logic
+    } catch (err) {
+      document.getElementById('main-content').innerHTML = 
+        `<div class="error">Failed to load chapter: ${err.message}</div>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadChapterContent);
+</script>
   
 </head>
 <body>
