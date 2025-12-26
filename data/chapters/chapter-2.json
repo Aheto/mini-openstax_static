@@ -1,0 +1,120 @@
+{
+  "id": "2",
+  "title": "Number of Subsets in a Set",
+  "book_title": "Core Mathematics (SHS 1)",
+  "content_html": "<h2>1. Introduction to Sets and Subsets</h2>\n<p>A <strong>set</strong> is a well-defined collection of distinct objects, called <em>elements</em>. For example:</p>\n<ul>\n  <li><code>A = \\{1, 2, 3\\}</code> is a set with three elements.</li>\n</ul>\n<p>A <strong>subset</strong> of a set is any set whose elements are all contained in the original set.</p>\n<p>For <code>A = \\{1, 2, 3\\}</code>, the following are subsets:</p>\n<ul>\n  <li><code>\\emptyset</code> (the empty set)</li>\n  <li><code>\\{1\\}</code>, <code>\\{2, 3\\}</code></li>\n  <li><code>\\{1, 2, 3\\}</code> (the set itself)</li>\n</ul>\n<p>By definition:\n  <ul>\n    <li>The <strong>empty set</strong> is a subset of every set.</li>\n    <li>Every set is a subset of itself.</li>\n  </ul>\n</p>\n\n<h2>2. Determining the Number of Subsets</h2>\n<p>If a set contains <em>n</em> distinct elements, the total number of subsets is:</p>\n<p style=\"text-align: center; font-size: 1.25rem; font-weight: bold;\">\\( 2^n \\)</p>\n<p><strong>Why?</strong> For each element, there are 2 choices: include it or exclude it.</p>\n\n<h3>Examples</h3>\n<ul>\n  <li>If \\( A = \\{a, b\\} \\) (n = 2), number of subsets = \\( 2^2 = 4 \\)</li>\n  <li>If \\( B = \\{1, 2, 3, 4\\} \\) (n = 4), number of subsets = \\( 2^4 = 16 \\)</li>\n</ul>\n\n<h2>3. Proper Subsets</h2>\n<p>A <strong>proper subset</strong> is a subset that is <em>not equal</em> to the original set.</p>\n<p>The number of proper subsets of a set with <em>n</em> elements is:</p>\n<p style=\"text-align: center; font-size: 1.25rem; font-weight: bold;\">\\( 2^n - 1 \\)</p>\n<p><strong>Example:</strong> For \\( A = \\{x, y\\} \\), total subsets = 4, proper subsets = \\( 4 - 1 = 3 \\):<br>\n\\( \\emptyset, \\{x\\}, \\{y\\} \\)</p>\n\n<h2>4. Summary Table</h2>\n<table border=\"1\" cellpadding=\"8\" style=\"border-collapse: collapse; margin: 1.5rem 0;\">\n  <thead>\n    <tr>\n      <th>Elements (n)</th>\n      <th>Subsets \\(2^n\\)</th>\n      <th>Proper Subsets \\(2^n - 1\\)</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr><td>0</td><td>1</td><td>0</td></tr>\n    <tr><td>1</td><td>2</td><td>1</td></tr>\n    <tr><td>2</td><td>4</td><td>3</td></tr>\n    <tr><td>3</td><td>8</td><td>7</td></tr>\n    <tr><td>n</td><td>\\(2^n\\)</td><td>\\(2^n - 1\\)</td></tr>\n  </tbody>\n</table>",
+  "learning_objectives": [
+    {
+      "id": "1",
+      "tag": "CM-SHS1-1.1.1",
+      "description": "Determine and write the number of subsets in a set"
+    },
+    {
+      "id": "2",
+      "tag": "CM-SHS1-1.1.2",
+      "description": "Distinguish between subsets and proper subsets"
+    }
+  ],
+  "assessment_items": [
+    {
+      "id": "1",
+      "prompt": "How many subsets does the set {p} have?",
+      "options": [
+        { "id": "a", "text": "0", "is_correct": false },
+        { "id": "b", "text": "1", "is_correct": false },
+        { "id": "c", "text": "2", "is_correct": true },
+        { "id": "d", "text": "3", "is_correct": false }
+      ]
+    },
+    {
+      "id": "2",
+      "prompt": "Which of the following is always a subset of any set?",
+      "options": [
+        { "id": "a", "text": "The universal set", "is_correct": false },
+        { "id": "b", "text": "The set itself", "is_correct": false },
+        { "id": "c", "text": "The empty set", "is_correct": true },
+        { "id": "d", "text": "A singleton set", "is_correct": false }
+      ]
+    },
+    {
+      "id": "3",
+      "prompt": "If a set has 3 elements, how many subsets does it have?",
+      "options": [
+        { "id": "a", "text": "3", "is_correct": false },
+        { "id": "b", "text": "6", "is_correct": false },
+        { "id": "c", "text": "8", "is_correct": true },
+        { "id": "d", "text": "9", "is_correct": false }
+      ]
+    },
+    {
+      "id": "4",
+      "prompt": "The number of subsets of a set with n elements is given by:",
+      "options": [
+        { "id": "a", "text": "n²", "is_correct": false },
+        { "id": "b", "text": "2n", "is_correct": false },
+        { "id": "c", "text": "2ⁿ", "is_correct": true },
+        { "id": "d", "text": "n!", "is_correct": false }
+      ]
+    },
+    {
+      "id": "5",
+      "prompt": "Which of the following is NOT a subset of {a, b}?",
+      "options": [
+        { "id": "a", "text": "{a}", "is_correct": false },
+        { "id": "b", "text": "{b, a}", "is_correct": false },
+        { "id": "c", "text": "∅", "is_correct": false },
+        { "id": "d", "text": "{a, b, c}", "is_correct": true }
+      ]
+    },
+    {
+      "id": "6",
+      "prompt": "How many proper subsets does the set {x, y} have?",
+      "options": [
+        { "id": "a", "text": "2", "is_correct": false },
+        { "id": "b", "text": "3", "is_correct": true },
+        { "id": "c", "text": "4", "is_correct": false },
+        { "id": "d", "text": "5", "is_correct": false }
+      ]
+    },
+    {
+      "id": "7",
+      "prompt": "A set with 0 elements has how many subsets?",
+      "options": [
+        { "id": "a", "text": "0", "is_correct": false },
+        { "id": "b", "text": "1", "is_correct": true },
+        { "id": "c", "text": "2", "is_correct": false },
+        { "id": "d", "text": "None of the above", "is_correct": false }
+      ]
+    },
+    {
+      "id": "8",
+      "prompt": "Which statement is TRUE?",
+      "options": [
+        { "id": "a", "text": "Every set is a proper subset of itself", "is_correct": false },
+        { "id": "b", "text": "The empty set is not a subset of any set", "is_correct": false },
+        { "id": "c", "text": "Every set is a subset of itself", "is_correct": true },
+        { "id": "d", "text": "A set with 2 elements has 3 subsets", "is_correct": false }
+      ]
+    },
+    {
+      "id": "9",
+      "prompt": "If the number of subsets of a set is 64, how many elements does it have?",
+      "options": [
+        { "id": "a", "text": "4", "is_correct": false },
+        { "id": "b", "text": "5", "is_correct": false },
+        { "id": "c", "text": "6", "is_correct": true },
+        { "id": "d", "text": "7", "is_correct": false }
+      ]
+    },
+    {
+      "id": "10",
+      "prompt": "How many subsets does the empty set have?",
+      "options": [
+        { "id": "a", "text": "0", "is_correct": false },
+        { "id": "b", "text": "1", "is_correct": true },
+        { "id": "c", "text": "2", "is_correct": false },
+        { "id": "d", "text": "It depends", "is_correct": false }
+      ]
+    }
+  ]
+}
