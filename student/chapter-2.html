@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mini OpenStax: Student chapter on subsets and set theory (Ghana SHS Core Math)" />
+  <title>Mini OpenStax — Number of Subsets in a Set</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1 id="chapter-title">Loading Chapter...</h1>
+        <div class="lo-tags" id="lo-tags"></div>
+      </div>
+      <div class="role-badge">Student View</div>
+    </div>
+
+    <main id="main-content">
+      <div class="loading">Loading chapter content...</div>
+    </main>
+  </div>
+
+  <!-- Load classic app.js (no modules) -->
+  <script src="../js/app.js"></script>
+  <script>
+    (function() {
+      'use strict';
+
+      const main = document.getElementById('main-content');
+      const titleEl = document.getElementById('chapter-title');
+      const loTagsEl = document.getElementById('lo-tags');
+
+      // ======================
+      // LOAD & RENDER CHAPTER
+      // ======================
+      async function loadChapter() {
+        try {
+          const chapter = await MiniOpenStax.loadChapter('2');
+          renderChapter(chapter);
+        } catch (err) {
+          MiniOpenStax.showError(main, err.message);
+        }
+      }
+
+      function renderChapter(chapter) {
+        // Title
+        titleEl.textContent = MiniOpenStax.sanitizeHTML(chapter.title);
+
+        // LO Tags
+        loTagsEl.innerHTML = '';
+        chapter.learning_objectives.forEach(lo => {
+          const tag = document.createElement('span');
+          tag.className = 'lo-tag';
+          tag.textContent = MiniOpenStax.sanitizeHTML(lo.tag);
+          loTagsEl.appendChild(tag);
+        });
+
+        // Chapter Content (with MathJax support)
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'chapter-content';
+        // Replace \ with \\ for JSON-safe LaTeX in HTML
+        let html = chapter.content_html;
+        contentDiv.innerHTML = html;
+
+        // Quiz Section
+        let quizHTML = '';
+        if (chapter.assessment_items && chapter.assessment_items.length > 0) {
+          quizHTML = `
+            <section class="card quiz-section">
+              <h2>Check Your Understanding</h2>
+              ${chapter.assessment_items.map(item => `
+                <div class="quiz-item" data-item-id="${item.id}">
+                  <p>${MiniOpenStax.sanitizeHTML(item.prompt)}</p>
+                  ${item.options.map(opt => `
+                    <label class="quiz-option">
+                      <input type="radio" name="q-${item.id}" value="${opt.id}">
+                      ${MiniOpenStax.sanitizeHTML(opt.text)}
+                    </label>
+                  `).join('')}
+                </div>
+              `).join('')}
+              <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+            </section>
+          `;
+        }
+
+        // Render
+        main.innerHTML = '';
+        main.appendChild(contentDiv);
+        if (quizHTML) {
+          main.innerHTML += quizHTML;
+          setupQuizListeners(chapter);
+        }
+
+        // Trigger MathJax typesetting
+        if (typeof MathJax !== 'undefined') {
+          MathJax.typeset();
+        }
+      }
+
+      // ======================
+      // QUIZ LOGIC
+      // ======================
+      function setupQuizListeners(chapter) {
+        const submitBtn = document.getElementById('submit-quiz-btn');
+        const answers = {};
+
+        chapter.assessment_items.forEach(item => {
+          const inputs = document.querySelectorAll(`input[name="q-${item.id}"]`);
+          inputs.forEach(input => {
+            input.addEventListener('change', (e) => {
+              answers[item.id] = e.target.value;
+              updateSubmitButton(submitBtn, Object.keys(answers).length, chapter.assessment_items.length);
+            });
+          });
+        });
+
+        if (submitBtn) {
+          submitBtn.addEventListener('click', () => {
+            showFeedback(chapter, answers);
+          });
+        }
+      }
+
+      function updateSubmitButton(button, answered, total) {
+        if (button) {
+          button.disabled = answered !== total;
+        }
+      }
+
+      function showFeedback(chapter, answers) {
+        let correctCount = 0;
+        const total = chapter.assessment_items.length;
+
+        const feedbackHTML = chapter.assessment_items.map(item => {
+          const selectedId = answers[item.id];
+          const selectedOpt = item.options.find(opt => opt.id === selectedId);
+          const correctOpt = item.options.find(opt => opt.is_correct);
+          const isCorrect = selectedOpt?.is_correct || false;
+
+          if (isCorrect) correctCount++;
+
+          return `
+            <div class="quiz-item" data-item-id="${item.id}">
+              <p>${MiniOpenStax.sanitizeHTML(item.prompt)}</p>
+              ${item.options.map(opt => `
+                <label class="quiz-option">
+                  <input type="radio" name="q-${item.id}" value="${opt.id}" disabled
+                    ${opt.id === selectedId ? 'checked' : ''}>
+                  ${MiniOpenStax.sanitizeHTML(opt.text)}
+                  ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+                </label>
+              `).join('')}
+              <div class="quiz-feedback ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+                ${isCorrect ? '✅ Correct!' : `❌ Incorrect. The correct answer is: ${MiniOpenStax.sanitizeHTML(correctOpt?.text || '—')}`}
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        const score = correctCount / total;
+        const scoreHTML = `
+          <div class="score-card">
+            <p><strong>Your Score:</strong> ${Math.round(score * 100)}%</p>
+            <button class="btn btn-secondary" disabled>Quiz Submitted</button>
+          </div>
+        `;
+
+        // Re-render
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'chapter-content';
+        contentDiv.innerHTML = chapter.content_html;
+
+        main.innerHTML = '';
+        main.appendChild(contentDiv);
+        main.innerHTML += `
+          <section class="card quiz-section">
+            <h2>Check Your Understanding</h2>
+            ${feedbackHTML}
+            ${scoreHTML}
+          </section>
+        `;
+
+        // Re-typeset math
+        if (typeof MathJax !== 'undefined') {
+          MathJax.typeset();
+        }
+
+        // Show email form (if you have Formspree integrated)
+        if (typeof showEmailForm === 'function') {
+          showEmailForm(score);
+        }
+      }
+
+      // Optional: Formspree integration (uncomment if using)
+      // function showEmailForm(score) { /* ... */ }
+
+      // ======================
+      // INITIALIZE
+      // ======================
+      document.addEventListener('DOMContentLoaded', loadChapter);
+    })();
+  </script>
+</body>
+</html>
