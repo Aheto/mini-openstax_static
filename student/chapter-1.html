@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Mini OpenStax: Student chapter view with auto-graded quiz (static)" />
-  <title>Mini OpenStax — Linear Equations</title>
+  <meta name="description" content="Mini OpenStax: Clinical decision support for back pain triage (Ghana MoH Guidelines)" />
+  <title>Mini OpenStax — Back Pain Triage</title>
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
@@ -35,84 +35,335 @@
       // ======================
       // LOAD & RENDER CHAPTER
       // ======================
-      async function loadChapter() {
-        try {
-          const chapter = await MiniOpenStax.loadChapter('1');
-          renderChapter(chapter);
-        } catch (err) {
-          MiniOpenStax.showError(main, err.message);
-        }
-      }
-
-      function renderChapter(chapter) {
-        // Title
-        titleEl.textContent = MiniOpenStax.sanitizeHTML(chapter.title);
+      function renderChapter() {
+        titleEl.textContent = "Back Pain Triage";
 
         // LO Tags
         loTagsEl.innerHTML = '';
-        chapter.learning_objectives.forEach(lo => {
-          const tag = document.createElement('span');
-          tag.className = 'lo-tag';
-          tag.textContent = MiniOpenStax.sanitizeHTML(lo.tag);
-          loTagsEl.appendChild(tag);
+        const tags = ["MOH-BP-1", "EMERGENCY-TRIAGE", "CLINICAL-DECISION"];
+        tags.forEach(tag => {
+          const span = document.createElement('span');
+          span.className = 'lo-tag';
+          span.textContent = tag;
+          loTagsEl.appendChild(span);
         });
 
-        // Chapter Content
+        // Chapter Content (from back pain.pdf)
+        const contentHTML = `
+          <h2>When to Give Urgent Attention</h2>
+          <p>Refer immediately if back pain is accompanied by <strong>any</strong> of the following:</p>
+          <ul>
+            <li>Bladder or bowel disturbance (retention or incontinence)</li>
+            <li>Numbness of buttocks, perineum, or legs</li>
+            <li>Leg weakness or difficulty walking</li>
+            <li>Recent injury with abnormal or unavailable x-ray</li>
+            <li>Sudden severe upper abdominal pain + nausea/vomiting → <strong>pancreatitis</strong></li>
+            <li>Pulsatile abdominal mass → <strong>abdominal aortic aneurysm</strong></li>
+            <li>Known cancer history</li>
+          </ul>
+
+          <h2>Flank Pain Algorithm</h2>
+          <p>If flank pain is present, check urine dipstick:</p>
+          <ul>
+            <li><strong>Leucocytes/nitrites + fever + any of:</strong> vomiting, BP &lt; 90/60, pulse ≥ 100, diabetes, male, pregnant/post-menopause → <strong>complicated pyelonephritis</strong></li>
+            <li><strong>Blood + sudden, severe, one-sided pain radiating to groin</strong> → <strong>kidney stone</strong></li>
+          </ul>
+
+          <h2>Management of Urgent Conditions</h2>
+          <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; margin: 1.5rem 0;">
+            <thead>
+              <tr><th>Condition</th><th>Immediate Action</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Abdominal aortic aneurysm</td><td>Avoid IV fluids even if BP &lt; 90/60</td></tr>
+              <tr><td>Pancreatitis or shock (BP &lt; 90/60)</td><td>Give NaCl 0.9% 500mL IV over 30 min; repeat until SBP &gt; 90</td></tr>
+              <tr><td>Complicated pyelonephritis</td><td>Collect urine for MCS, then give ceftriaxone 1g IV/IM</td></tr>
+              <tr><td>Kidney stone</td><td>Give NaCl 0.9% 1L IV 6-hourly; morphine 10mg IM if severe pain</td></tr>
+              <tr><td>Known cancer</td><td>Refer same day</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Non-Urgent Back Pain</h2>
+          <p>If no red flags, consider:</p>
+          <ul>
+            <li><strong>Uncomplicated pyelonephritis:</strong> ciprofloxacin 500mg 12-hourly × 7 days + paracetamol</li>
+            <li><strong>Mechanical back pain:</strong> reassure, encourage activity, paracetamol first-line</li>
+            <li><strong>Inflammatory back pain:</strong> check ESR, test for HIV/TB, refer</li>
+          </ul>
+
+          <h2>Pain Relief Ladder (Mechanical Back Pain)</h2>
+          <ol>
+            <li>Paracetamol 1g 4–6 hourly (max 4g/24h) × 5 days</li>
+            <li>Add ibuprofen 400mg 8-hourly with food × 5 days (if no contraindications)</li>
+            <li>Add tramadol 50mg 6-hourly × 5 days if still uncontrolled</li>
+          </ol>
+        `;
+
         const contentDiv = document.createElement('div');
         contentDiv.className = 'chapter-content';
-        contentDiv.innerHTML = chapter.content_html;
+        contentDiv.innerHTML = contentHTML;
 
         // Quiz Section
-        let quizHTML = '';
-        if (chapter.assessment_items && chapter.assessment_items.length > 0) {
-          quizHTML = `
-            <section class="card quiz-section">
-              <h2>Check Your Understanding</h2>
-              ${chapter.assessment_items.map(item => `
-                <div class="quiz-item" data-item-id="${item.id}">
-                  <p>${MiniOpenStax.sanitizeHTML(item.prompt)}</p>
-                  ${item.options.map(opt => `
-                    <label class="quiz-option">
-                      <input type="radio" name="q-${item.id}" value="${opt.id}">
-                      ${MiniOpenStax.sanitizeHTML(opt.text)}
-                    </label>
-                  `).join('')}
-                </div>
-              `).join('')}
-              <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
-            </section>
-          `;
-        }
+        const quizHTML = `
+          <section class="card quiz-section">
+            <h2>Clinical Knowledge Check</h2>
+            ${assessmentItems.map((item, idx) => `
+              <div class="quiz-item" data-item-id="${item.id}">
+                <p>${idx + 1}. ${sanitizeHTML(item.prompt)}</p>
+                ${item.options.map(opt => `
+                  <label class="quiz-option">
+                    <input type="radio" name="q-${item.id}" value="${opt.id}">
+                    ${sanitizeHTML(opt.text)}
+                  </label>
+                `).join('')}
+              </div>
+            `).join('')}
+            <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+          </section>
+        `;
 
-        // Render
         main.innerHTML = '';
         main.appendChild(contentDiv);
-        if (quizHTML) {
-          main.innerHTML += quizHTML;
-          setupQuizListeners(chapter);
-        }
+        main.innerHTML += quizHTML;
+        setupQuizListeners();
       }
 
       // ======================
-      // QUIZ LOGIC
+      // SANITIZE HTML
       // ======================
-      function setupQuizListeners(chapter) {
+      function sanitizeHTML(str) {
+        if (typeof str !== 'string') return '';
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      // ======================
+      // 20 MCQs FROM BACK PAIN GUIDELINE
+      // ======================
+      const assessmentItems = [
+        {
+          id: "1",
+          prompt: "Which symptom requires URGENT referral in a client with back pain?",
+          options: [
+            { id: "a", text: "Pain worse at night", is_correct: false },
+            { id: "b", text: "Bladder incontinence", is_correct: true },
+            { id: "c", text: "Pain after lifting", is_correct: false },
+            { id: "d", text: "Mild fever", is_correct: false }
+          ]
+        },
+        {
+          id: "2",
+          prompt: "A pulsatile abdominal mass with back pain suggests:",
+          options: [
+            { id: "a", text: "Pancreatitis", is_correct: false },
+            { id: "b", text: "Kidney stone", is_correct: false },
+            { id: "c", text: "Abdominal aortic aneurysm", is_correct: true },
+            { id: "d", text: "Pyelonephritis", is_correct: false }
+          ]
+        },
+        {
+          id: "3",
+          prompt: "What is the FIRST action for suspected abdominal aortic aneurysm?",
+          options: [
+            { id: "a", text: "Give IV fluids", is_correct: false },
+            { id: "b", text: "Give morphine", is_correct: false },
+            { id: "c", text: "Avoid IV fluids", is_correct: true },
+            { id: "d", text: "Give ciprofloxacin", is_correct: false }
+          ]
+        },
+        {
+          id: "4",
+          prompt: "For BP < 90/60 with back pain, give:",
+          options: [
+            { id: "a", text: "Ceftriaxone 1g IV", is_correct: false },
+            { id: "b", text: "NaCl 0.9% 500mL IV over 30 min", is_correct: true },
+            { id: "c", text: "Morphine 10mg IM", is_correct: false },
+            { id: "d", text: "Tramadol 50mg", is_correct: false }
+          ]
+        },
+        {
+          id: "5",
+          prompt: "Complicated pyelonephritis is likely if urine shows leucocytes AND:",
+          options: [
+            { id: "a", text: "Client is female", is_correct: false },
+            { id: "b", text: "BP < 90/60 or pulse ≥ 100", is_correct: true },
+            { id: "c", text: "Pain for 2 days", is_correct: false },
+            { id: "d", text: "No fever", is_correct: false }
+          ]
+        },
+        {
+          id: "6",
+          prompt: "First-line drug for uncomplicated pyelonephritis is:",
+          options: [
+            { id: "a", text: "Ceftriaxone", is_correct: false },
+            { id: "b", text: "Ciprofloxacin", is_correct: true },
+            { id: "c", text: "Tramadol", is_correct: false },
+            { id: "d", text: "Ibuprofen", is_correct: false }
+          ]
+        },
+        {
+          id: "7",
+          prompt: "Kidney stone pain is typically:",
+          options: [
+            { id: "a", text: "Dull and aching", is_correct: false },
+            { id: "b", text: "Sudden, severe, one-sided, radiating to groin", is_correct: true },
+            { id: "c", text: "Worse with rest", is_correct: false },
+            { id: "d", text: "Associated with bowel incontinence", is_correct: false }
+          ]
+        },
+        {
+          id: "8",
+          prompt: "First-line pain relief for mechanical back pain is:",
+          options: [
+            { id: "a", text: "Ibuprofen", is_correct: false },
+            { id: "b", text: "Tramadol", is_correct: false },
+            { id: "c", text: "Paracetamol", is_correct: true },
+            { id: "d", text: "Morphine", is_correct: false }
+          ]
+        },
+        {
+          id: "9",
+          prompt: "A client with known cancer and new back pain should be:",
+          options: [
+            { id: "a", text: "Given paracetamol and reviewed in 1 week", is_correct: false },
+            { id: "b", text: "Referred same day", is_correct: true },
+            { id: "c", text: "Treated as mechanical back pain", is_correct: false },
+            { id: "d", text: "Given ciprofloxacin", is_correct: false }
+          ]
+        },
+        {
+          id: "10",
+          prompt: "Ibuprofen should be AVOIDED in clients with:",
+          options: [
+            { id: "a", text: "All of the above", is_correct: true },
+            { id: "b", text: "Peptic ulcer", is_correct: false },
+            { id: "c", text: "Asthma", is_correct: false },
+            { id: "d", text: "Hypertension", is_correct: false }
+          ]
+        },
+        {
+          id: "11",
+          prompt: "If back pain persists ≥ 4 weeks, you should:",
+          options: [
+            { id: "a", text: "Continue analgesics", is_correct: false },
+            { id: "b", text: "Reassure and wait", is_correct: false },
+            { id: "c", text: "Assess and refer to doctor", is_correct: true },
+            { id: "d", text: "Start tramadol", is_correct: false }
+          ]
+        },
+        {
+          id: "12",
+          prompt: "Inflammatory back pain is suggested by:",
+          options: [
+            { id: "a", text: "Pain worse with exercise", is_correct: false },
+            { id: "b", text: "Sleep disturbed by pain", is_correct: true },
+            { id: "c", text: "Pain improves with rest", is_correct: false },
+            { id: "d", text: "Age > 50", is_correct: false }
+          ]
+        },
+        {
+          id: "13",
+          prompt: "For kidney stone with severe pain, give:",
+          options: [
+            { id: "a", text: "Ciprofloxacin", is_correct: false },
+            { id: "b", text: "Morphine 10mg IM", is_correct: true },
+            { id: "c", text: "Ceftriaxone", is_correct: false },
+            { id: "d", text: "Tramadol only", is_correct: false }
+          ]
+        },
+        {
+          id: "14",
+          prompt: "Uncomplicated pyelonephritis requires referral if no improvement after:",
+          options: [
+            { id: "a", text: "12 hours", is_correct: false },
+            { id: "b", text: "2 days", is_correct: true },
+            { id: "c", text: "1 week", is_correct: false },
+            { id: "d", text: "2 weeks", is_correct: false }
+          ]
+        },
+        {
+          id: "15",
+          prompt: "Mechanical back pain advice includes:",
+          options: [
+            { id: "a", text: "Bed rest for 1 week", is_correct: false },
+            { id: "b", text: "Avoid all activity", is_correct: false },
+            { id: "c", text: "Continue normal activity", is_correct: true },
+            { id: "d", text: "Apply ice only", is_correct: false }
+          ]
+        },
+        {
+          id: "16",
+          prompt: "If flank pain + blood on dipstick + severe pain → think:",
+          options: [
+            { id: "a", text: "Pyelonephritis", is_correct: false },
+            { id: "b", text: "Kidney stone", is_correct: true },
+            { id: "c", text: "Pancreatitis", is_correct: false },
+            { id: "d", text: "AAA", is_correct: false }
+          ]
+        },
+        {
+          id: "17",
+          prompt: "Which is a red flag for back pain?",
+          options: [
+            { id: "a", text: "Pain for 3 days", is_correct: false },
+            { id: "b", text: "Leg weakness", is_correct: true },
+            { id: "c", text: "Mild tenderness", is_correct: false },
+            { id: "d", text: "Pain after gardening", is_correct: false }
+          ]
+        },
+        {
+          id: "18",
+          prompt: "For inflammatory back pain, the doctor should:",
+          options: [
+            { id: "a", text: "Give paracetamol and discharge", is_correct: false },
+            { id: "b", text: "Check ESR and test for HIV", is_correct: true },
+            { id: "c", text: "Start ciprofloxacin", is_correct: false },
+            { id: "d", text: "Advise bed rest", is_correct: false }
+          ]
+        },
+        {
+          id: "19",
+          prompt: "Maximum paracetamol dose in 24 hours is:",
+          options: [
+            { id: "a", text: "2g", is_correct: false },
+            { id: "b", text: "3g", is_correct: false },
+            { id: "c", text: "4g", is_correct: true },
+            { id: "d", text: "5g", is_correct: false }
+          ]
+        },
+        {
+          id: "20",
+          prompt: "If BP drops < 90/60 during morphine administration, you should:",
+          options: [
+            { id: "a", text: "Give more morphine", is_correct: false },
+            { id: "b", text: "Stop morphine", is_correct: true },
+            { id: "c", text: "Give ibuprofen", is_correct: false },
+            { id: "d", text: "Ignore it", is_correct: false }
+          ]
+        }
+      ];
+
+      // ======================
+      // QUIZ LOGIC (SAME AS BEFORE)
+      // ======================
+      function setupQuizListeners() {
         const submitBtn = document.getElementById('submit-quiz-btn');
         const answers = {};
 
-        chapter.assessment_items.forEach(item => {
+        assessmentItems.forEach(item => {
           const inputs = document.querySelectorAll(`input[name="q-${item.id}"]`);
           inputs.forEach(input => {
             input.addEventListener('change', (e) => {
               answers[item.id] = e.target.value;
-              updateSubmitButton(submitBtn, Object.keys(answers).length, chapter.assessment_items.length);
+              updateSubmitButton(submitBtn, Object.keys(answers).length, assessmentItems.length);
             });
           });
         });
 
         if (submitBtn) {
           submitBtn.addEventListener('click', () => {
-            showFeedback(chapter, answers);
+            showFeedback(answers);
           });
         }
       }
@@ -123,11 +374,11 @@
         }
       }
 
-      function showFeedback(chapter, answers) {
+      function showFeedback(answers) {
         let correctCount = 0;
-        const total = chapter.assessment_items.length;
+        const total = assessmentItems.length;
 
-        const feedbackHTML = chapter.assessment_items.map(item => {
+        const feedbackHTML = assessmentItems.map(item => {
           const selectedId = answers[item.id];
           const selectedOpt = item.options.find(opt => opt.id === selectedId);
           const correctOpt = item.options.find(opt => opt.is_correct);
@@ -137,17 +388,17 @@
 
           return `
             <div class="quiz-item" data-item-id="${item.id}">
-              <p>${MiniOpenStax.sanitizeHTML(item.prompt)}</p>
+              <p>${assessmentItems.indexOf(item) + 1}. ${sanitizeHTML(item.prompt)}</p>
               ${item.options.map(opt => `
                 <label class="quiz-option">
                   <input type="radio" name="q-${item.id}" value="${opt.id}" disabled
                     ${opt.id === selectedId ? 'checked' : ''}>
-                  ${MiniOpenStax.sanitizeHTML(opt.text)}
+                  ${sanitizeHTML(opt.text)}
                   ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
                 </label>
               `).join('')}
               <div class="quiz-feedback ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
-                ${isCorrect ? '✅ Correct!' : `❌ Incorrect. The correct answer is: ${MiniOpenStax.sanitizeHTML(correctOpt?.text || '—')}`}
+                ${isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${sanitizeHTML(correctOpt?.text || '—')}`}
               </div>
             </div>
           `;
@@ -160,42 +411,30 @@
           </div>
         `;
 
-        // Re-render
         const contentDiv = document.createElement('div');
         contentDiv.className = 'chapter-content';
-        contentDiv.innerHTML = chapter.content_html;
+        // Re-render content without quiz
+        contentDiv.innerHTML = `
+          <h2>When to Give Urgent Attention</h2>
+          <p>Refer immediately if back pain is accompanied by <strong>any</strong> of the following: ... </p>
+          <!-- abbreviated for brevity in re-render -->
+        `;
 
         main.innerHTML = '';
         main.appendChild(contentDiv);
         main.innerHTML += `
           <section class="card quiz-section">
-            <h2>Check Your Understanding</h2>
+            <h2>Clinical Knowledge Check</h2>
             ${feedbackHTML}
             ${scoreHTML}
           </section>
         `;
-
-        // ➕ SHOW "NEXT CHAPTER" BUTTON AFTER QUIZ
-        showNextChapterButton();
-      }
-
-      // ======================
-      // NAVIGATION TO CHAPTER 2
-      // ======================
-      function showNextChapterButton() {
-        const nextBtn = document.createElement('div');
-        nextBtn.innerHTML = `
-          <div style="text-align: center; margin-top: 2rem;">
-            <a href="chapter-2.html" class="btn">➡️ Next: Number of Subsets in a Set</a>
-          </div>
-        `;
-        main.appendChild(nextBtn);
       }
 
       // ======================
       // INITIALIZE
       // ======================
-      document.addEventListener('DOMContentLoaded', loadChapter);
+      document.addEventListener('DOMContentLoaded', renderChapter);
     })();
   </script>
 </body>
