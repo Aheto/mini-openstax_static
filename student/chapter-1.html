@@ -1,302 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Mini OpenStax: Clinical decision support for back pain triage (Ghana MoH Guidelines)" />
-  <title>Mini OpenStax — Back Pain Triage</title>
-  <link rel="stylesheet" href="../css/main.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Sets and Operations on Sets</title>
+<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <div>
-        <h1 id="chapter-title">Loading Chapter...</h1>
-        <div class="lo-tags" id="lo-tags"></div>
-      </div>
-      <div class="role-badge">Student View</div>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
     </div>
-
-    <main id="main-content">
-      <div class="loading">Loading chapter content...</div>
-    </main>
+    <div class="role-badge">Student View</div>
   </div>
 
-  <!-- WhatsApp Support Button -->
-<div style="text-align: center; margin: 2rem 0; padding: 1rem; background: #f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
-  <p style="margin: 0 0 1rem 0; color: #1e40af; font-weight: 600;">
-    💬 Need more educational resources?
-  </p>
-  <a 
-    href="https://wa.me/+233257320201?text=Hi!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax." 
-    class="btn"
-    style="background: #25d366; display: inline-flex; align-items: center; gap: 8px;"
-    target="_blank"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.371 1.29 1.371.497 0 .298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z" />
-      <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z" />
-    </svg>
-    Chat on WhatsApp
-  </a>
-  <p style="margin-top: 0.75rem; font-size: 0.9rem; color: #475569;">
-    Ask about additional resources, practice questions, or tutoring
-  </p>
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
 </div>
 
-  <!-- Load classic app.js (no modules) -->
-  <script src="../js/app.js"></script>
-  <script>
-    (function() {
-      'use strict';
+<script>
+(function(){
+'use strict';
 
-      const main = document.getElementById('main-content');
-      const titleEl = document.getElementById('chapter-title');
-      const loTagsEl = document.getElementById('lo-tags');
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 1; // ← CHANGE THIS FOR EACH FILE (e.g., 1, 2, ..., 20)
+const CHAPTER_CONFIG = {
+  title: "Sets and Operations on Sets",
+  loTags: ["LO 1.1.1: Determine number of subsets in a set"],
+  content: `
+    <h2>Key Concepts: Number of Subsets in a Set</h2>
+    <p>Every set can be used to create smaller collections of its elements—called <strong>subsets</strong>. Even the empty set counts!</p>
 
-      // ======================
-      // LOAD & RENDER CHAPTER
-      // ======================
-      function renderChapter() {
-        titleEl.textContent = "Back Pain Triage";
+    <h3>What is a Subset?</h3>
+    <p>A set A is a <strong>subset</strong> of set B if <em>every element</em> of A is also in B. This is written as <code>A ⊆ B</code>.</p>
+    <ul>
+      <li>Example: If B = {1, 2, 3}, then A = {1, 3} is a subset of B.</li>
+      <li>The <strong>empty set (∅)</strong> is a subset of every set.</li>
+      <li>Every set is a subset of itself.</li>
+    </ul>
 
-        // LO Tags
-        loTagsEl.innerHTML = '';
-        const tags = ["MOH-BP-1", "EMERGENCY-TRIAGE", "CLINICAL-DECISION"];
-        tags.forEach(tag => {
-          const span = document.createElement('span');
-          span.className = 'lo-tag';
-          span.textContent = tag;
-          loTagsEl.appendChild(span);
-        });
+    <h3>How Many Subsets?</h3>
+    <p>If a set has <strong>n elements</strong>, the total number of subsets is:</p>
+    <p style="text-align: center; font-size: 1.2em; font-weight: bold;">2<sup>n</sup></p>
+    <p><strong>Why?</strong> For each element, you have two choices: include it or not. So with <em>n</em> elements, you get <code>2 × 2 × … × 2 = 2<sup>n</sup></code> combinations.</p>
 
-        // Chapter Content
-        const contentHTML = `
-          <h2>When to Give UrgENT Attention</h2>
-          <p>Refer immediately if back pain is accompanied by <strong>any</strong> of the following:</p>
-          <ul>
-            <li>Bladder or bowel disturbance (retention or incontinence)</li>
-            <li>Numbness of buttocks, perineum, or legs</li>
-            <li>Leg weakness or difficulty walking</li>
-            <li>Recent injury with abnormal or unavailable x-ray</li>
-            <li>Sudden severe upper abdominal pain + nausea/vomiting → <strong>pancreatitis</strong></li>
-            <li>Pulsatile abdominal mass → <strong>abdominal aortic aneurysm</strong></li>
-            <li>Known cancer history</li>
-          </ul>
+    <h3>Examples</h3>
+    <ul>
+      <li><strong>1 element</strong>: {a} → Subsets: ∅, {a} → <strong>2 = 2<sup>1</sup></strong></li>
+      <li><strong>2 elements</strong>: {x, y} → Subsets: ∅, {x}, {y}, {x,y} → <strong>4 = 2<sup>2</sup></strong></li>
+      <li><strong>3 elements</strong>: {1,2,3} → <strong>8 = 2<sup>3</sup></strong> subsets</li>
+    </ul>
 
-          <h2>Flank Pain Algorithm</h2>
-          <p>If flank pain is present, check urine dipstick:</p>
-          <ul>
-            <li><strong>Leucocytes/nitrites + fever + any of:</strong> vomiting, BP &lt; 90/60, pulse ≥ 100, diabetes, male, pregnant/post-menopause → <strong>complicated pyelonephritis</strong></li>
-            <li><strong>Blood + sudden, severe, one-sided pain radiating to groin</strong> → <strong>kidney stone</strong></li>
-          </ul>
+    <h3>Real-Life Analogy</h3>
+    <p>Imagine you have 3 items to pack: hat, sunglasses, water bottle. For each, you decide “take it” or “leave it.” How many packing combinations? → <strong>2<sup>3</sup> = 8</strong>!</p>
 
-          <h2>Management of Urgent Conditions</h2>
-          <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; margin: 1.5rem 0;">
-            <thead>
-              <tr><th>Condition</th><th>Immediate Action</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Abdominal aortic aneurysm</td><td>Avoid IV fluids even if BP &lt; 90/60</td></tr>
-              <tr><td>Pancreatitis or shock (BP &lt; 90/60)</td><td>Give NaCl 0.9% 500mL IV over 30 min; repeat until SBP &gt; 90</td></tr>
-              <tr><td>Complicated pyelonephritis</td><td>Collect urine for MCS, then give ceftriaxone 1g IV/IM</td></tr>
-              <tr><td>Kidney stone</td><td>Give NaCl 0.9% 1L IV 6-hourly; morphine 10mg IM if severe pain</td></tr>
-              <tr><td>Known cancer</td><td>Refer same day</td></tr>
-            </tbody>
-          </table>
+    <h3>Key Takeaways</h3>
+    <ul>
+      <li>Formula: <strong>Number of subsets = 2<sup>n</sup></strong> (where <em>n</em> = number of elements)</li>
+      <li>Always includes the empty set and the full set itself</li>
+      <li>Only applies to <em>finite</em> sets</li>
+    </ul>
 
-          <h2>Non-Urgent Back Pain</h2>
-          <p>If no red flags, consider:</p>
-          <ul>
-            <li><strong>Uncomplicated pyelonephritis:</strong> ciprofloxacin 500mg 12-hourly × 7 days + paracetamol</li>
-            <li><strong>Mechanical back pain:</strong> reassure, encourage activity, paracetamol first-line</li>
-          </ul>
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
 
-          <h2>Pain Relief Ladder (Mechanical Back Pain)</h2>
-          <ol>
-            <li>Paracetamol 1g 4–6 hourly (max 4g/24h) × 5 days</li>
-            <li>Add ibuprofen 400mg 8-hourly with food × 5 days (if no contraindications)</li>
-            <li>Add tramadol 50mg 6-hourly × 5 days if still uncontrolled</li>
-          </ol>
-        `;
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    {
+      id: "1",
+      prompt: "A set contains 4 distinct elements. How many subsets does it have?",
+      options: [
+        { id: "a", text: "4", is_correct: false },
+        { id: "b", text: "8", is_correct: false },
+        { id: "c", text: "16", is_correct: true },
+        { id: "d", text: "32", is_correct: false }
+      ]
+    }
+  ]
+};
 
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'chapter-content';
-        contentDiv.innerHTML = contentHTML;
+//======================
+// RENDER NAVIGATION BAR
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
 
-        // Quiz Section (20 MCQs from back pain.pdf)
-        const assessmentItems = [
-          { id: "1", prompt: "How many subsets does the set {p} have?", options: [{id:"a",text:"0",is_correct:false},{id:"b",text:"1",is_correct:false},{id:"c",text:"2",is_correct:true},{id:"d",text:"3",is_correct:false}] },
-          { id: "2", prompt: "Which of the following is always a subset of any set?", options: [{id:"a",text:"The universal set",is_correct:false},{id:"b",text:"The set itself",is_correct:false},{id:"c",text:"The empty set",is_correct:true},{id:"d",text:"A singleton set",is_correct:false}] },
-          { id: "3", prompt: "If a set has 3 elements, how many subsets does it have?", options: [{id:"a",text:"3",is_correct:false},{id:"b",text:"6",is_correct:false},{id:"c",text:"8",is_correct:true},{id:"d",text:"9",is_correct:false}] },
-          { id: "4", prompt: "The number of subsets of a set with n elements is given by:", options: [{id:"a",text:"n²",is_correct:false},{id:"b",text:"2n",is_correct:false},{id:"c",text:"2ⁿ",is_correct:true},{id:"d",text:"n!",is_correct:false}] },
-          { id: "5", prompt: "Which of the following is NOT a subset of {a, b}?", options: [{id:"a",text:"{a}",is_correct:false},{id:"b",text:"{b, a}",is_correct:false},{id:"c",text:"∅",is_correct:false},{id:"d",text:"{a, b, c}",is_correct:true}] },
-          { id: "6", prompt: "How many proper subsets does the set {x, y} have?", options: [{id:"a",text:"2",is_correct:false},{id:"b",text:"3",is_correct:true},{id:"c",text:"4",is_correct:false},{id:"d",text:"5",is_correct:false}] },
-          { id: "7", prompt: "A set with 0 elements has how many subsets?", options: [{id:"a",text:"0",is_correct:false},{id:"b",text:"1",is_correct:true},{id:"c",text:"2",is_correct:false},{id:"d",text:"None of the above",is_correct:false}] },
-          { id: "8", prompt: "Which statement is TRUE?", options: [{id:"a",text:"Every set is a proper subset of itself",is_correct:false},{id:"b",text:"The empty set is not a subset of any set",is_correct:false},{id:"c",text:"Every set is a subset of itself",is_correct:true},{id:"d",text:"A set with 2 elements has 3 subsets",is_correct:false}] },
-          { id: "9", prompt: "If the number of subsets of a set is 64, how many elements does it have?", options: [{id:"a",text:"4",is_correct:false},{id:"b",text:"5",is_correct:false},{id:"c",text:"6",is_correct:true},{id:"d",text:"7",is_correct:false}] },
-          { id: "10", prompt: "How many subsets does the empty set have?", options: [{id:"a",text:"0",is_correct:false},{id:"b",text:"1",is_correct:true},{id:"c",text:"2",is_correct:false},{id:"d",text:"It depends",is_correct:false}] },
-          { id: "11", prompt: "Which set has exactly 4 subsets?", options: [{id:"a",text:"{a}",is_correct:false},{id:"b",text:"{a, b}",is_correct:true},{id:"c",text:"{a, b, c}",is_correct:false},{id:"d",text:"{a, b, c, d}",is_correct:false}] },
-          { id: "12", prompt: "The number of proper subsets of a set with 5 elements is:", options: [{id:"a",text:"31",is_correct:true},{id:"b",text:"32",is_correct:false},{id:"c",text:"25",is_correct:false},{id:"d",text:"5",is_correct:false}] },
-          { id: "13", prompt: "If A ⊆ B and B ⊆ A, then:", options: [{id:"a",text:"A is a proper subset of B",is_correct:false},{id:"b",text:"A = B",is_correct:true},{id:"c",text:"A and B are disjoint",is_correct:false},{id:"d",text:"None of the above",is_correct:false}] },
-          { id: "14", prompt: "How many subsets of {1, 2, 3} contain the element 1?", options: [{id:"a",text:"2",is_correct:false},{id:"b",text:"3",is_correct:false},{id:"c",text:"4",is_correct:true},{id:"d",text:"8",is_correct:false}] },
-          { id: "15", prompt: "Which is a proper subset of {apple, banana}?", options: [{id:"a",text:"{apple, banana}",is_correct:false},{id:"b",text:"{apple}",is_correct:true},{id:"c",text:"{apple, banana, cherry}",is_correct:false},{id:"d",text:"None of the above",is_correct:false}] },
-          { id: "16", prompt: "The total number of subsets of a set with 1 element is:", options: [{id:"a",text:"0",is_correct:false},{id:"b",text:"1",is_correct:false},{id:"c",text:"2",is_correct:true},{id:"d",text:"3",is_correct:false}] },
-          { id: "17", prompt: "If two different sets have the same number of subsets, then:", options: [{id:"a",text:"They must have the same number of elements",is_correct:true},{id:"b",text:"One must be a subset of the other",is_correct:false},{id:"c",text:"They are equal",is_correct:false},{id:"d",text:"None of the above",is_correct:false}] },
-          { id: "18", prompt: "Which symbol denotes the empty set?", options: [{id:"a",text:"∅",is_correct:true},{id:"b",text:"{}",is_correct:false},{id:"c",text:"0",is_correct:false},{id:"d",text:"Both A and B",is_correct:false}] },
-          { id: "19", prompt: "A set with n elements has how many subsets containing exactly one element?", options: [{id:"a",text:"1",is_correct:false},{id:"b",text:"n",is_correct:true},{id:"c",text:"2ⁿ",is_correct:false},{id:"d",text:"2ⁿ⁻¹",is_correct:false}] },
-          { id: "20", prompt: "In a club with 3 activity groups, how many unique membership combinations are possible?", options: [{id:"a",text:"3",is_correct:false},{id:"b",text:"6",is_correct:false},{id:"c",text:"8",is_correct:true},{id:"d",text:"9",is_correct:false}] }
-        ];
+  // Button 1: HOME
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  
+  // Button 2: Current chapter
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // Buttons 3–5: Next up to 3 chapters (max 20)
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    if(next <= 20){
+      buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+    }
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
 
-        let quizHTML = `
-          <section class="card quiz-section">
-            <h2>Clinical Knowledge Check</h2>
-            ${assessmentItems.map((item, idx) => `
-              <div class="quiz-item" data-item-id="${item.id}">
-                <p>${idx + 1}. ${item.prompt}</p>
-                ${item.options.map(opt => `
-                  <label class="quiz-option">
-                    <input type="radio" name="q-${item.id}" value="${opt.id}">
-                    ${opt.text}
-                  </label>
-                `).join('')}
-              </div>
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
             `).join('')}
-            <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
-          </section>
-        `;
-
-        main.innerHTML = '';
-        main.appendChild(contentDiv);
-        main.innerHTML += quizHTML;
-        setupQuizListeners(assessmentItems);
-      }
-
-      // ======================
-      // QUIZ LOGIC
-      // ======================
-      function setupQuizListeners(assessmentItems) {
-        const submitBtn = document.getElementById('submit-quiz-btn');
-        const answers = {};
-
-        assessmentItems.forEach(item => {
-          const inputs = document.querySelectorAll(`input[name="q-${item.id}"]`);
-          inputs.forEach(input => {
-            input.addEventListener('change', (e) => {
-              answers[item.id] = e.target.value;
-              updateSubmitButton(submitBtn, Object.keys(answers).length, assessmentItems.length);
-            });
-          });
-        });
-
-        if (submitBtn) {
-          submitBtn.addEventListener('click', () => {
-            showFeedback(assessmentItems, answers);
-          });
-        }
-      }
-
-      function updateSubmitButton(button, answered, total) {
-        if (button) {
-          button.disabled = answered !== total;
-        }
-      }
-
-      // ======================
-      // SHOW FEEDBACK FUNCTION (INTEGRATED)
-      // ======================
-      function showFeedback(assessmentItems, answers) {
-        let correctCount = 0;
-        const total = assessmentItems.length;
-
-        // Calculate correct answers
-        assessmentItems.forEach(item => {
-          const userAnswerId = answers[item.id];
-          const isCorrect = item.options.some(opt => opt.id === userAnswerId && opt.is_correct);
-          if (isCorrect) correctCount++;
-        });
-
-        const score = correctCount / total;
-        const scorePercent = Math.round(score * 100);
-
-        // Build feedback HTML
-        const feedbackHTML = assessmentItems.map((item, idx) => {
-          const selectedId = answers[item.id];
-          const selectedOpt = item.options.find(opt => opt.id === selectedId);
-          const correctOpt = item.options.find(opt => opt.is_correct);
-          const isCorrect = selectedOpt?.is_correct || false;
-
-          return `
-            <div class="quiz-item">
-              <p>${idx + 1}. ${item.prompt}</p>
-              ${item.options.map(opt => `
-                <label class="quiz-option">
-                  <input type="radio" name="q-${item.id}" value="${opt.id}" disabled ${opt.id === selectedId ? 'checked' : ''}>
-                  ${opt.text} ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
-                </label>
-              `).join('')}
-              <div class="quiz-feedback ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
-                ${isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${correctOpt?.text || '—'}`}
-              </div>
-            </div>
-          `;
-        }).join('');
-
-        const scoreHTML = `
-          <div class="score-card">
-            <p><strong>Your Score:</strong> ${scorePercent}%</p>
           </div>
-        `;
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
 
-        // Re-render content without interactive quiz
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'chapter-content';
-        contentDiv.innerHTML = `
-          <h2>When to Give UrgENT Attention</h2>
-          <p>Refer immediately if back pain is accompanied by <strong>any</strong> of the following: ... </p>
-          <!-- Full content omitted for brevity in re-render -->
-        `;
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
 
-        main.innerHTML = '';
-        main.appendChild(contentDiv);
-        main.innerHTML += `
-          <section class="card quiz-section">
-            <h2>Clinical Knowledge Check</h2>
-            ${feedbackHTML}
-            ${scoreHTML}
-          </section>
-        `;
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
 
-        // ➕ WHATSAPP BUTTON FOR SCORE SUBMISSION
-        const phoneNumber = "233257320201";
-        const message = encodeURIComponent(
-          `My quiz score: ${scorePercent}%\nChapter: Back Pain Triage\nStudent: [Your Name]`
-        );
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
 
-        const whatsappButton = `
-          <div style="text-align: center; margin-top: 1.5rem;">
-            <a href="${whatsappUrl}" class="btn" 
-               style="background: #25D366; display: inline-flex; align-items: center; gap: 8px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.371 1.29 1.371.497 0 .298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z" />
-                <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z" />
-              </svg>
-              Send Score to Instructor
-            </a>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #64748b;">
-              Tap to share your results via WhatsApp
-            </p>
-          </div>
-        `;
-        main.innerHTML += whatsappButton;
-      }
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
 
-      // ======================
-      // INITIALIZE
-      // ======================
-      document.addEventListener('DOMContentLoaded', renderChapter);
-    })();
-  </script>
+//======================
+// FEEDBACK & SCORE
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    return {
+      item,
+      isCorrect,
+      selected,
+      correctText: correctOpt ? correctOpt.text : ' —'
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  const feedbackHTML = feedback.map(f => `
+    <div class="quiz-item">
+      <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
 </body>
 </html>
