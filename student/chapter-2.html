@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Mini OpenStax: Interactive clinical learning module"/>
-<title>Mini OpenStax — Back Pain Triage and Management</title>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Properties of Set Operations</title>
 <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
@@ -16,6 +16,10 @@
     </div>
     <div class="role-badge">Student View</div>
   </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
   <main id="main-content">
     <div class="loading">Loading chapter content...</div>
   </main>
@@ -25,283 +29,146 @@
 (function(){
 'use strict';
 
-const main = document.getElementById('main-content');
-const titleEl = document.getElementById('chapter-title');
-const loTagsEl = document.getElementById('lo-tags');
-
 //======================
-// 🔧 CONFIGURATION — EDIT THESE FOR EACH CHAPTER
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
 //======================
+const currentChapter = 2; // ← CHANGE THIS FOR EACH FILE
 const CHAPTER_CONFIG = {
-  title: "Back Pain Triage and Management",
-  loTags: ["MOH-BP-1", "EMERGENCY-TRIAGE", "PRIMARY-CARE-MSK"],
+  title: "Properties of Set Operations",
+  loTags: ["LO 1.1.2: Identify properties of operations on sets"],
   content: `
-    <h2>Key Concepts: Back Pain Triage</h2>
-    <p>Back pain is common but requires urgent attention if red flags are present. This module outlines when to refer urgently, how to manage acute causes, and how to approach non-urgent mechanical or inflammatory back pain.</p>
+    <h2>Key Concepts: Properties of Set Operations</h2>
+    <p>When we combine sets using <strong>union (∪)</strong> and <strong>intersection (∩)</strong>, the results follow predictable rules—just like addition and multiplication with numbers. These are called <em>properties of set operations</em>.</p>
 
-    <h3>🚨 Urgent Red Flags (Refer Immediately)</h3>
+    <h3>1. Commutative Property</h3>
+    <p>The order of sets does <em>not</em> matter.</p>
     <ul>
-      <li>Bladder or bowel disturbance (retention or incontinence)</li>
-      <li>Numbness of buttocks, perineum, or legs</li>
-      <li>Leg weakness or difficulty walking</li>
-      <li>Recent injury with unavailable/abnormal x-ray</li>
-      <li>Sudden severe upper abdominal pain with nausea/vomiting → pancreatitis</li>
-      <li>Pulsatile abdominal mass → abdominal aortic aneurysm (AAA)</li>
-      <li>Known cancer history</li>
-      <li>Flank pain with dipstick findings:
-        <ul>
-          <li>Leucocytes/nitrites + fever + vomiting/BP&lt;90/pulse≥100/diabetes/male/pregnant/post-menopause → complicated pyelonephritis</li>
-          <li>Blood + sudden one-sided pain radiating to groin → kidney stone</li>
-        </ul>
-      </li>
+      <li><strong>Union:</strong> A ∪ B = B ∪ A</li>
+      <li><strong>Intersection:</strong> A ∩ B = B ∩ A</li>
     </ul>
+    <p>✅ Example: If A = {1,2}, B = {2,3}, then:<br>
+      A ∪ B = {1,2,3} = B ∪ A<br>
+      A ∩ B = {2} = B ∩ A</p>
 
-    <h3>🩺 Urgent Management (Before Referral)</h3>
+    <h3>2. Associative Property</h3>
+    <p>Grouping does <em>not</em> affect the result when combining three or more sets.</p>
     <ul>
-      <li><strong>AAA suspected</strong>: Avoid IV fluids—even if BP&lt;90 (↑BP may worsen rupture)</li>
-      <li><strong>Pancreatitis or BP&lt;90</strong>: NaCl 0.9% 500mL IV over 30 min; repeat until systolic BP&gt;90; then 1L 6-hourly</li>
-      <li><strong>Complicated pyelonephritis</strong>: Collect urine for MCS → give ceftriaxone 1g IV/IM</li>
-      <li><strong>Kidney stone</strong>: NaCl 0.9% 1L IV 6-hourly; morphine 10mg IM or 3–10mg slow IV for severe pain</li>
-      <li><strong>Known cancer</strong>: Refer same day</li>
+      <li><strong>Union:</strong> (A ∪ B) ∪ C = A ∪ (B ∪ C)</li>
+      <li><strong>Intersection:</strong> (A ∩ B) ∩ C = A ∩ (B ∩ C)</li>
     </ul>
+    <p>✅ Example: A={1}, B={1,2}, C={2,3}<br>
+      (A ∪ B) ∪ C = {1,2} ∪ {2,3} = {1,2,3}<br>
+      A ∪ (B ∪ C) = {1} ∪ {1,2,3} = {1,2,3}</p>
 
-    <h3>🩼 Non-Urgent Back Pain Algorithm</h3>
-    <p><strong>Step 1:</strong> Flank pain + leucocytes/nitrites → uncomplicated pyelonephritis → ciprofloxacin 500mg 12-hourly ×7d + paracetamol</p>
-    <p><strong>Step 2:</strong> Any of cough, weight loss, night sweats, or fever?</p>
+    <h3>3. Distributive Property</h3>
+    <p>Intersection <em>distributes</em> over union, and vice versa.</p>
     <ul>
-      <li><strong>Yes</strong> → Check age, duration, risk factors → x-ray + ESR → refer</li>
-      <li><strong>No</strong> → Check for inflammatory features</li>
+      <li><strong>Intersection over Union:</strong> A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)</li>
+      <li><strong>Union over Intersection:</strong> A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)</li>
     </ul>
-    <p><strong>Inflammatory back pain likely if:</strong> Age &lt;40, pain disturbs sleep, improves with exercise, not relieved by rest</p>
-    <p><strong>Mechanical back pain likely otherwise</strong></p>
+    <p>✅ Real-life analogy: Think of sets as categories:<br>
+      Let A = {students}, B = {math lovers}, C = {science lovers}.<br>
+      "Students who love math or science" = (A ∩ B) ∪ (A ∩ C)<br>
+      This is the same as A ∩ (B ∪ C).</p>
 
-    <h3>💊 Mechanical Back Pain Management</h3>
-    <ul>
-      <li>Reassure: pain is common, usually self-limiting, not always due to serious disease</li>
-      <li>Advise activity, not bed rest</li>
-      <li>Paracetamol 1g 4–6 hourly (max 4g/24h) ×5d</li>
-      <li>If no response after 1 week → add ibuprofen 400mg 8-hourly with food ×5d (avoid in ulcers, asthma, HTN, HF, CKD)</li>
-      <li>If still no response → add tramadol 50mg 6-hourly ×5d</li>
-      <li>Pain &gt;2 weeks or impacting function → physiotherapy referral</li>
-      <li>Pain ≥4 weeks → assess mood, CVD risk, refer to doctor</li>
-    </ul>
+    <h3>Visual Confirmation: Venn Diagrams</h3>
+    <p>These properties can be verified using Venn diagrams—shading the same region regardless of grouping or order.</p>
 
-    <h3>🩻 Inflammatory Back Pain Workup</h3>
-    <ul>
-      <li>ESR, HIV test, back x-ray</li>
-      <li>Exclude TB</li>
-      <li>Ibuprofen 400mg 8-hourly ×5d</li>
-      <li>Discuss with specialist</li>
-    </ul>
+    <h3>Why It Matters</h3>
+    <p>These properties let us simplify complex set expressions and prove set identities—essential for logic, computer science, and data analysis.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
   `,
   whatsappNumber: "233257320201",
   assessmentItems: [
-    {
-      id: "1",
-      prompt: "Which of the following is an IMMEDIATE red flag requiring urgent referral in a patient with back pain?",
-      options: [
-        { id: "a", text: "Pain worse at night", is_correct: false },
-        { id: "b", text: "Pain improved with walking", is_correct: false },
-        { id: "c", text: "New onset leg weakness", is_correct: true },
-        { id: "d", text: "Mild abdominal discomfort", is_correct: false }
-      ]
-    },
-    {
-      id: "2",
-      prompt: "A 60-year-old with back pain and a pulsatile abdominal mass should NOT receive:",
-      options: [
-        { id: "a", text: "Morphine for pain", is_correct: false },
-        { id: "b", text: "IV fluids", is_correct: true },
-        { id: "c", text: "Oxygen", is_correct: false },
-        { id: "d", text: "Urgent referral", is_correct: false }
-      ]
-    },
-    {
-      id: "3",
-      prompt: "For suspected complicated pyelonephritis with back/flank pain, the FIRST step is:",
-      options: [
-        { id: "a", text: "Start ciprofloxacin", is_correct: false },
-        { id: "b", text: "Give IV morphine", is_correct: false },
-        { id: "c", text: "Collect urine for MCS", is_correct: true },
-        { id: "d", text: "Order renal ultrasound", is_correct: false }
-      ]
-    },
-    {
-      id: "4",
-      prompt: "Which feature suggests INFLAMMATORY rather than mechanical back pain?",
-      options: [
-        { id: "a", text: "Pain relieved by rest", is_correct: false },
-        { id: "b", text: "Age over 50", is_correct: false },
-        { id: "c", text: "Pain improves with exercise", is_correct: true },
-        { id: "d", text: "History of heavy lifting", is_correct: false }
-      ]
-    },
-    {
-      id: "5",
-      prompt: "Initial analgesia for mechanical back pain should be:",
-      options: [
-        { id: "a", text: "Ibuprofen 400mg 8-hourly", is_correct: false },
-        { id: "b", text: "Tramadol 50mg 6-hourly", is_correct: false },
-        { id: "c", text: "Paracetamol 1g 4–6 hourly", is_correct: true },
-        { id: "d", text: "Morphine 10mg IM", is_correct: false }
-      ]
-    },
-    {
-      id: "6",
-      prompt: "A patient with known cancer and new back pain should:",
-      options: [
-        { id: "a", text: "Be managed with paracetamol and rest", is_correct: false },
-        { id: "b", text: "Be referred the same day", is_correct: true },
-        { id: "c", text: "Have an ESR checked in 1 week", is_correct: false },
-        { id: "d", text: "Start ibuprofen immediately", is_correct: false }
-      ]
-    },
-    {
-      id: "7",
-      prompt: "Which finding on urine dipstick in a febrile patient with flank pain suggests kidney stone?",
-      options: [
-        { id: "a", text: "Leucocytes and nitrites", is_correct: false },
-        { id: "b", text: "Protein", is_correct: false },
-        { id: "c", text: "Blood", is_correct: true },
-        { id: "d", text: "Glucose", is_correct: false }
-      ]
-    },
-    {
-      id: "8",
-      prompt: "IV fluid management for suspected pancreatitis with BP < 90/60 includes:",
-      options: [
-        { id: "a", text: "NaCl 0.9% 500mL over 30 min, repeat until SBP > 90", is_correct: true },
-        { id: "b", text: "Ringer’s lactate 2L bolus", is_correct: false },
-        { id: "c", text: "No IV fluids due to rupture risk", is_correct: false },
-        { id: "d", text: "Dextrose 5% at 125mL/h", is_correct: false }
-      ]
-    },
-    {
-      id: "9",
-      prompt: "Ibuprofen should be AVOIDED in back pain management if the patient has:",
-      options: [
-        { id: "a", text: "Hypertension", is_correct: true },
-        { id: "b", text: "Depression", is_correct: false },
-        { id: "c", text: "Obesity", is_correct: false },
-        { id: "d", text: "Mild headache", is_correct: false }
-      ]
-    },
-    {
-      id: "10",
-      prompt: "When should a patient with mechanical back pain be referred for physiotherapy?",
-      options: [
-        { id: "a", text: "Immediately at first visit", is_correct: false },
-        { id: "b", text: "If pain > 2 weeks or affecting daily function", is_correct: true },
-        { id: "c", text: "Only if over age 65", is_correct: false },
-        { id: "d", text: "After 1 day of paracetamol", is_correct: false }
-      ]
-    },
-    {
-      id: "11",
-      prompt: "Which symptom combination suggests complicated pyelonephritis?",
-      options: [
-        { id: "a", text: "Flank pain + blood on dipstick + groin radiation", is_correct: false },
-        { id: "b", text: "Flank pain + leucocytes + fever + BP < 90", is_correct: true },
-        { id: "c", text: "Back pain + morning stiffness >30 min", is_correct: false },
-        { id: "d", text: "Low back pain after gardening", is_correct: false }
-      ]
-    },
-    {
-      id: "12",
-      prompt: "For inflammatory back pain, which test is recommended?",
-      options: [
-        { id: "a", text: "HbA1c", is_correct: false },
-        { id: "b", text: "ESR", is_correct: true },
-        { id: "c", text: "Liver function tests", is_correct: false },
-        { id: "d", text: "Thyroid panel", is_correct: false }
-      ]
-    },
-    {
-      id: "13",
-      prompt: "A 35-year-old with back pain that wakes them at night and improves with morning exercise likely has:",
-      options: [
-        { id: "a", text: "Mechanical back pain", is_correct: false },
-        { id: "b", text: "Inflammatory back pain", is_correct: true },
-        { id: "c", text: "Kidney stone", is_correct: false },
-        { id: "d", text: "Muscle strain", is_correct: false }
-      ]
-    },
-    {
-      id: "14",
-      prompt: "First-line antibiotic for UNCOMPLICATED pyelonephritis in back pain with flank symptoms is:",
-      options: [
-        { id: "a", text: "Ceftriaxone", is_correct: false },
-        { id: "b", text: "Amoxicillin", is_correct: false },
-        { id: "c", text: "Ciprofloxacin", is_correct: true },
-        { id: "d", text: "Metronidazole", is_correct: false }
-      ]
-    },
-    {
-      id: "15",
-      prompt: "Morphine for kidney stone pain should be given:",
-      options: [
-        { id: "a", text: "Only orally", is_correct: false },
-        { id: "b", text: "IV undiluted for rapid effect", is_correct: false },
-        { id: "c", text: "IM or slow IV (3–10mg)", is_correct: true },
-        { id: "d", text: "With NSAIDs only", is_correct: false }
-      ]
-    },
-    {
-      id: "16",
-      prompt: "When should TB be excluded in back pain evaluation?",
-      options: [
-        { id: "a", text: "In all cases", is_correct: false },
-        { id: "b", text: "Only if HIV positive", is_correct: false },
-        { id: "c", text: "When inflammatory back pain is suspected", is_correct: true },
-        { id: "d", text: "Only in children", is_correct: false }
-      ]
-    },
-    {
-      id: "17",
-      prompt: "Tramadol is added in mechanical back pain when:",
-      options: [
-        { id: "a", text: "Pain starts", is_correct: false },
-        { id: "b", text: "Paracetamol and ibuprofen fail after 1–2 weeks", is_correct: true },
-        { id: "c", text: "Patient requests opioids", is_correct: false },
-        { id: "d", text: "Age > 70", is_correct: false }
-      ]
-    },
-    {
-      id: "18",
-      prompt: "Which patient needs an urgent x-ray?",
-      options: [
-        { id: "a", text: "25-year-old with post-exercise backache", is_correct: false },
-        { id: "b", text: "45-year-old with 8-week progressive pain and weight loss", is_correct: true },
-        { id: "c", text: "30-year-old with mild stiffness", is_correct: false },
-        { id: "d", text: "50-year-old with resolved pain", is_correct: false }
-      ]
-    },
-    {
-      id: "19",
-      prompt: "Reassurance in mechanical back pain should include all EXCEPT:",
-      options: [
-        { id: "a", text: "Pain usually resolves on its own", is_correct: false },
-        { id: "b", text: "Bed rest is essential for healing", is_correct: true },
-        { id: "c", text: "Tests often don’t show a cause", is_correct: false },
-        { id: "d", text: "Pain ≠ cancer", is_correct: false }
-      ]
-    },
-    {
-      id: "20",
-      prompt: "Which condition requires AVOIDING IV fluids even if hypotensive?",
-      options: [
-        { id: "a", text: "Pancreatitis", is_correct: false },
-        { id: "b", text: "Pyelonephritis", is_correct: false },
-        { id: "c", text: "Abdominal aortic aneurysm", is_correct: true },
-        { id: "d", text: "Kidney stone", is_correct: false }
-      ]
-    }
+    { id:"1", prompt:"Which property states that A ∪ B = B ∪ A?", options:[{id:"a",text:"Associative",is_correct:false},{id:"b",text:"Commutative",is_correct:true},{id:"c",text:"Distributive",is_correct:false},{id:"d",text:"Identity",is_correct:false}] },
+    { id:"2", prompt:"The expression (A ∩ B) ∩ C = A ∩ (B ∩ C) illustrates which property?", options:[{id:"a",text:"Commutative",is_correct:false},{id:"b",text:"Associative",is_correct:true},{id:"c",text:"Distributive",is_correct:false},{id:"d",text:"De Morgan's",is_correct:false}] },
+    { id:"3", prompt:"Which is true for all sets A, B, and C?", options:[{id:"a",text:"A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)",is_correct:true},{id:"b",text:"A ∪ (B ∩ C) = (A ∩ B) ∪ C",is_correct:false},{id:"c",text:"A ∩ (B ∪ C) = (A ∪ B) ∩ C",is_correct:false},{id:"d",text:"A ∪ B = A ∩ B",is_correct:false}] },
+    { id:"4", prompt:"If A = {1}, B = {2}, then A ∪ B = B ∪ A demonstrates:", options:[{id:"a",text:"Associativity",is_correct:false},{id:"b",text:"Commutativity",is_correct:true},{id:"c",text:"Distributivity",is_correct:false},{id:"d",text:"None",is_correct:false}] },
+    { id:"5", prompt:"Which property allows us to write A ∩ (B ∪ C) as (A ∩ B) ∪ (A ∩ C)?", options:[{id:"a",text:"Associative",is_correct:false},{id:"b",text:"Commutative",is_correct:false},{id:"c",text:"Distributive",is_correct:true},{id:"d",text:"Complement",is_correct:false}] },
+    { id:"6", prompt:"For any sets A and B, A ∩ B = B ∩ A is always true because of:", options:[{id:"a",text:"Commutative property of intersection",is_correct:true},{id:"b",text:"Associative property",is_correct:false},{id:"c",text:"Distributive law",is_correct:false},{id:"d",text:"Idempotent law",is_correct:false}] },
+    { id:"7", prompt:"Which expression is equivalent to X ∪ (Y ∩ Z)?", options:[{id:"a",text:"(X ∪ Y) ∩ (X ∪ Z)",is_correct:true},{id:"b",text:"(X ∩ Y) ∪ (X ∩ Z)",is_correct:false},{id:"c",text:"X ∩ (Y ∪ Z)",is_correct:false},{id:"d",text:"(X ∪ Y) ∪ (X ∪ Z)",is_correct:false}] },
+    { id:"8", prompt:"The equality (P ∪ Q) ∪ R = P ∪ (Q ∪ R) is an example of:", options:[{id:"a",text:"Commutative law",is_correct:false},{id:"b",text:"Associative law",is_correct:true},{id:"c",text:"Distributive law",is_correct:false},{id:"d",text:"Identity law",is_correct:false}] },
+    { id:"9", prompt:"Which of the following is NOT a property of set operations?", options:[{id:"a",text:"Commutative",is_correct:false},{id:"b",text:"Associative",is_correct:false},{id:"c",text:"Distributive",is_correct:false},{id:"d",text:"Additive inverse",is_correct:true}] },
+    { id:"10", prompt:"If A, B, C are sets, then A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) is known as:", options:[{id:"a",text:"Distributive property of union over intersection",is_correct:true},{id:"b",text:"Distributive property of intersection over union",is_correct:false},{id:"c",text:"Associative property",is_correct:false},{id:"d",text:"Commutative property",is_correct:false}] },
+    { id:"11", prompt:"Which law justifies that the order of sets in an intersection doesn't matter?", options:[{id:"a",text:"Associative",is_correct:false},{id:"b",text:"Commutative",is_correct:true},{id:"c",text:"Distributive",is_correct:false},{id:"d",text:"Identity",is_correct:false}] },
+    { id:"12", prompt:"For sets A, B, and C, which is always true?", options:[{id:"a",text:"(A ∩ B) ∪ C = A ∩ (B ∪ C)",is_correct:false},{id:"b",text:"A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)",is_correct:true},{id:"c",text:"A ∩ B = A ∪ B",is_correct:false},{id:"d",text:"A ∪ ∅ = ∅",is_correct:false}] },
+    { id:"13", prompt:"Which property is used to simplify A ∩ (B ∪ C) into two intersections?", options:[{id:"a",text:"Associative",is_correct:false},{id:"b",text:"Commutative",is_correct:false},{id:"c",text:"Distributive",is_correct:true},{id:"d",text:"Idempotent",is_correct:false}] },
+    { id:"14", prompt:"If A = {x, y}, B = {y, z}, then A ∩ B = B ∩ A. This illustrates:", options:[{id:"a",text:"Associativity",is_correct:false},{id:"b",text:"Commutativity",is_correct:true},{id:"c",text:"Distributivity",is_correct:false},{id:"d",text:"Transitivity",is_correct:false}] },
+    { id:"15", prompt:"Which statement is FALSE?", options:[{id:"a",text:"Union is commutative",is_correct:false},{id:"b",text:"Intersection is associative",is_correct:false},{id:"c",text:"Union distributes over intersection",is_correct:false},{id:"d",text:"Intersection is distributive over itself",is_correct:true}] },
+    { id:"16", prompt:"The identity (A ∪ B) ∩ (A ∪ C) = A ∪ (B ∩ C) shows:", options:[{id:"a",text:"Distributivity of ∪ over ∩",is_correct:true},{id:"b",text:"Distributivity of ∩ over ∪",is_correct:false},{id:"c",text:"Commutativity of ∪",is_correct:false},{id:"d",text:"Associativity of ∩",is_correct:false}] },
+    { id:"17", prompt:"Which property supports the step: A ∩ (B ∪ C) → (A ∩ B) ∪ (A ∩ C)?", options:[{id:"a",text:"Commutative",is_correct:false},{id:"b",text:"Associative",is_correct:false},{id:"c",text:"Distributive",is_correct:true},{id:"d",text:"De Morgan's",is_correct:false}] },
+    { id:"18", prompt:"For any three sets, grouping doesn't affect the union. This is:", options:[{id:"a",text:"Commutative law",is_correct:false},{id:"b",text:"Associative law",is_correct:true},{id:"c",text:"Distributive law",is_correct:false},{id:"d",text:"Complement law",is_correct:false}] },
+    { id:"19", prompt:"Which is a correct application of the distributive property?", options:[{id:"a",text:"X ∩ (Y ∪ Z) = (X ∩ Y) ∪ (X ∩ Z)",is_correct:true},{id:"b",text:"X ∪ (Y ∩ Z) = (X ∪ Y) ∩ Z",is_correct:false},{id:"c",text:"(X ∩ Y) ∪ Z = X ∩ (Y ∪ Z)",is_correct:false},{id:"d",text:"X ∪ Y = Y ∩ X",is_correct:false}] },
+    { id:"20", prompt:"In database queries, combining filters with 'AND' and 'OR' relies on which set properties?", options:[{id:"a",text:"Only Commutative",is_correct:false},{id:"b",text:"Only Associative",is_correct:false},{id:"c",text:"Distributive and Commutative",is_correct:true},{id:"d",text:"None",is_correct:false}] }
   ]
 };
 
 //======================
+// RENDER NAVIGATION BAR
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  // Button 1: HOME
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  
+  // Button 2: Current chapter
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // Buttons 3–5: Next up to 3 chapters (max 20)
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    if(next <= 20){
+      buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+    }
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
 // RENDER CHAPTER CONTENT
 //======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
 function renderChapter(){
   titleEl.textContent = CHAPTER_CONFIG.title;
   loTagsEl.innerHTML = '';
@@ -327,8 +194,7 @@ function renderChapter(){
             <p>${idx + 1}. ${item.prompt}</p>
             ${item.options.map(opt => `
               <label class="quiz-option">
-                <input type="radio" name="q-${item.id}" value="${opt.id}">
-                ${opt.text}
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
               </label>
             `).join('')}
           </div>
@@ -383,7 +249,7 @@ function showFeedback(answers){
       item,
       isCorrect,
       selected,
-      correctText: correctOpt ? correctOpt.text : ' — '
+      correctText: correctOpt ? correctOpt.text : ' —'
     };
   });
 
@@ -395,8 +261,8 @@ function showFeedback(answers){
       <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
       ${f.item.options.map(opt => `
         <label class="quiz-option">
-          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}>
-          ${opt.text}${opt.is_correct ? '<strong>(Correct)</strong>' : ''}
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
         </label>
       `).join('')}
       <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
@@ -425,31 +291,76 @@ function showFeedback(answers){
     </section>
   `;
 
-  if(CHAPTER_CONFIG.whatsappNumber){
-    const msg = encodeURIComponent(
-      `My quiz score: ${scorePercent}%\nChapter: ${CHAPTER_CONFIG.title}\nStudent: [Your Name]`
-    );
-    const url = `https://wa.me/${CHAPTER_CONFIG.whatsappNumber}?text=${msg}`;
-    const whatsappBtn = `
-      <div style="text-align: center; margin-top: 1.5rem;">
-        <a href="${url}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
-            <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
-          </svg> Send Score to Instructor
-        </a>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
-      </div>
-    `;
-    main.innerHTML += whatsappBtn;
-  }
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
 }
 
 //======================
 // INITIALIZE
 //======================
-document.addEventListener('DOMContentLoaded', renderChapter);
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
 })();
 </script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
 </body>
 </html>
