@@ -38,47 +38,55 @@ const CHAPTER_CONFIG = {
   loTags: ["LO 1.2.6: Express recurring decimals as fractions"],
   content: `
     <h2>Key Concepts: Converting Recurring Decimals to Fractions</h2>
-    <p>A <strong>recurring (repeating) decimal</strong> has one or more digits that repeat infinitely. These can always be written as <strong>fractions</strong> using algebra.</p>
+    <p>A <strong>recurring (repeating) decimal</strong> has one or more digits that repeat forever. These can always be written as <strong>fractions</strong> using algebra.</p>
 
-    <h3>Notation</h3>
-    <p>We use a dot above repeating digits:<br>
-      • <code>0.333… = 0.\\dot{3}</code><br>
-      • <code>0.121212… = 0.\\dot{1}\\dot{2}</code><br>
-      • <code>0.142857142857… = 0.\\dot{1}4285\\dot{7}</code></p>
+    <h3>How to Write Recurring Decimals</h3>
+    <p>We use a dot above the repeating digit(s):</p>
+    <ul>
+      <li><code>0.333... = 0.3̇</code></li>
+      <li><code>0.121212... = 0.1̇2̇</code></li>
+      <li><code>0.142857142857... = 0.1̇42857̇</code></li>
+    </ul>
+    <p>If you can't type dots, just write the repeating part in parentheses:<br>
+      • 0.(3), 0.(12), 0.(142857)</p>
 
     <h3>Method: Algebraic Conversion</h3>
-    <p><strong>Case 1: Single repeating digit (e.g., 0.\\dot{7})</strong></p>
+    <p><strong>Case 1: One repeating digit (e.g., 0.7̇)</strong></p>
     <ol>
-      <li>Let <code>x = 0.777…</code></li>
-      <li>Multiply both sides by 10: <code>10x = 7.777…</code></li>
-      <li>Subtract: <code>10x − x = 7.777… − 0.777… → 9x = 7</code></li>
-      <li>Solve: <code>x = 7/9</code></li>
+      <li>Let x = 0.777...</li>
+      <li>Multiply by 10: 10x = 7.777...</li>
+      <li>Subtract: 10x − x = 7.777... − 0.777... → 9x = 7</li>
+      <li>So x = 7/9</li>
     </ol>
 
-    <p><strong>Case 2: Two repeating digits (e.g., 0.\\dot{2}\\dot{5})</strong></p>
+    <p><strong>Case 2: Two repeating digits (e.g., 0.2̇5̇)</strong></p>
     <ol>
-      <li>Let <code>x = 0.252525…</code></li>
-      <li>Multiply by 100 (since 2 digits repeat): <code>100x = 25.2525…</code></li>
-      <li>Subtract: <code>100x − x = 25 → 99x = 25</code></li>
-      <li>Solve: <code>x = 25/99</code></li>
+      <li>Let x = 0.252525...</li>
+      <li>Multiply by 100: 100x = 25.2525...</li>
+      <li>Subtract: 100x − x = 25 → 99x = 25</li>
+      <li>So x = 25/99</li>
     </ol>
 
     <p><strong>General Rule:</strong><br>
-      - For <em>n</em> repeating digits, multiply by <code>10<sup>n</sup></code><br>
-      - Denominator = <code>999…</code> (<em>n</em> nines)<br>
-      - Numerator = the repeating block</p>
+      - If <em>n</em> digits repeat, multiply by 10^n<br>
+      - Denominator = number with <em>n</em> nines (9, 99, 999, etc.)<br>
+      - Numerator = the repeating digits</p>
 
     <h3>Common Examples</h3>
     <ul>
-      <li><code>0.\\dot{1} = 1/9</code></li>
-      <li><code>0.\\dot{3} = 3/9 = 1/3</code></li>
-      <li><code>0.\\dot{6} = 6/9 = 2/3</code></li>
-      <li><code>0.\\dot{1}\\dot{8} = 18/99 = 2/11</code></li>
-      <li><code>5.\\dot{4} = 5 + 4/9 = 49/9</code></li>
+      <li>0.1̇ = 1/9</li>
+      <li>0.3̇ = 3/9 = 1/3</li>
+      <li>0.6̇ = 6/9 = 2/3</li>
+      <li>0.1̇8̇ = 18/99 = 2/11</li>
+      <li>5.4̇ = 5 + 4/9 = 49/9</li>
     </ul>
 
+    <h3>Special Note: 0.9̇ = 1</h3>
+    <p>Using the method: x = 0.999... → 10x = 9.999... → 9x = 9 → x = 1.<br>
+    So 0.999... is <em>exactly equal</em> to 1—not approximately!</p>
+
     <h3>Real-Life Insight</h3>
-    <p>Recurring decimals often appear when dividing integers (e.g., 1 ÷ 3). Converting them to fractions gives exact values—essential in engineering, finance, and science.</p>
+    <p>Recurring decimals appear when dividing integers (e.g., 1 ÷ 3 = 0.333...). Converting them to fractions gives exact values—essential in science, engineering, and finance.</p>
 
     <!-- 💬 WhatsApp Support -->
     <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
@@ -118,26 +126,26 @@ const CHAPTER_CONFIG = {
   `,
   whatsappNumber: "233257320201",
   assessmentItems: [
-    { id:"1", prompt:"Express 0.\\dot{4} as a fraction.", options:[{id:"a",text:"4/10",is_correct:false},{id:"b",text:"4/9",is_correct:true},{id:"c",text:"2/5",is_correct:false},{id:"d",text:"1/4",is_correct:false}] },
-    { id:"2", prompt:"Which fraction equals 0.\\dot{7}?", options:[{id:"a",text:"7/10",is_correct:false},{id:"b",text:"7/9",is_correct:true},{id:"c",text:"1/7",is_correct:false},{id:"d",text:"7/11",is_correct:false}] },
-    { id:"3", prompt:"Convert 0.\\dot{1}\\dot{2} to a fraction.", options:[{id:"a",text:"12/100",is_correct:false},{id:"b",text:"12/99",is_correct:true},{id:"c",text:"4/33",is_correct:false},{id:"d",text:"Both B and C",is_correct:true}] },
-    { id:"4", prompt:"What is 0.\\dot{5} as a simplified fraction?", options:[{id:"a",text:"1/2",is_correct:false},{id:"b",text:"5/9",is_correct:true},{id:"c",text:"5/10",is_correct:false},{id:"d",text:"1/5",is_correct:false}] },
-    { id:"5", prompt:"Express 0.\\dot{6} as a fraction in lowest terms.", options:[{id:"a",text:"6/9",is_correct:false},{id:"b",text:"2/3",is_correct:true},{id:"c",text:"3/5",is_correct:false},{id:"d",text:"1/6",is_correct:false}] },
-    { id:"6", prompt:"Which equals 0.\\dot{2}\\dot{7}?", options:[{id:"a",text:"27/100",is_correct:false},{id:"b",text:"3/11",is_correct:true},{id:"c",text:"27/99",is_correct:false},{id:"d",text:"Both B and C",is_correct:true}] },
-    { id:"7", prompt:"Convert 1.\\dot{3} to an improper fraction.", options:[{id:"a",text:"4/3",is_correct:true},{id:"b",text:"13/10",is_correct:false},{id:"c",text:"13/9",is_correct:false},{id:"d",text:"1/3",is_correct:false}] },
-    { id:"8", prompt:"What is 0.\\dot{8} as a fraction?", options:[{id:"a",text:"4/5",is_correct:false},{id:"b",text:"8/9",is_correct:true},{id:"c",text:"8/10",is_correct:false},{id:"d",text:"2/3",is_correct:false}] },
-    { id:"9", prompt:"Express 0.\\dot{0}\\dot{9} as a fraction.", options:[{id:"a",text:"9/100",is_correct:false},{id:"b",text:"1/11",is_correct:true},{id:"c",text:"9/99",is_correct:false},{id:"d",text:"Both B and C",is_correct:true}] },
-    { id:"10", prompt:"Which fraction is equal to 0.\\dot{1}\\dot{8}?", options:[{id:"a",text:"18/100",is_correct:false},{id:"b",text:"2/11",is_correct:true},{id:"c",text:"9/50",is_correct:false},{id:"d",text:"1/18",is_correct:false}] },
-    { id:"11", prompt:"Convert 2.\\dot{5} to a mixed number.", options:[{id:"a",text:"2 1/2",is_correct:false},{id:"b",text:"2 5/9",is_correct:true},{id:"c",text:"25/10",is_correct:false},{id:"d",text:"5/2",is_correct:false}] },
-    { id:"12", prompt:"What is 0.\\dot{9} equal to?", options:[{id:"a",text:"9/10",is_correct:false},{id:"b",text:"1",is_correct:true},{id:"c",text:"0.99",is_correct:false},{id:"d",text:"99/100",is_correct:false}] },
-    { id:"13", prompt:"Express 0.\\dot{3}\\dot{6} as a simplified fraction.", options:[{id:"a",text:"36/99",is_correct:false},{id:"b",text:"4/11",is_correct:true},{id:"c",text:"1/3",is_correct:false},{id:"d",text:"13/36",is_correct:false}] },
-    { id:"14", prompt:"Which is 0.\\dot{0}\\dot{5} as a fraction?", options:[{id:"a",text:"5/100",is_correct:false},{id:"b",text:"1/20",is_correct:false},{id:"c",text:"5/99",is_correct:true},{id:"d",text:"1/19",is_correct:false}] },
-    { id:"15", prompt:"Convert 0.\\dot{1}\\dot{4}\\dot{2}\\dot{8}\\dot{5}\\dot{7} (6-digit repeat) to a fraction.", options:[{id:"a",text:"1/7",is_correct:true},{id:"b",text:"142857/1000000",is_correct:false},{id:"c",text:"142857/999999",is_correct:false},{id:"d",text:"Both A and C",is_correct:true}] },
+    { id:"1", prompt:"Express 0.444... (0.4̇) as a fraction.", options:[{id:"a",text:"4/10",is_correct:false},{id:"b",text:"4/9",is_correct:true},{id:"c",text:"2/5",is_correct:false},{id:"d",text:"1/4",is_correct:false}] },
+    { id:"2", prompt:"Which fraction equals 0.777... (0.7̇)?", options:[{id:"a",text:"7/10",is_correct:false},{id:"b",text:"7/9",is_correct:true},{id:"c",text:"1/7",is_correct:false},{id:"d",text:"7/11",is_correct:false}] },
+    { id:"3", prompt:"Convert 0.121212... (0.1̇2̇) to a fraction.", options:[{id:"a",text:"12/100",is_correct:false},{id:"b",text:"12/99",is_correct:true},{id:"c",text:"4/33",is_correct:false},{id:"d",text:"Both B and C",is_correct:true}] },
+    { id:"4", prompt:"What is 0.555... (0.5̇) as a simplified fraction?", options:[{id:"a",text:"1/2",is_correct:false},{id:"b",text:"5/9",is_correct:true},{id:"c",text:"5/10",is_correct:false},{id:"d",text:"1/5",is_correct:false}] },
+    { id:"5", prompt:"Express 0.666... (0.6̇) as a fraction in lowest terms.", options:[{id:"a",text:"6/9",is_correct:false},{id:"b",text:"2/3",is_correct:true},{id:"c",text:"3/5",is_correct:false},{id:"d",text:"1/6",is_correct:false}] },
+    { id:"6", prompt:"Which equals 0.272727... (0.2̇7̇)?", options:[{id:"a",text:"27/100",is_correct:false},{id:"b",text:"3/11",is_correct:true},{id:"c",text:"27/99",is_correct:false},{id:"d",text:"Both B and C",is_correct:true}] },
+    { id:"7", prompt:"Convert 1.333... (1.3̇) to an improper fraction.", options:[{id:"a",text:"4/3",is_correct:true},{id:"b",text:"13/10",is_correct:false},{id:"c",text:"13/9",is_correct:false},{id:"d",text:"1/3",is_correct:false}] },
+    { id:"8", prompt:"What is 0.888... (0.8̇) as a fraction?", options:[{id:"a",text:"4/5",is_correct:false},{id:"b",text:"8/9",is_correct:true},{id:"c",text:"8/10",is_correct:false},{id:"d",text:"2/3",is_correct:false}] },
+    { id:"9", prompt:"Express 0.090909... (0.0̇9̇) as a fraction.", options:[{id:"a",text:"9/100",is_correct:false},{id:"b",text:"1/11",is_correct:true},{id:"c",text:"9/99",is_correct:false},{id:"d",text:"Both B and C",is_correct:true}] },
+    { id:"10", prompt:"Which fraction is equal to 0.181818... (0.1̇8̇)?", options:[{id:"a",text:"18/100",is_correct:false},{id:"b",text:"2/11",is_correct:true},{id:"c",text:"9/50",is_correct:false},{id:"d",text:"1/18",is_correct:false}] },
+    { id:"11", prompt:"Convert 2.555... (2.5̇) to a mixed number.", options:[{id:"a",text:"2 1/2",is_correct:false},{id:"b",text:"2 5/9",is_correct:true},{id:"c",text:"25/10",is_correct:false},{id:"d",text:"5/2",is_correct:false}] },
+    { id:"12", prompt:"What is 0.999... (0.9̇) equal to?", options:[{id:"a",text:"9/10",is_correct:false},{id:"b",text:"1",is_correct:true},{id:"c",text:"0.99",is_correct:false},{id:"d",text:"99/100",is_correct:false}] },
+    { id:"13", prompt:"Express 0.363636... (0.3̇6̇) as a simplified fraction.", options:[{id:"a",text:"36/99",is_correct:false},{id:"b",text:"4/11",is_correct:true},{id:"c",text:"1/3",is_correct:false},{id:"d",text:"13/36",is_correct:false}] },
+    { id:"14", prompt:"Which is 0.050505... (0.0̇5̇) as a fraction?", options:[{id:"a",text:"5/100",is_correct:false},{id:"b",text:"1/20",is_correct:false},{id:"c",text:"5/99",is_correct:true},{id:"d",text:"1/19",is_correct:false}] },
+    { id:"15", prompt:"0.142857142857... (0.1̇42857̇) is equal to:", options:[{id:"a",text:"1/7",is_correct:true},{id:"b",text:"142857/1000000",is_correct:false},{id:"c",text:"142857/999999",is_correct:false},{id:"d",text:"Both A and C",is_correct:true}] },
     { id:"16", prompt:"What method is used to convert recurring decimals to fractions?", options:[{id:"a",text:"Long division",is_correct:false},{id:"b",text:"Cross multiplication",is_correct:false},{id:"c",text:"Algebraic subtraction",is_correct:true},{id:"d",text:"Guess and check",is_correct:false}] },
-    { id:"17", prompt:"Express 3.\\dot{6} as an improper fraction.", options:[{id:"a",text:"11/3",is_correct:true},{id:"b",text:"36/10",is_correct:false},{id:"c",text:"36/9",is_correct:false},{id:"d",text:"10/3",is_correct:false}] },
-    { id:"18", prompt:"Which decimal equals 5/9?", options:[{id:"a",text:"0.\\dot{4}",is_correct:false},{id:"b",text:"0.\\dot{5}",is_correct:true},{id:"c",text:"0.\\dot{6}",is_correct:false},{id:"d",text:"0.55",is_correct:false}] },
-    { id:"19", prompt:"How many 9s are in the denominator for 0.\\dot{1}\\dot{2}\\dot{3}?", options:[{id:"a",text:"1",is_correct:false},{id:"b",text:"2",is_correct:false},{id:"c",text:"3",is_correct:true},{id:"d",text:"6",is_correct:false}] },
-    { id:"20", prompt:"Why is 0.\\dot{9} = 1?", options:[{id:"a",text:"Rounding error",is_correct:false},{id:"b",text:"Algebra shows 9x=9 → x=1",is_correct:true},{id:"c",text:"It's approximate",is_correct:false},{id:"d",text:"Only in computers",is_correct:false}] }
+    { id:"17", prompt:"Express 3.666... (3.6̇) as an improper fraction.", options:[{id:"a",text:"11/3",is_correct:true},{id:"b",text:"36/10",is_correct:false},{id:"c",text:"36/9",is_correct:false},{id:"d",text:"10/3",is_correct:false}] },
+    { id:"18", prompt:"Which decimal equals 5/9?", options:[{id:"a",text:"0.4̇",is_correct:false},{id:"b",text:"0.5̇",is_correct:true},{id:"c",text:"0.6̇",is_correct:false},{id:"d",text:"0.55",is_correct:false}] },
+    { id:"19", prompt:"How many 9s are in the denominator for 0.123123... (0.1̇2̇3̇)?", options:[{id:"a",text:"1",is_correct:false},{id:"b",text:"2",is_correct:false},{id:"c",text:"3",is_correct:true},{id:"d",text:"6",is_correct:false}] },
+    { id:"20", prompt:"Why is 0.999... (0.9̇) exactly equal to 1?", options:[{id:"a",text:"Rounding error",is_correct:false},{id:"b",text:"Algebra shows 9x = 9, so x = 1",is_correct:true},{id:"c",text:"It's approximate",is_correct:false},{id:"d",text:"Only in computers",is_correct:false}] }
   ]
 };
 
