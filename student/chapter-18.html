@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Operations on Algebraic Fractions</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 18;
+const CHAPTER_CONFIG = {
+  title: "Operations on Algebraic Fractions",
+  loTags: ["LO 1.3.6: Perform operations on simple algebraic fractions"],
+  content: `
+    <h2>Key Concepts: Algebraic Fractions</h2>
+    <p>An <strong>algebraic fraction</strong> has algebraic expressions in the numerator and/or denominator, like <code>x/2</code>, <code>(x + 1)/(x − 2)</code>, or <code>3/(a² − 4)</code>.<br>
+    We can <strong>add, subtract, multiply, and divide</strong> them using the same rules as numerical fractions—with extra care for variables.</p>
+
+    <h3>1. Simplifying Algebraic Fractions</h3>
+    <p>Factor numerator and denominator, then cancel common factors.<br>
+    <strong>Example:</strong> (x² − 9)/(x − 3) = [(x + 3)(x − 3)]/(x − 3) = x + 3 (for x ≠ 3)</p>
+
+    <h3>2. Multiplying Algebraic Fractions</h3>
+    <p>Multiply numerators and denominators, then simplify.<br>
+    <strong>Example:</strong> (2x/3) × (9/x) = (18x)/(3x) = 6</p>
+
+    <h3>3. Dividing Algebraic Fractions</h3>
+    <p>“Keep, Change, Flip”: multiply by the reciprocal.<br>
+    <strong>Example:</strong> (a/4) ÷ (a²/8) = (a/4) × (8/a²) = (8a)/(4a²) = 2/a</p>
+
+    <h3>4. Adding & Subtracting (Same Denominator)</h3>
+    <p>Add/subtract numerators, keep denominator.<br>
+    <strong>Example:</strong> (3x + 1)/(x − 2) + (x − 5)/(x − 2) = (4x − 4)/(x − 2)</p>
+
+    <h3>5. Adding & Subtracting (Different Denominators)</h3>
+    <p>Use the <strong>lowest common denominator (LCD)</strong>.<br>
+    <strong>Example:</strong> 1/x + 1/y = (y + x)/(xy)<br>
+    <strong>Example:</strong> 2/(x + 1) + 3/(x − 1) = [2(x − 1) + 3(x + 1)] / [(x + 1)(x − 1)] = (5x + 1)/(x² − 1)</p>
+
+    <h3>Important Notes</h3>
+    <ul>
+      <li>Always factor first when possible.</li>
+      <li>Never cancel terms across + or − (e.g., (x + 2)/x ≠ 2).</li>
+      <li>State restrictions: denominator ≠ 0 (e.g., x ≠ 3 in (x²−9)/(x−3)).</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in physics (resistance in parallel circuits), economics (average cost), and engineering (transfer functions).</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"Simplify: (x² − 4)/(x − 2)", options:[{id:"a",text:"x + 2",is_correct:true},{id:"b",text:"x − 2",is_correct:false},{id:"c",text:"x² − 2",is_correct:false},{id:"d",text:"2",is_correct:false}] },
+    { id:"2", prompt:"Multiply: (3a/4) × (8/a)", options:[{id:"a",text:"6",is_correct:true},{id:"b",text:"24a/4a",is_correct:false},{id:"c",text:"3/2",is_correct:false},{id:"d",text:"24a²/4",is_correct:false}] },
+    { id:"3", prompt:"Simplify: (2x + 6)/(x + 3)", options:[{id:"a",text:"2",is_correct:true},{id:"b",text:"x + 3",is_correct:false},{id:"c",text:"2x",is_correct:false},{id:"d",text:"6",is_correct:false}] },
+    { id:"4", prompt:"Add: 1/x + 1/x", options:[{id:"a",text:"2/x",is_correct:true},{id:"b",text:"1/x²",is_correct:false},{id:"c",text:"2x",is_correct:false},{id:"d",text:"1/2x",is_correct:false}] },
+    { id:"5", prompt:"Divide: (5/y) ÷ (10/y²)", options:[{id:"a",text:"y/2",is_correct:true},{id:"b",text:"50/y³",is_correct:false},{id:"c",text:"2/y",is_correct:false},{id:"d",text:"5y²/10y",is_correct:false}] },
+    { id:"6", prompt:"Simplify: (x² − 9)/(x² + 6x + 9)", options:[{id:"a",text:"(x − 3)/(x + 3)",is_correct:true},{id:"b",text:"1",is_correct:false},{id:"c",text:"(x + 3)/(x − 3)",is_correct:false},{id:"d",text:"x² − 1",is_correct:false}] },
+    { id:"7", prompt:"Add: 2/(x + 1) + 1/(x + 1)", options:[{id:"a",text:"3/(x + 1)",is_correct:true},{id:"b",text:"2/(x + 1)²",is_correct:false},{id:"c",text:"3/(2x + 2)",is_correct:false},{id:"d",text:"2x + 1",is_correct:false}] },
+    { id:"8", prompt:"Subtract: 5/a − 2/a", options:[{id:"a",text:"3/a",is_correct:true},{id:"b",text:"7/a",is_correct:false},{id:"c",text:"3a",is_correct:false},{id:"d",text:"10/a²",is_correct:false}] },
+    { id:"9", prompt:"Multiply: (x − 1)/(x + 2) × (x + 2)/(x − 1)", options:[{id:"a",text:"1",is_correct:true},{id:"b",text:"(x − 1)²/(x + 2)²",is_correct:false},{id:"c",text:"0",is_correct:false},{id:"d",text:"(x + 2)²/(x − 1)²",is_correct:false}] },
+    { id:"10", prompt:"Simplify: (6x²)/(9x)", options:[{id:"a",text:"2x/3",is_correct:true},{id:"b",text:"18x³/9",is_correct:false},{id:"c",text:"3x/2",is_correct:false},{id:"d",text:"54x²",is_correct:false}] },
+    { id:"11", prompt:"Add: 1/2 + 1/x", options:[{id:"a",text:"(x + 2)/(2x)",is_correct:true},{id:"b",text:"2/(x + 2)",is_correct:false},{id:"c",text:"1/(2x)",is_correct:false},{id:"d",text:"2x",is_correct:false}] },
+    { id:"12", prompt:"Divide: (a² − 4)/(a + 2) ÷ (a − 2)", options:[{id:"a",text:"1",is_correct:true},{id:"b",text:"(a − 2)²",is_correct:false},{id:"c",text:"a + 2",is_correct:false},{id:"d",text:"0",is_correct:false}] },
+    { id:"13", prompt:"Which is undefined when x = 3?", options:[{id:"a",text:"(x + 1)/(x − 3)",is_correct:true},{id:"b",text:"(x − 3)/(x + 1)",is_correct:false},{id:"c",text:"x² − 9",is_correct:false},{id:"d",text:"3x",is_correct:false}] },
+    { id:"14", prompt:"Simplify: (x² − 5x + 6)/(x − 2)", options:[{id:"a",text:"x − 3",is_correct:true},{id:"b",text:"x + 3",is_correct:false},{id:"c",text:"x² − 3",is_correct:false},{id:"d",text:"(x − 2)(x − 3)",is_correct:false}] },
+    { id:"15", prompt:"Multiply: (2/3x) × (9x²/4)", options:[{id:"a",text:"3x/2",is_correct:true},{id:"b",text:"18x²/12x",is_correct:false},{id:"c",text:"6x",is_correct:false},{id:"d",text:"1/6x",is_correct:false}] },
+    { id:"16", prompt:"Add: 3/(x − 1) + 2/(x + 1)", options:[{id:"a",text:"(5x + 1)/(x² − 1)",is_correct:true},{id:"b",text:"5/(2x)",is_correct:false},{id:"c",text:"6/(x² − 1)",is_correct:false},{id:"d",text:"5/(x² − 1)",is_correct:false}] },
+    { id:"17", prompt:"Which expression CANNOT be simplified by canceling x?", options:[{id:"a",text:"(x + 2)/x",is_correct:true},{id:"b",text:"x/2x",is_correct:false},{id:"c",text:"(x²)/x",is_correct:false},{id:"d",text:"3x/9x",is_correct:false}] },
+    { id:"18", prompt:"Simplify: (x² − 1)/(x − 1) for x ≠ 1", options:[{id:"a",text:"x + 1",is_correct:true},{id:"b",text:"x − 1",is_correct:false},{id:"c",text:"x² − 1",is_correct:false},{id:"d",text:"1",is_correct:false}] },
+    { id:"19", prompt:"Subtract: 4/(x + 2) − 1/(x + 2)", options:[{id:"a",text:"3/(x + 2)",is_correct:true},{id:"b",text:"5/(x + 2)",is_correct:false},{id:"c",text:"4/(x + 2)²",is_correct:false},{id:"d",text:"3x + 6",is_correct:false}] },
+    { id:"20", prompt:"Why must we factor before simplifying algebraic fractions?", options:[{id:"a",text:"To find common factors to cancel",is_correct:true},{id:"b",text:"To make them look nicer",is_correct:false},{id:"c",text:"Because it’s required by law",is_correct:false},{id:"d",text:"To increase the degree",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION BAR
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  // Button 1: HOME
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  
+  // Button 2: Current chapter
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // Buttons 3–5: Next up to 3 chapters (max 20)
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    if(next <= 20){
+      buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+    }
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    return {
+      item,
+      isCorrect,
+      selected,
+      correctText: correctOpt ? correctOpt.text : ' —'
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  const feedbackHTML = feedback.map(f => `
+    <div class="quiz-item">
+      <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
