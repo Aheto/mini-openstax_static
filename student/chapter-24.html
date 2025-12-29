@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Equations Involving Number Bases</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 24;
+const CHAPTER_CONFIG = {
+  title: "Equations Involving Number Bases",
+  loTags: ["LO 1.5.2: Solve simple equations involving number bases"],
+  content: `
+    <h2>Key Concepts: Solving Equations with Number Bases</h2>
+    <p>Sometimes the <em>base</em> of a number is unknown. We solve for the base by converting the number to base 10 and solving the resulting equation.</p>
+
+    <h3>General Method</h3>
+    <p>If a number like <code>231ₓ</code> equals a base-10 number, expand it using place values:<br>
+    <code>231ₓ = 2×x² + 3×x¹ + 1×x⁰ = 2x² + 3x + 1</code><br>
+    Then set it equal to the given base-10 value and solve for <code>x</code>.</p>
+
+    <h3>Important Rules</h3>
+    <ul>
+      <li>The base <code>x</code> must be a <strong>whole number greater than any digit</strong> in the numeral.<br>
+        Example: In <code>231ₓ</code>, digits are 2, 3, 1 → so <code>x > 3</code> (i.e., x ≥ 4).</li>
+      <li>Always check your solution: plug it back to verify.</li>
+    </ul>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:</strong> Solve <code>13ₓ = 5₁₀</code><br>
+    → 1×x + 3 = 5 → x + 3 = 5 → x = 2<br>
+    ❌ But digit “3” is not allowed in base 2 (digits must be &lt; 2).<br>
+    → <strong>No solution</strong>.</p>
+
+    <p><strong>Example 2:</strong> Solve <code>21ₓ = 13₁₀</code><br>
+    → 2x + 1 = 13 → 2x = 12 → x = 6<br>
+    ✅ Check: digits 2 and 1 are &lt; 6 → valid.<br>
+    → <strong>x = 6</strong>.</p>
+
+    <p><strong>Example 3:</strong> Solve <code>122ₓ = 30₁₀</code><br>
+    → 1×x² + 2×x + 2 = 30 → x² + 2x + 2 = 30 → x² + 2x − 28 = 0<br>
+    → (x + 7)(x − 4) = 0 → x = 4 or x = −7<br>
+    ✅ x = 4 (digits 1,2 &lt; 4); ❌ x = −7 (base can't be negative)<br>
+    → <strong>x = 4</strong>.</p>
+
+    <h3>Real-Life Insight</h3>
+    <p>This skill helps verify data encoded in unknown formats (e.g., computer science, cryptography) and deepens understanding of place value systems.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"Solve: 21ₓ = 9₁₀", options:[{id:"a",text:"x = 4",is_correct:true},{id:"b",text:"x = 5",is_correct:false},{id:"c",text:"x = 3",is_correct:false},{id:"d",text:"No solution",is_correct:false}] },
+    { id:"2", prompt:"Solve: 101ₓ = 10₁₀", options:[{id:"a",text:"x = 3",is_correct:true},{id:"b",text:"x = 2",is_correct:false},{id:"c",text:"x = 4",is_correct:false},{id:"d",text:"x = 5",is_correct:false}] },
+    { id:"3", prompt:"Solve: 32ₓ = 14₁₀", options:[{id:"a",text:"x = 4",is_correct:true},{id:"b",text:"x = 5",is_correct:false},{id:"c",text:"x = 6",is_correct:false},{id:"d",text:"x = 3",is_correct:false}] },
+    { id:"4", prompt:"Solve: 12ₓ = 5₁₀", options:[{id:"a",text:"x = 3",is_correct:false},{id:"b",text:"x = 4",is_correct:true},{id:"c",text:"x = 2",is_correct:false},{id:"d",text:"No solution",is_correct:false}] },
+    { id:"5", prompt:"Solve: 20ₓ = 8₁₀", options:[{id:"a",text:"x = 4",is_correct:true},{id:"b",text:"x = 5",is_correct:false},{id:"c",text:"x = 2",is_correct:false},{id:"d",text:"x = 8",is_correct:false}] },
+    { id:"6", prompt:"Solve: 111ₓ = 7₁₀", options:[{id:"a",text:"x = 2",is_correct:true},{id:"b",text:"x = 3",is_correct:false},{id:"c",text:"x = 4",is_correct:false},{id:"d",text:"x = 1",is_correct:false}] },
+    { id:"7", prompt:"Solve: 43ₓ = 31₁₀", options:[{id:"a",text:"x = 7",is_correct:true},{id:"b",text:"x = 6",is_correct:false},{id:"c",text:"x = 8",is_correct:false},{id:"d",text:"x = 5",is_correct:false}] },
+    { id:"8", prompt:"Solve: 100ₓ = 16₁₀", options:[{id:"a",text:"x = 4",is_correct:true},{id:"b",text:"x = 2",is_correct:false},{id:"c",text:"x = 8",is_correct:false},{id:"d",text:"x = 16",is_correct:false}] },
+    { id:"9", prompt:"Solve: 22ₓ = 10₁₀", options:[{id:"a",text:"x = 4",is_correct:true},{id:"b",text:"x = 5",is_correct:false},{id:"c",text:"x = 3",is_correct:false},{id:"d",text:"x = 2",is_correct:false}] },
+    { id:"10", prompt:"Solve: 13ₓ = 7₁₀", options:[{id:"a",text:"x = 4",is_correct:true},{id:"b",text:"x = 5",is_correct:false},{id:"c",text:"x = 3",is_correct:false},{id:"d",text:"No solution",is_correct:false}] },
+    { id:"11", prompt:"Solve: 122ₓ = 30₁₀", options:[{id:"a",text:"x = 4",is_correct:true},{id:"b",text:"x = 5",is_correct:false},{id:"c",text:"x = 6",is_correct:false},{id:"d",text:"x = 3",is_correct:false}] },
+    { id:"12", prompt:"Solve: 30ₓ = 18₁₀", options:[{id:"a",text:"x = 6",is_correct:true},{id:"b",text:"x = 5",is_correct:false},{id:"c",text:"x = 9",is_correct:false},{id:"d",text:"x = 3",is_correct:false}] },
+    { id:"13", prompt:"Solve: 211ₓ = 25₁₀", options:[{id:"a",text:"x = 3",is_correct:true},{id:"b",text:"x = 4",is_correct:false},{id:"c",text:"x = 5",is_correct:false},{id:"d",text:"x = 2",is_correct:false}] },
+    { id:"14", prompt:"Solve: 11ₓ = 6₁₀", options:[{id:"a",text:"x = 5",is_correct:true},{id:"b",text:"x = 4",is_correct:false},{id:"c",text:"x = 6",is_correct:false},{id:"d",text:"x = 7",is_correct:false}] },
+    { id:"15", prompt:"Solve: 51ₓ = 40₁₀", options:[{id:"a",text:"x = 7",is_correct:true},{id:"b",text:"x = 8",is_correct:false},{id:"c",text:"x = 9",is_correct:false},{id:"d",text:"x = 6",is_correct:false}] },
+    { id:"16", prompt:"Solve: 10ₓ = 5₁₀", options:[{id:"a",text:"x = 5",is_correct:true},{id:"b",text:"x = 4",is_correct:false},{id:"c",text:"x = 10",is_correct:false},{id:"d",text:"No solution",is_correct:false}] },
+    { id:"17", prompt:"Solve: 201ₓ = 19₁₀", options:[{id:"a",text:"x = 3",is_correct:true},{id:"b",text:"x = 4",is_correct:false},{id:"c",text:"x = 2",is_correct:false},{id:"d",text:"x = 5",is_correct:false}] },
+    { id:"18", prompt:"Which equation has NO valid solution?", options:[{id:"a",text:"13ₓ = 5₁₀",is_correct:true},{id:"b",text:"21ₓ = 9₁₀",is_correct:false},{id:"c",text:"10ₓ = 4₁₀",is_correct:false},{id:"d",text:"22ₓ = 8₁₀",is_correct:false}] },
+    { id:"19", prompt:"Solve: 110ₓ = 12₁₀", options:[{id:"a",text:"x = 3",is_correct:true},{id:"b",text:"x = 4",is_correct:false},{id:"c",text:"x = 2",is_correct:false},{id:"d",text:"x = 5",is_correct:false}] },
+    { id:"20", prompt:"Why must the base be greater than any digit in the numeral?", options:[{id:"a",text:"Because digits must be less than the base",is_correct:true},{id:"b",text:"To make numbers larger",is_correct:false},{id:"c",text:"It's optional",is_correct:false},{id:"d",text:"Only for base 10",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION BAR — STOPS AT CHAPTER 20 (per template)
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  // Button 1: HOME
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  
+  // Button 2: Current chapter
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // Buttons 3–5: Next up to 3 chapters, but ONLY if ≤ 20
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    if(next <= 20){
+      buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+    }
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    return {
+      item,
+      isCorrect,
+      selected,
+      correctText: correctOpt ? correctOpt.text : ' —'
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  const feedbackHTML = feedback.map(f => `
+    <div class="quiz-item">
+      <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
