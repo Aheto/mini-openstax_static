@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Equation of a Straight Line</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 31;
+const CHAPTER_CONFIG = {
+  title: "Equation of a Straight Line",
+  loTags: ["LO 1.6.6: Find the equation of a straight line"],
+  content: `
+    <h2>Key Concepts: Equation of a Straight Line</h2>
+    <p>The equation of a straight line can be written in several forms. The most common is the <strong>slope-intercept form</strong>:</p>
+    <p><strong>y = mx + c</strong></p>
+    <p>where:<br>
+    • <strong>m</strong> = gradient (slope)<br>
+    • <strong>c</strong> = y-intercept (value of y when x = 0)</p>
+
+    <h3>How to Find the Equation</h3>
+    <p><strong>Case 1: Given gradient (m) and y-intercept (c)</strong><br>
+    → Directly write: <strong>y = mx + c</strong></p>
+
+    <p><strong>Case 2: Given gradient (m) and a point (x₁, y₁)</strong><br>
+    Use the <strong>point-slope form</strong>:<br>
+    <strong>y − y₁ = m(x − x₁)</strong><br>
+    Then simplify to y = mx + c.</p>
+
+    <p><strong>Case 3: Given two points (x₁, y₁) and (x₂, y₂)</strong><br>
+    1. Find gradient: <strong>m = (y₂ − y₁)/(x₂ − x₁)</strong><br>
+    2. Use point-slope form with either point.<br>
+    3. Simplify to y = mx + c.</p>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:</strong> Gradient = 2, y-intercept = −3<br>
+    → <strong>y = 2x − 3</strong></p>
+
+    <p><strong>Example 2:</strong> Gradient = −1, passes through (2, 5)<br>
+    → y − 5 = −1(x − 2) → y = −x + 2 + 5 → <strong>y = −x + 7</strong></p>
+
+    <p><strong>Example 3:</strong> Passes through (1, 3) and (4, 9)<br>
+    → m = (9−3)/(4−1) = 6/3 = 2<br>
+    → y − 3 = 2(x − 1) → y = 2x − 2 + 3 → <strong>y = 2x + 1</strong></p>
+
+    <h3>Special Cases</h3>
+    <ul>
+      <li><strong>Horizontal line</strong>: y = c (gradient = 0)</li>
+      <li><strong>Vertical line</strong>: x = a (gradient undefined; not in y = mx + c form)</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in economics (cost functions), physics (motion at constant speed), and data science (linear regression).</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"Find the equation of a line with gradient 3 and y-intercept −2.", options:[{id:"a",text:"y = 3x − 2",is_correct:true},{id:"b",text:"y = −2x + 3",is_correct:false},{id:"c",text:"y = 2x − 3",is_correct:false},{id:"d",text:"y = 3x + 2",is_correct:false}] },
+    { id:"2", prompt:"A line has gradient −1 and passes through (0, 4). Equation?", options:[{id:"a",text:"y = −x + 4",is_correct:true},{id:"b",text:"y = x + 4",is_correct:false},{id:"c",text:"y = −x − 4",is_correct:false},{id:"d",text:"y = 4x − 1",is_correct:false}] },
+    { id:"3", prompt:"Find the equation through (2, 5) with gradient 2.", options:[{id:"a",text:"y = 2x + 1",is_correct:true},{id:"b",text:"y = 2x − 1",is_correct:false},{id:"c",text:"y = x + 3",is_correct:false},{id:"d",text:"y = 2x + 5",is_correct:false}] },
+    { id:"4", prompt:"Line through (1, 3) and (3, 7). Equation?", options:[{id:"a",text:"y = 2x + 1",is_correct:true},{id:"b",text:"y = 3x",is_correct:false},{id:"c",text:"y = x + 2",is_correct:false},{id:"d",text:"y = 4x − 1",is_correct:false}] },
+    { id:"5", prompt:"What is the equation of a horizontal line through (5, −3)?", options:[{id:"a",text:"y = −3",is_correct:true},{id:"b",text:"x = 5",is_correct:false},{id:"c",text:"y = 5",is_correct:false},{id:"d",text:"x = −3",is_correct:false}] },
+    { id:"6", prompt:"Line with gradient ½ through (4, 1). Equation?", options:[{id:"a",text:"y = (1/2)x − 1",is_correct:true},{id:"b",text:"y = (1/2)x + 1",is_correct:false},{id:"c",text:"y = 2x − 7",is_correct:false},{id:"d",text:"y = x − 3",is_correct:false}] },
+    { id:"7", prompt:"Line through (0, 5) and (2, 1). Equation?", options:[{id:"a",text:"y = −2x + 5",is_correct:true},{id:"b",text:"y = 2x + 5",is_correct:false},{id:"c",text:"y = −x + 5",is_correct:false},{id:"d",text:"y = x + 3",is_correct:false}] },
+    { id:"8", prompt:"Which is the equation of a vertical line through x = 3?", options:[{id:"a",text:"x = 3",is_correct:true},{id:"b",text:"y = 3",is_correct:false},{id:"c",text:"y = 3x",is_correct:false},{id:"d",text:"x = 0",is_correct:false}] },
+    { id:"9", prompt:"Line with gradient 0 through (−2, 4). Equation?", options:[{id:"a",text:"y = 4",is_correct:true},{id:"b",text:"x = −2",is_correct:false},{id:"c",text:"y = −2",is_correct:false},{id:"d",text:"y = 0",is_correct:false}] },
+    { id:"10", prompt:"Find the equation through (−1, 2) and (1, 6).", options:[{id:"a",text:"y = 2x + 4",is_correct:true},{id:"b",text:"y = 3x + 5",is_correct:false},{id:"c",text:"y = x + 3",is_correct:false},{id:"d",text:"y = 4x + 2",is_correct:false}] },
+    { id:"11", prompt:"Line with gradient −3 and y-intercept 0. Equation?", options:[{id:"a",text:"y = −3x",is_correct:true},{id:"b",text:"y = 3x",is_correct:false},{id:"c",text:"y = −3",is_correct:false},{id:"d",text:"x = −3y",is_correct:false}] },
+    { id:"12", prompt:"Line through (3, 0) with gradient 4. Equation?", options:[{id:"a",text:"y = 4x − 12",is_correct:true},{id:"b",text:"y = 4x + 12",is_correct:false},{id:"c",text:"y = 4x − 3",is_correct:false},{id:"d",text:"y = 3x − 12",is_correct:false}] },
+    { id:"13", prompt:"What is the gradient of the line y = 5x − 7?", options:[{id:"a",text:"5",is_correct:true},{id:"b",text:"−7",is_correct:false},{id:"c",text:"7",is_correct:false},{id:"d",text:"1/5",is_correct:false}] },
+    { id:"14", prompt:"Line through (0, −1) and (4, 7). Equation?", options:[{id:"a",text:"y = 2x − 1",is_correct:true},{id:"b",text:"y = x − 1",is_correct:false},{id:"c",text:"y = 2x + 1",is_correct:false},{id:"d",text:"y = 4x − 1",is_correct:false}] },
+    { id:"15", prompt:"Which point lies on y = 3x + 2?", options:[{id:"a",text:"(1,5)",is_correct:true},{id:"b",text:"(2,6)",is_correct:false},{id:"c",text:"(0,3)",is_correct:false},{id:"d",text:"(−1,1)",is_correct:false}] },
+    { id:"16", prompt:"Line with gradient 1 through (2, 3). Equation?", options:[{id:"a",text:"y = x + 1",is_correct:true},{id:"b",text:"y = x − 1",is_correct:false},{id:"c",text:"y = 2x − 1",is_correct:false},{id:"d",text:"y = x + 3",is_correct:false}] },
+    { id:"17", prompt:"Line through (−2, 5) and (0, 1). Equation?", options:[{id:"a",text:"y = −2x + 1",is_correct:true},{id:"b",text:"y = 2x + 1",is_correct:false},{id:"c",text:"y = −x + 3",is_correct:false},{id:"d",text:"y = x + 1",is_correct:false}] },
+    { id:"18", prompt:"What is the y-intercept of y = −4x + 9?", options:[{id:"a",text:"9",is_correct:true},{id:"b",text:"−4",is_correct:false},{id:"c",text:"4",is_correct:false},{id:"d",text:"0",is_correct:false}] },
+    { id:"19", prompt:"Which equation represents a line with gradient 0?", options:[{id:"a",text:"y = 5",is_correct:true},{id:"b",text:"x = 5",is_correct:false},{id:"c",text:"y = 5x",is_correct:false},{id:"d",text:"y = x + 5",is_correct:false}] },
+    { id:"20", prompt:"Why can't a vertical line be written as y = mx + c?", options:[{id:"a",text:"Because its gradient is undefined",is_correct:true},{id:"b",text:"Because it has no y-values",is_correct:false},{id:"c",text:"Because m = 0",is_correct:false},{id:"d",text:"It can be written that way",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    return {
+      item,
+      isCorrect,
+      selected,
+      correctText: correctOpt ? correctOpt.text : ' —'
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  const feedbackHTML = feedback.map(f => `
+    <div class="quiz-item">
+      <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
