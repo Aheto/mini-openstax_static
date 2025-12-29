@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Word Problems with Linear Inequalities</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 46;
+const CHAPTER_CONFIG = {
+  title: "Word Problems with Linear Inequalities",
+  loTags: ["LO 1.8.6: Solve word problems involving linear inequalities in one variable"],
+  content: `
+    <h2>Key Concepts: Inequalities in Real Life</h2>
+    <p>Linear inequalities describe situations where a quantity is <strong>greater than</strong>, <strong>less than</strong>, or <strong>within a range</strong>. They use symbols: &lt;, &gt;, ≤, ≥.</p>
+
+    <h3>Common Inequality Phrases</h3>
+    <ul>
+      <li>“At most” → ≤ (e.g., “at most 10 people” → x ≤ 10)</li>
+      <li>“At least” → ≥ (e.g., “at least 5 hours” → x ≥ 5)</li>
+      <li>“More than” → &gt;</li>
+      <li>“Less than” → &lt;</li>
+      <li>“No more than” → ≤</li>
+      <li>“Not less than” → ≥</li>
+    </ul>
+
+    <h3>Steps to Solve Word Problems</h3>
+    <ol>
+      <li><strong>Identify the unknown</strong> and assign a variable (e.g., x = number of items).</li>
+      <li><strong>Translate the words</strong> into an inequality using the phrases above.</li>
+      <li><strong>Solve the inequality</strong> (same as equations, but <strong>reverse the sign if multiplying/dividing by a negative</strong>).</li>
+      <li><strong>Interpret the solution</strong> in context (e.g., if x must be whole numbers, list possible values).</li>
+    </ol>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:</strong> “A bus can carry at most 45 passengers. How many can board if 12 are already on?”<br>
+    → Let x = new passengers → 12 + x ≤ 45 → x ≤ 33</p>
+
+    <p><strong>Example 2:</strong> “Kwame needs at least GH₵20 to buy a book. He has GH₵8. How much more does he need?”<br>
+    → Let x = amount needed → 8 + x ≥ 20 → x ≥ 12</p>
+
+    <p><strong>Example 3:</strong> “The sum of a number and 5 is less than 12.”<br>
+    → x + 5 &lt; 12 → x &lt; 7</p>
+
+    <p><strong>Example 4:</strong> “Three times a number minus 4 is greater than 11.”<br>
+    → 3x − 4 &gt; 11 → 3x &gt; 15 → x &gt; 5</p>
+
+    <h3>Special Notes</h3>
+    <ul>
+      <li>If the problem involves people, items, or discrete quantities, the solution must be a <strong>whole number</strong>.</li>
+      <li>Always check if the inequality direction changes when multiplying/dividing by a negative number.</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in budgeting (spending limits), speed limits, age restrictions, manufacturing (minimum order quantities), and exam pass marks.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"A bus can carry at most 50 people. If 20 are already on board, how many more can enter? (x = new passengers)", options:[{id:"a",text:"x ≤ 30",is_correct:true},{id:"b",text:"x ≥ 30",is_correct:false},{id:"c",text:"x < 30",is_correct:false},{id:"d",text:"x > 30",is_correct:false}] },
+    { id:"2", prompt:"Kwame needs at least GH₵25 to buy a shirt. He has GH₵12. How much more (x) does he need?", options:[{id:"a",text:"x ≥ 13",is_correct:true},{id:"b",text:"x ≤ 13",is_correct:false},{id:"c",text:"x > 13",is_correct:false},{id:"d",text:"x = 13",is_correct:false}] },
+    { id:"3", prompt:"The speed limit is 60 km/h. Which inequality represents a legal speed x?", options:[{id:"a",text:"x ≤ 60",is_correct:true},{id:"b",text:"x ≥ 60",is_correct:false},{id:"c",text:"x < 60",is_correct:false},{id:"d",text:"x > 60",is_correct:false}] },
+    { id:"4", prompt:"A number x increased by 7 is less than 20.", options:[{id:"a",text:"x < 13",is_correct:true},{id:"b",text:"x ≤ 13",is_correct:false},{id:"c",text:"x > 13",is_correct:false},{id:"d",text:"x ≥ 13",is_correct:false}] },
+    { id:"5", prompt:"A student must score at least 40 marks to pass. If y is the score, which is correct?", options:[{id:"a",text:"y ≥ 40",is_correct:true},{id:"b",text:"y > 40",is_correct:false},{id:"c",text:"y ≤ 40",is_correct:false},{id:"d",text:"y < 40",is_correct:false}] },
+    { id:"6", prompt:"Twice a number minus 3 is greater than 11.", options:[{id:"a",text:"x > 7",is_correct:true},{id:"b",text:"x ≥ 7",is_correct:false},{id:"c",text:"x < 7",is_correct:false},{id:"d",text:"x ≤ 7",is_correct:false}] },
+    { id:"7", prompt:"A rectangle has width 5 cm and length x cm. Perimeter must be less than 30 cm.", options:[{id:"a",text:"x < 10",is_correct:true},{id:"b",text:"x ≤ 10",is_correct:false},{id:"c",text:"x > 10",is_correct:false},{id:"d",text:"x ≥ 10",is_correct:false}] },
+    { id:"8", prompt:"You have GH₵50. Pens cost GH₵3 each. What is the maximum number (x) you can buy?", options:[{id:"a",text:"x ≤ 16",is_correct:true},{id:"b",text:"x ≥ 16",is_correct:false},{id:"c",text:"x = 16",is_correct:false},{id:"d",text:"x < 17",is_correct:false}] },
+    { id:"9", prompt:"Five more than a number is at most 15.", options:[{id:"a",text:"x ≤ 10",is_correct:true},{id:"b",text:"x < 10",is_correct:false},{id:"c",text:"x ≥ 10",is_correct:false},{id:"d",text:"x > 10",is_correct:false}] },
+    { id:"10", prompt:"A child must be at least 10 years old to enter a competition. If a is age, then:", options:[{id:"a",text:"a ≥ 10",is_correct:true},{id:"b",text:"a > 10",is_correct:false},{id:"c",text:"a ≤ 10",is_correct:false},{id:"d",text:"a < 10",is_correct:false}] },
+    { id:"11", prompt:"The sum of a number and 4 is no more than 12.", options:[{id:"a",text:"x ≤ 8",is_correct:true},{id:"b",text:"x < 8",is_correct:false},{id:"c",text:"x ≥ 8",is_correct:false},{id:"d",text:"x > 8",is_correct:false}] },
+    { id:"12", prompt:"Three times a number plus 2 is greater than 20.", options:[{id:"a",text:"x > 6",is_correct:true},{id:"b",text:"x ≥ 6",is_correct:false},{id:"c",text:"x < 6",is_correct:false},{id:"d",text:"x ≤ 6",is_correct:false}] },
+    { id:"13", prompt:"A room holds at most 100 people. If 75 are present, how many more (x) can enter?", options:[{id:"a",text:"x ≤ 25",is_correct:true},{id:"b",text:"x ≥ 25",is_correct:false},{id:"c",text:"x < 25",is_correct:false},{id:"d",text:"x > 25",is_correct:false}] },
+    { id:"14", prompt:"Kwame is older than 15. If k is his age:", options:[{id:"a",text:"k > 15",is_correct:true},{id:"b",text:"k ≥ 15",is_correct:false},{id:"c",text:"k < 15",is_correct:false},{id:"d",text:"k ≤ 15",is_correct:false}] },
+    { id:"15", prompt:"You need more than GH₵30 to buy a gift. You have GH₵20. How much more (x)?", options:[{id:"a",text:"x > 10",is_correct:true},{id:"b",text:"x ≥ 10",is_correct:false},{id:"c",text:"x < 10",is_correct:false},{id:"d",text:"x ≤ 10",is_correct:false}] },
+    { id:"16", prompt:"The product of 4 and a number is at least 28.", options:[{id:"a",text:"x ≥ 7",is_correct:true},{id:"b",text:"x > 7",is_correct:false},{id:"c",text:"x ≤ 7",is_correct:false},{id:"d",text:"x < 7",is_correct:false}] },
+    { id:"17", prompt:"A number decreased by 5 is less than 10.", options:[{id:"a",text:"x < 15",is_correct:true},{id:"b",text:"x ≤ 15",is_correct:false},{id:"c",text:"x > 15",is_correct:false},{id:"d",text:"x ≥ 15",is_correct:false}] },
+    { id:"18", prompt:"The total cost of x books at GH₵5 each must not exceed GH₵48. What is the max x?", options:[{id:"a",text:"x ≤ 9",is_correct:true},{id:"b",text:"x ≥ 9",is_correct:false},{id:"c",text:"x = 9",is_correct:false},{id:"d",text:"x < 10",is_correct:false}] },
+    { id:"19", prompt:"Twice a number plus 1 is no less than 15.", options:[{id:"a",text:"x ≥ 7",is_correct:true},{id:"b",text:"x > 7",is_correct:false},{id:"c",text:"x ≤ 7",is_correct:false},{id:"d",text:"x < 7",is_correct:false}] },
+    { id:"20", prompt:"Why do we reverse the inequality sign when multiplying by a negative?", options:[{id:"a",text:"Because the order of numbers reverses on the number line",is_correct:true},{id:"b",text:"It’s a rule with no reason",is_correct:false},{id:"c",text:"Only for equations",is_correct:false},{id:"d",text:"We don’t reverse it",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    return {
+      item,
+      isCorrect,
+      selected,
+      correctText: correctOpt ? correctOpt.text : ' —'
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  const feedbackHTML = feedback.map(f => `
+    <div class="quiz-item">
+      <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
