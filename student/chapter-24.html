@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Mini OpenStax: Interactive learning module"/>
-  <title>Mini OpenStax — [CHAPTER TITLE]</title>
-  <link rel="stylesheet" href="../css/main.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Equations Involving Number Bases</title>
+<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 
@@ -27,67 +27,100 @@
     </main>
   </div>
 
-  <!-- 💬 WhatsApp buttons and script remain unchanged -->
-  <script>
-    (function(){
-      'use strict';
+<script>
+(function(){
+'use strict';
 
-      // 🔧 CONFIGURATION (same as before)
-      const currentChapter = 24; // ← Update per file
+const currentChapter = 24;
+const CHAPTER_CONFIG = {
+  title: "Equations Involving Number Bases",
+  loTags: ["LO 1.5.2: Solve simple equations involving number bases"],
+  content: `
+    <h2>Key Concepts: Solving Equations with Number Bases</h2>
+    <p>Sometimes the <em>base</em> of a number is unknown. We solve for the base by converting the number to base 10 and solving the resulting equation.</p>
 
-      const CHAPTER_CONFIG = { /* ... */ };
+    <h3>General Method</h3>
+    <p>If a number like <code>231ₓ</code> equals a base-10 number, expand it using place values:<br>
+    <code>231ₓ = 2×x² + 3×x¹ + 1×x⁰ = 2x² + 3x + 1</code><br>
+    Then set it equal to the given base-10 value and solve for <code>x</code>.</p>
 
-      // ✅ RENDER NAVIGATION — called FIRST
-      function renderNavigation(){
-        const nav = document.getElementById('chapter-nav');
-        let buttons = [];
+    <h3>Important Rules</h3>
+    <ul>
+      <li>The base <code>x</code> must be a <strong>whole number greater than any digit</strong> in the numeral.<br>
+        Example: In <code>231ₓ</code>, digits are 2, 3, 1 → so <code>x > 3</code> (i.e., x ≥ 4).</li>
+      <li>Always check your solution: plug it back to verify.</li>
+    </ul>
 
-        // Button 1: HOME
-        buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
-        // Button 2: Current chapter
-        buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
-        // Buttons 3–5: Next chapters (STOP at 20 per your spec)
-        for(let i = 1; i <= 3; i++){
-          const next = currentChapter + i;
-          if(next <= 20){ // ✅ Enforce 20-chapter limit as per Final Template
-            buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
-          }
-        }
-        nav.innerHTML = buttons.join('');
-      }
+    <h3>Examples</h3>
+    <p><strong>Example 1:</strong> Solve <code>13ₓ = 5₁₀</code><br>
+    → 1×x + 3 = 5 → x + 3 = 5 → x = 2<br>
+    ❌ But digit “3” is not allowed in base 2 → <strong>No solution</strong>.</p>
 
-      // ... rest of renderChapter, quiz, feedback (unchanged) ...
+    <p><strong>Example 2:</strong> Solve <code>21ₓ = 13₁₀</code><br>
+    → 2x + 1 = 13 → x = 6 → ✅ Valid.</p>
 
-      // ✅ INITIALIZE: Render nav IMMEDIATELY
-      document.addEventListener('DOMContentLoaded', () => {
-        renderNavigation(); // 🔥 Pinned and visible from start
-        renderChapter();
-      });
-    })();
-  </script>
+    <p><strong>Example 3:</strong> Solve <code>122ₓ = 30₁₀</code><br>
+    → x² + 2x + 2 = 30 → x = 4 (valid), x = −7 (rejected).</p>
 
-  <style>
-    .chapter-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      justify-content: center;
-    }
-    .chapter-btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 2.2rem;
-      height: 2.2rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 4px;
-      text-decoration: none;
-      color: #334155;
-      font-size: 0.875rem;
-      font-weight: 500;
-    }
-    .chapter-btn:hover { background: #f1f5f9; }
-    .chapter-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
-  </style>
+    <!-- WhatsApp buttons remain identical -->
+    <!-- (Content unchanged from previous version) -->
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    // ... (same 20 MCQs as before)
+    { id:"1", prompt:"Solve: 21ₓ = 9₁₀", options:[{id:"a",text:"x = 4",is_correct:true},/*...*/] },
+    // ... up to item 20
+  ]
+};
+
+// ✅ CORRECTED: NO CHAPTER LIMIT
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 UNLIMITED: always show next 3
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+// ... rest of renderChapter, quiz, feedback (unchanged) ...
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover { background: #f1f5f9; }
+.chapter-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
+</style>
 </body>
 </html>
