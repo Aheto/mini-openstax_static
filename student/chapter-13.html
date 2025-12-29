@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Expressing Statements in Mathematical Symbols</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 13;
+const CHAPTER_CONFIG = {
+  title: "Expressing Statements in Mathematical Symbols",
+  loTags: ["LO 1.3.1: Express statements in mathematical symbols"],
+  content: `
+    <h2>Key Concepts: From Words to Symbols</h2>
+    <p>Mathematics uses symbols to represent real-world ideas precisely. Learning to translate word statements into mathematical expressions is the first step toward solving equations, modeling situations, and thinking like a mathematician.</p>
+
+    <h3>Common Words and Their Symbols</h3>
+    <table style="width:100%; border-collapse: collapse; margin: 1rem 0;">
+      <tr><th style="border:1px solid #ccc; padding:0.5rem;">Words</th><th style="border:1px solid #ccc; padding:0.5rem;">Mathematical Symbol</th></tr>
+      <tr><td style="border:1px solid #ccc; padding:0.5rem;">is, equals, gives</td><td style="border:1px solid #ccc; padding:0.5rem;">=</td></tr>
+      <tr><td style="border:1px solid #ccc; padding:0.5rem;">sum, more than, increased by</td><td style="border:1px solid #ccc; padding:0.5rem;">+</td></tr>
+      <tr><td style="border:1px solid #ccc; padding:0.5rem;">difference, less than, decreased by</td><td style="border:1px solid #ccc; padding:0.5rem;">−</td></tr>
+      <tr><td style="border:1px solid #ccc; padding:0.5rem;">product, times, of</td><td style="border:1px solid #ccc; padding:0.5rem;">×</td></tr>
+      <tr><td style="border:1px solid #ccc; padding:0.5rem;">quotient, divided by</td><td style="border:1px solid #ccc; padding:0.5rem;">÷ or /</td></tr>
+      <tr><td style="border:1px solid #ccc; padding:0.5rem;">twice a number</td><td style="border:1px solid #ccc; padding:0.5rem;">2x</td></tr>
+      <tr><td style="border:1px solid #ccc; padding:0.5rem;">a number increased by 5</td><td style="border:1px solid #ccc; padding:0.5rem;">x + 5</td></tr>
+      <tr><td style="border:1px solid #ccc; padding:0.5rem;">5 less than a number</td><td style="border:1px solid #ccc; padding:0.5rem;">x − 5</td></tr>
+      <tr><td style="border:1px solid #ccc; padding:0.5rem;">the sum of x and y</td><td style="border:1px solid #ccc; padding:0.5rem;">x + y</td></tr>
+      <tr><td style="border:1px solid #ccc; padding:0.5rem;">the product of 3 and x</td><td style="border:1px solid #ccc; padding:0.5rem;">3x</td></tr>
+    </table>
+
+    <h3>Important Notes</h3>
+    <ul>
+      <li>"5 less than x" means <strong>x − 5</strong> (NOT 5 − x)</li>
+      <li>"The difference between x and y" usually means <strong>|x − y|</strong> or just <strong>x − y</strong> depending on context</li>
+      <li>Use parentheses to group: "3 times the sum of x and 4" → <strong>3(x + 4)</strong></li>
+    </ul>
+
+    <h3>Real-Life Examples</h3>
+    <ul>
+      <li><em>A pencil costs GH₵2 more than a pen.</em> → Let p = pen price → Pencil = p + 2</li>
+      <li><em>The total cost of 3 books at x cedis each.</em> → Total = 3x</li>
+      <li><em>A number doubled and reduced by 7.</em> → 2x − 7</li>
+    </ul>
+
+    <h3>Why It Matters</h3>
+    <p>This skill is the bridge between everyday language and algebra. It’s used in science, economics, coding, and engineering to build models that solve real problems.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"'A number increased by 7' is written as:", options:[{id:"a",text:"7x",is_correct:false},{id:"b",text:"x + 7",is_correct:true},{id:"c",text:"7 − x",is_correct:false},{id:"d",text:"x − 7",is_correct:false}] },
+    { id:"2", prompt:"'Twice a number minus 5' is:", options:[{id:"a",text:"2(x − 5)",is_correct:false},{id:"b",text:"2x − 5",is_correct:true},{id:"c",text:"5 − 2x",is_correct:false},{id:"d",text:"2x + 5",is_correct:false}] },
+    { id:"3", prompt:"'5 less than a number' means:", options:[{id:"a",text:"5 − x",is_correct:false},{id:"b",text:"x − 5",is_correct:true},{id:"c",text:"5x",is_correct:false},{id:"d",text:"x/5",is_correct:false}] },
+    { id:"4", prompt:"'The product of 4 and a number' is:", options:[{id:"a",text:"4 + x",is_correct:false},{id:"b",text:"4 − x",is_correct:false},{id:"c",text:"4x",is_correct:true},{id:"d",text:"x/4",is_correct:false}] },
+    { id:"5", prompt:"'The sum of x and y, divided by 3' is:", options:[{id:"a",text:"x + y/3",is_correct:false},{id:"b",text:"(x + y)/3",is_correct:true},{id:"c",text:"x/3 + y",is_correct:false},{id:"d",text:"3/(x + y)",is_correct:false}] },
+    { id:"6", prompt:"'Three times the difference of a number and 2' is:", options:[{id:"a",text:"3x − 2",is_correct:false},{id:"b",text:"3(x − 2)",is_correct:true},{id:"c",text:"2 − 3x",is_correct:false},{id:"d",text:"3(2 − x)",is_correct:false}] },
+    { id:"7", prompt:"'A number squared plus 6' is:", options:[{id:"a",text:"x² + 6",is_correct:true},{id:"b",text:"2x + 6",is_correct:false},{id:"c",text:"x + 6²",is_correct:false},{id:"d",text:"(x + 6)²",is_correct:false}] },
+    { id:"8", prompt:"'The quotient of 10 and a number' is:", options:[{id:"a",text:"10x",is_correct:false},{id:"b",text:"x/10",is_correct:false},{id:"c",text:"10/x",is_correct:true},{id:"d",text:"10 − x",is_correct:false}] },
+    { id:"9", prompt:"'7 more than twice a number' is:", options:[{id:"a",text:"2x + 7",is_correct:true},{id:"b",text:"7x + 2",is_correct:false},{id:"c",text:"2(x + 7)",is_correct:false},{id:"d",text:"7 − 2x",is_correct:false}] },
+    { id:"10", prompt:"'Half the sum of x and 8' is:", options:[{id:"a",text:"x/2 + 8",is_correct:false},{id:"b",text:"(x + 8)/2",is_correct:true},{id:"c",text:"x + 4",is_correct:false},{id:"d",text:"8x/2",is_correct:false}] },
+    { id:"11", prompt:"'A number decreased by 9' is:", options:[{id:"a",text:"9 − x",is_correct:false},{id:"b",text:"x − 9",is_correct:true},{id:"c",text:"9x",is_correct:false},{id:"d",text:"x + 9",is_correct:false}] },
+    { id:"12", prompt:"'The square of the sum of x and 3' is:", options:[{id:"a",text:"x² + 3",is_correct:false},{id:"b",text:"(x + 3)²",is_correct:true},{id:"c",text:"x² + 9",is_correct:false},{id:"d",text:"2(x + 3)",is_correct:false}] },
+    { id:"13", prompt:"'5 times a number plus 4' is:", options:[{id:"a",text:"5(x + 4)",is_correct:false},{id:"b",text:"5x + 4",is_correct:true},{id:"c",text:"4x + 5",is_correct:false},{id:"d",text:"5 + 4x",is_correct:false}] },
+    { id:"14", prompt:"'The difference between 12 and a number' is:", options:[{id:"a",text:"x − 12",is_correct:false},{id:"b",text:"|12 − x|",is_correct:false},{id:"c",text:"12 − x",is_correct:true},{id:"d",text:"12x",is_correct:false}] },
+    { id:"15", prompt:"'Four less than three times a number' is:", options:[{id:"a",text:"3x − 4",is_correct:true},{id:"b",text:"4 − 3x",is_correct:false},{id:"c",text:"3(x − 4)",is_correct:false},{id:"d",text:"4x − 3",is_correct:false}] },
+    { id:"16", prompt:"'The product of a number and 7, decreased by 2' is:", options:[{id:"a",text:"7(x − 2)",is_correct:false},{id:"b",text:"7x − 2",is_correct:true},{id:"c",text:"2 − 7x",is_correct:false},{id:"d",text:"7/x − 2",is_correct:false}] },
+    { id:"17", prompt:"'A number divided by 6, then increased by 10' is:", options:[{id:"a",text:"x/6 + 10",is_correct:true},{id:"b",text:"6/x + 10",is_correct:false},{id:"c",text:"(x + 10)/6",is_correct:false},{id:"d",text:"10x/6",is_correct:false}] },
+    { id:"18", prompt:"'The sum of the squares of x and y' is:", options:[{id:"a",text:"(x + y)²",is_correct:false},{id:"b",text:"x² + y²",is_correct:true},{id:"c",text:"x²y²",is_correct:false},{id:"d",text:"2x + 2y",is_correct:false}] },
+    { id:"19", prompt:"'Double a number, then subtract 1' is:", options:[{id:"a",text:"2(x − 1)",is_correct:false},{id:"b",text:"2x − 1",is_correct:true},{id:"c",text:"x − 2",is_correct:false},{id:"d",text:"1 − 2x",is_correct:false}] },
+    { id:"20", prompt:"Why is '5 less than x' written as x − 5 and not 5 − x?", options:[{id:"a",text:"Because subtraction is commutative",is_correct:false},{id:"b",text:"Because 'less than' reverses the order",is_correct:true},{id:"c",text:"It doesn't matter",is_correct:false},{id:"d",text:"Because x is always larger",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION BAR
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  // Button 1: HOME
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  
+  // Button 2: Current chapter
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // Buttons 3–5: Next up to 3 chapters (max 20)
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    if(next <= 20){
+      buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+    }
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    return {
+      item,
+      isCorrect,
+      selected,
+      correctText: correctOpt ? correctOpt.text : ' —'
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  const feedbackHTML = feedback.map(f => `
+    <div class="quiz-item">
+      <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
