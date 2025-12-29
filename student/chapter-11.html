@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Properties of Operations on Real Numbers</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 11;
+const CHAPTER_CONFIG = {
+  title: "Properties of Operations on Real Numbers",
+  loTags: ["LO 1.2.8: State and use properties of operations on real numbers"],
+  content: `
+    <h2>Key Concepts: Properties of Real Numbers</h2>
+    <p>Real numbers (integers, fractions, decimals, √2, π, etc.) follow consistent rules when we add, subtract, multiply, or divide them. These rules are called <strong>properties of operations</strong>.</p>
+
+    <h3>Core Properties</h3>
+    <p>For any real numbers <em>a</em>, <em>b</em>, and <em>c</em>:</p>
+
+    <p><strong>1. Closure Property</strong><br>
+    - Addition: <em>a + b</em> is a real number<br>
+    - Multiplication: <em>a × b</em> is a real number<br>
+    ❌ Not true for division by zero or square roots of negatives (but those are not operations *on* reals)</p>
+
+    <p><strong>2. Commutative Property</strong><br>
+    - <em>a + b = b + a</em><br>
+    - <em>a × b = b × a</em><br>
+    ❌ Does NOT apply to subtraction or division</p>
+
+    <p><strong>3. Associative Property</strong><br>
+    - <em>(a + b) + c = a + (b + c)</em><br>
+    - <em>(a × b) × c = a × (b × c)</em><br>
+    ❌ Not true for subtraction or division</p>
+
+    <p><strong>4. Distributive Property</strong><br>
+    - <em>a × (b + c) = a×b + a×c</em><br>
+    - Allows multiplication to "distribute" over addition</p>
+
+    <p><strong>5. Identity Properties</strong><br>
+    - Additive identity: <em>a + 0 = a</em><br>
+    - Multiplicative identity: <em>a × 1 = a</em></p>
+
+    <p><strong>6. Inverse Properties</strong><br>
+    - Additive inverse: <em>a + (−a) = 0</em><br>
+    - Multiplicative inverse: <em>a × (1/a) = 1</em>, for <em>a ≠ 0</em></p>
+
+    <h3>Real-Life Example</h3>
+    <p>When you buy 3 pens at GH₵2 each and 3 notebooks at GH₵5 each, you can calculate:<br>
+    Total = 3×2 + 3×5 = 3×(2 + 5) = 3×7 = GH₵21.<br>
+    This uses the <strong>distributive property</strong>—a key tool in algebra and finance.</p>
+
+    <h3>Why It Matters</h3>
+    <p>These properties let us simplify expressions, solve equations, and prove mathematical truths—without needing to compute every time.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"Which property states that a + b = b + a?", options:[{id:"a",text:"Associative",is_correct:false},{id:"b",text:"Commutative",is_correct:true},{id:"c",text:"Distributive",is_correct:false},{id:"d",text:"Closure",is_correct:false}] },
+    { id:"2", prompt:"The equation (3 × 4) × 5 = 3 × (4 × 5) illustrates which property?", options:[{id:"a",text:"Commutative",is_correct:false},{id:"b",text:"Associative",is_correct:true},{id:"c",text:"Distributive",is_correct:false},{id:"d",text:"Identity",is_correct:false}] },
+    { id:"3", prompt:"Which is an example of the distributive property?", options:[{id:"a",text:"2 + 3 = 3 + 2",is_correct:false},{id:"b",text:"2 × (3 + 4) = 2×3 + 2×4",is_correct:true},{id:"c",text:"2 × 1 = 2",is_correct:false},{id:"d",text:"2 + (−2) = 0",is_correct:false}] },
+    { id:"4", prompt:"The multiplicative identity is:", options:[{id:"a",text:"0",is_correct:false},{id:"b",text:"1",is_correct:true},{id:"c",text:"−1",is_correct:false},{id:"d",text:"Any number",is_correct:false}] },
+    { id:"5", prompt:"What is the additive inverse of 7?", options:[{id:"a",text:"7",is_correct:false},{id:"b",text:"−7",is_correct:true},{id:"c",text:"1/7",is_correct:false},{id:"d",text:"0",is_correct:false}] },
+    { id:"6", prompt:"Which property fails for subtraction?", options:[{id:"a",text:"Closure",is_correct:false},{id:"b",text:"Commutative",is_correct:true},{id:"c",text:"Identity",is_correct:false},{id:"d",text:"Inverse",is_correct:false}] },
+    { id:"7", prompt:"The statement a + 0 = a shows the:", options:[{id:"a",text:"Additive inverse",is_correct:false},{id:"b",text:"Additive identity",is_correct:true},{id:"c",text:"Multiplicative identity",is_correct:false},{id:"d",text:"Closure under addition",is_correct:false}] },
+    { id:"8", prompt:"Which number is its own multiplicative inverse?", options:[{id:"a",text:"0",is_correct:false},{id:"b",text:"1",is_correct:false},{id:"c",text:"−1",is_correct:false},{id:"d",text:"Both B and C",is_correct:true}] },
+    { id:"9", prompt:"For real numbers, a + b is always real. This is the:", options:[{id:"a",text:"Commutative property",is_correct:false},{id:"b",text:"Associative property",is_correct:false},{id:"c",text:"Closure property",is_correct:true},{id:"d",text:"Distributive property",is_correct:false}] },
+    { id:"10", prompt:"Which is NOT a real number property?", options:[{id:"a",text:"a − b = b − a",is_correct:true},{id:"b",text:"a + b = b + a",is_correct:false},{id:"c",text:"a × b = b × a",is_correct:false},{id:"d",text:"a × (b + c) = ab + ac",is_correct:false}] },
+    { id:"11", prompt:"The inverse property of multiplication requires:", options:[{id:"a",text:"a ≠ 0",is_correct:true},{id:"b",text:"a = 0",is_correct:false},{id:"c",text:"a is integer",is_correct:false},{id:"d",text:"a is positive",is_correct:false}] },
+    { id:"12", prompt:"Which equation uses the associative property of addition?", options:[{id:"a",text:"(5 + 6) + 7 = 5 + (6 + 7)",is_correct:true},{id:"b",text:"5 + 6 = 6 + 5",is_correct:false},{id:"c",text:"5 × 6 = 6 × 5",is_correct:false},{id:"d",text:"5 + 0 = 5",is_correct:false}] },
+    { id:"13", prompt:"2(3 + 5) = 2×3 + 2×5 is an example of:", options:[{id:"a",text:"Commutative",is_correct:false},{id:"b",text:"Associative",is_correct:false},{id:"c",text:"Distributive",is_correct:true},{id:"d",text:"Identity",is_correct:false}] },
+    { id:"14", prompt:"What is the result of a × 1 for any real a?", options:[{id:"a",text:"0",is_correct:false},{id:"b",text:"1",is_correct:false},{id:"c",text:"a",is_correct:true},{id:"d",text:"1/a",is_correct:false}] },
+    { id:"15", prompt:"Which property justifies: 4 + (−4) = 0?", options:[{id:"a",text:"Additive identity",is_correct:false},{id:"b",text:"Additive inverse",is_correct:true},{id:"c",text:"Multiplicative inverse",is_correct:false},{id:"d",text:"Commutative",is_correct:false}] },
+    { id:"16", prompt:"The set of real numbers is closed under:", options:[{id:"a",text:"Addition and multiplication",is_correct:true},{id:"b",text:"Division by zero",is_correct:false},{id:"c",text:"Square roots of negatives",is_correct:false},{id:"d",text:"None",is_correct:false}] },
+    { id:"17", prompt:"Which illustrates the commutative property of multiplication?", options:[{id:"a",text:"3 × (4 + 5) = 3×4 + 3×5",is_correct:false},{id:"b",text:"3 × 4 = 4 × 3",is_correct:true},{id:"c",text:"(3 × 4) × 5 = 3 × (4 × 5)",is_correct:false},{id:"d",text:"3 × 1 = 3",is_correct:false}] },
+    { id:"18", prompt:"Why is 1/a undefined when a = 0?", options:[{id:"a",text:"Because 0 has no multiplicative inverse",is_correct:true},{id:"b",text:"Because real numbers aren't closed under division",is_correct:false},{id:"c",text:"Because 0 is not a real number",is_correct:false},{id:"d",text:"Because of the commutative property",is_correct:false}] },
+    { id:"19", prompt:"Which expression equals 5 using identity properties?", options:[{id:"a",text:"5 + 1",is_correct:false},{id:"b",text:"5 × 0",is_correct:false},{id:"c",text:"5 + 0",is_correct:true},{id:"d",text:"5 − 1",is_correct:false}] },
+    { id:"20", prompt:"In computing 6 × 13, you write 6×(10 + 3) = 60 + 18. This uses:", options:[{id:"a",text:"Commutative",is_correct:false},{id:"b",text:"Associative",is_correct:false},{id:"c",text:"Distributive",is_correct:true},{id:"d",text:"Closure",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION BAR
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  // Button 1: HOME
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  
+  // Button 2: Current chapter
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // Buttons 3–5: Next up to 3 chapters (max 20)
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    if(next <= 20){
+      buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+    }
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    return {
+      item,
+      isCorrect,
+      selected,
+      correctText: correctOpt ? correctOpt.text : ' —'
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  const feedbackHTML = feedback.map(f => `
+    <div class="quiz-item">
+      <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
