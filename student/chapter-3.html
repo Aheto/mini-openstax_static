@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Mini OpenStax: Interactive clinical learning module"/>
-<title>Mini OpenStax — Subsets and Power Sets</title>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Venn Diagram Regions and Set Operations</title>
 <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
@@ -17,31 +17,8 @@
     <div class="role-badge">Student View</div>
   </div>
 
-  <!-- 📚 CHAPTER NAVIGATION BAR (20 CHAPTERS) -->
-  <nav class="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;">
-    <!-- Dynamically generated in JS, but hardcoded here for static reliability -->
-    <!-- Chapters 1–20 -->
-    <a href="chapter-1.html" class="chapter-btn">1</a>
-    <a href="chapter-2.html" class="chapter-btn">2</a>
-    <a href="chapter-3.html" class="chapter-btn active">3</a>
-    <a href="chapter-4.html" class="chapter-btn">4</a>
-    <a href="chapter-5.html" class="chapter-btn">5</a>
-    <a href="chapter-6.html" class="chapter-btn">6</a>
-    <a href="chapter-7.html" class="chapter-btn">7</a>
-    <a href="chapter-8.html" class="chapter-btn">8</a>
-    <a href="chapter-9.html" class="chapter-btn">9</a>
-    <a href="chapter-10.html" class="chapter-btn">10</a>
-    <a href="chapter-11.html" class="chapter-btn">11</a>
-    <a href="chapter-12.html" class="chapter-btn">12</a>
-    <a href="chapter-13.html" class="chapter-btn">13</a>
-    <a href="chapter-14.html" class="chapter-btn">14</a>
-    <a href="chapter-15.html" class="chapter-btn">15</a>
-    <a href="chapter-16.html" class="chapter-btn">16</a>
-    <a href="chapter-17.html" class="chapter-btn">17</a>
-    <a href="chapter-18.html" class="chapter-btn">18</a>
-    <a href="chapter-19.html" class="chapter-btn">19</a>
-    <a href="chapter-20.html" class="chapter-btn">20</a>
-  </nav>
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
 
   <main id="main-content">
     <div class="loading">Loading chapter content...</div>
@@ -52,78 +29,147 @@
 (function(){
 'use strict';
 
-const main = document.getElementById('main-content');
-const titleEl = document.getElementById('chapter-title');
-const loTagsEl = document.getElementById('lo-tags');
-
 //======================
-// 🔧 CONFIGURATION — EDIT THESE FOR EACH CHAPTER
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
 //======================
+const currentChapter = 3; // ← CHANGE THIS FOR EACH FILE
 const CHAPTER_CONFIG = {
-  title: "Subsets and Power Sets",
-  loTags: ["GHANA-SHS-MATH-1.1.1", "SETS-AND-SUBSETS", "POWER-SETS"],
+  title: "Venn Diagram Regions and Set Operations",
+  loTags: ["LO 1.1.3: Describe regions of Venn diagrams using union, intersection, complement"],
   content: `
-    <h2>Key Concepts: Subsets and Power Sets</h2>
-    <p>A <strong>set</strong> is a well-defined collection of distinct objects. A <strong>subset</strong> of a set is any set all of whose elements are contained in the original set.</p>
+    <h2>Key Concepts: Describing Venn Diagram Regions</h2>
+    <p>Venn diagrams use overlapping circles to visually represent relationships between sets. Each region corresponds to a specific combination of set operations—especially <strong>union (∪)</strong>, <strong>intersection (∩)</strong>, and <strong>complement (A')</strong>.</p>
 
-    <h3>✅ Fundamental Rules</h3>
+    <h3>1. Universal Set and Complement</h3>
+    <p>The <strong>universal set (U)</strong> contains all elements under discussion. The <strong>complement of set A</strong>, written as <code>A'</code> or <code>A<sup>c</sup></code>, includes everything in U that is <em>not</em> in A.</p>
+    <p>✅ Example: If U = {1,2,3,4,5} and A = {2,4}, then A' = {1,3,5}.</p>
+
+    <h3>2. Two-Set Venn Diagram Regions</h3>
+    <p>For sets A and B within U, there are <strong>4 distinct regions</strong>:</p>
     <ul>
-      <li>The <strong>empty set</strong> (∅) is a subset of every set.</li>
-      <li>Every set is a subset of itself.</li>
-      <li>If a set has <em>n</em> elements, the total number of subsets is <strong>2<sup>n</sup></strong>.</li>
-      <li>The number of <strong>proper subsets</strong> (excluding the set itself) is <strong>2<sup>n</sup> − 1</strong>.</li>
+      <li><strong>Only in A</strong>: A ∩ B'</li>
+      <li><strong>Only in B</strong>: A' ∩ B</li>
+      <li><strong>In both A and B</strong>: A ∩ B</li>
+      <li><strong>In neither A nor B</strong>: (A ∪ B)'</li>
     </ul>
 
-    <h3>🧠 Why 2<sup>n</sup>?</h3>
-    <p>For each of the <em>n</em> elements, there are two choices: <strong>include</strong> it in a subset or <strong>exclude</strong> it. Since choices are independent, total combinations = 2 × 2 × … × 2 (<em>n</em> times) = 2<sup>n</sup>.</p>
+    <h3>3. Three-Set Venn Diagram Regions</h3>
+    <p>With sets A, B, and C, there are <strong>8 regions</strong>. Examples:</p>
+    <ul>
+      <li><strong>Only in A</strong>: A ∩ B' ∩ C'</li>
+      <li><strong>In A and B but not C</strong>: A ∩ B ∩ C'</li>
+      <li><strong>In all three</strong>: A ∩ B ∩ C</li>
+      <li><strong>In none</strong>: (A ∪ B ∪ C)'</li>
+    </ul>
 
-    <h3>📊 Subset Count Table</h3>
-    <table style="width:100%; border-collapse: collapse; margin: 1rem 0;">
-      <thead><tr style="background:#f1f5f9;">
-        <th style="border:1px solid #cbd5e1; padding:0.5rem;">Elements (n)</th>
-        <th style="border:1px solid #cbd5e1; padding:0.5rem;">Subsets (2<sup>n</sup>)</th>
-        <th style="border:1px solid #cbd5e1; padding:0.5rem;">Proper Subsets (2<sup>n</sup>−1)</th>
-      </tr></thead>
-      <tbody>
-        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">0</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">1</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">0</td></tr>
-        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">1</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">2</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">1</td></tr>
-        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">2</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">4</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">3</td></tr>
-        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">3</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">8</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">7</td></tr>
-        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">n</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">2<sup>n</sup></td><td style="border:1px solid #cbd5e1; padding:0.5rem;">2<sup>n</sup>−1</td></tr>
-      </tbody>
-    </table>
+    <h3>4. Describing Shaded Regions</h3>
+    <p>To describe a shaded region:</p>
+    <ol>
+      <li>Identify which sets the region belongs to.</li>
+      <li>Use ∩ for “and”, ∪ for “or”, and ' for “not”.</li>
+      <li>Combine using set notation.</li>
+    </ol>
+    <p>✅ Real-life analogy: Imagine U = all students. Let A = math club, B = science club. The region “only in math club” = A ∩ B'.</p>
 
-    <h3>💡 Real-World Connection</h3>
-    <p>Subset logic underpins computer science (power sets in algorithms), probability (sample spaces), and data classification (e.g., grouping students by clubs: each combination = a subset).</p>
+    <h3>5. Common Expressions</h3>
+    <ul>
+      <li><strong>A ∪ B</strong>: everything in A or B (including overlap)</li>
+      <li><strong>A ∩ B'</strong>: in A but not in B</li>
+      <li><strong>(A ∩ B)'</strong>: everything <em>except</em> the overlap (De Morgan’s Law)</li>
+    </ul>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
   `,
   whatsappNumber: "233257320201",
   assessmentItems: [
-    { id:"1", prompt:"How many subsets does a set with 0 elements have?", options:[{id:"a",text:"0",is_correct:false},{id:"b",text:"1",is_correct:true},{id:"c",text:"2",is_correct:false},{id:"d",text:"None",is_correct:false}]},
-    { id:"2", prompt:"Which of the following is always a subset of any set?", options:[{id:"a",text:"The universal set",is_correct:false},{id:"b",text:"The set itself",is_correct:false},{id:"c",text:"The empty set",is_correct:true},{id:"d",text:"A singleton",is_correct:false}]},
-    { id:"3", prompt:"A set with 3 elements has how many proper subsets?", options:[{id:"a",text:"3",is_correct:false},{id:"b",text:"6",is_correct:false},{id:"c",text:"7",is_correct:true},{id:"d",text:"8",is_correct:false}]},
-    { id:"4", prompt:"What is the total number of subsets of {x}?", options:[{id:"a",text:"0",is_correct:false},{id:"b",text:"1",is_correct:false},{id:"c",text:"2",is_correct:true},{id:"d",text:"3",is_correct:false}]},
-    { id:"5", prompt:"Which statement is TRUE?", options:[{id:"a",text:"A set cannot be a subset of itself",is_correct:false},{id:"b",text:"The empty set has no subsets",is_correct:false},{id:"c",text:"Every set has at least one subset",is_correct:true},{id:"d",text:"Proper subsets include the set itself",is_correct:false}]},
-    { id:"6", prompt:"How many subsets does {a, b} have?", options:[{id:"a",text:"2",is_correct:false},{id:"b",text:"3",is_correct:false},{id:"c",text:"4",is_correct:true},{id:"d",text:"5",is_correct:false}]},
-    { id:"7", prompt:"If a set has 4 elements, how many proper subsets does it have?", options:[{id:"a",text:"8",is_correct:false},{id:"b",text:"15",is_correct:true},{id:"c",text:"16",is_correct:false},{id:"d",text:"32",is_correct:false}]},
-    { id:"8", prompt:"Which is NOT a subset of {1, 2}?", options:[{id:"a",text:"∅",is_correct:false},{id:"b",text:"{1}",is_correct:false},{id:"c",text:"{2, 3}",is_correct:true},{id:"d",text:"{1, 2}",is_correct:false}]},
-    { id:"9", prompt:"The formula for total subsets of an n-element set is:", options:[{id:"a",text:"n!",is_correct:false},{id:"b",text:"n²",is_correct:false},{id:"c",text:"2ⁿ",is_correct:true},{id:"d",text:"2n",is_correct:false}]},
-    { id:"10", prompt:"A power set is:", options:[{id:"a",text:"A set of prime numbers",is_correct:false},{id:"b",text:"The set of all subsets",is_correct:true},{id:"c",text:"A subset with maximum elements",is_correct:false},{id:"d",text:"The empty set",is_correct:false}]},
-    { id:"11", prompt:"How many subsets contain exactly 2 elements from a 3-element set?", options:[{id:"a",text:"2",is_correct:false},{id:"b",text:"3",is_correct:true},{id:"c",text:"4",is_correct:false},{id:"d",text:"6",is_correct:false}]},
-    { id:"12", prompt:"Why is ∅ a subset of every set?", options:[{id:"a",text:"By definition—it has no elements to contradict membership",is_correct:true},{id:"b",text:"Because it is the smallest set",is_correct:false},{id:"c",text:"Only if the set is non-empty",is_correct:false},{id:"d",text:"It is not always a subset",is_correct:false}]},
-    { id:"13", prompt:"If |A| = 5, then |P(A)| = ?", options:[{id:"a",text:"5",is_correct:false},{id:"b",text:"10",is_correct:false},{id:"c",text:"25",is_correct:false},{id:"d",text:"32",is_correct:true}]},
-    { id:"14", prompt:"In real life, club memberships (e.g., Debate, Science, Coding) form subsets because:", options:[{id:"a",text:"Each student joins all clubs",is_correct:false},{id:"b",text:"Each combination represents a unique subset of the 3 clubs",is_correct:true},{id:"c",text:"Only one club can be joined",is_correct:false},{id:"d",text:"Clubs are unrelated to sets",is_correct:false}]},
-    { id:"15", prompt:"Which has more subsets: a 2-element set or a 3-element set?", options:[{id:"a",text:"2-element",is_correct:false},{id:"b",text:"3-element",is_correct:true},{id:"c",text:"Same number",is_correct:false},{id:"d",text:"Neither has subsets",is_correct:false}]},
-    { id:"16", prompt:"A proper subset of {p, q} is:", options:[{id:"a",text:"{p, q}",is_correct:false},{id:"b",text:"∅",is_correct:true},{id:"c",text:"Both ∅ and {p}",is_correct:true},{id:"d",text:"None of the above",is_correct:false}]},
-    { id:"17", prompt:"The number of subsets grows:", options:[{id:"a",text:"Linearly with n",is_correct:false},{id:"b",text:"Quadratically",is_correct:false},{id:"c",text:"Exponentially",is_correct:true},{id:"d",text:"Logarithmically",is_correct:false}]},
-    { id:"18", prompt:"If two different sets have the same number of subsets, they must have:", options:[{id:"a",text:"Same elements",is_correct:false},{id:"b",text:"Same number of elements",is_correct:true},{id:"c",text:"Same proper subsets",is_correct:false},{id:"d",text:"Identical power sets",is_correct:false}]},
-    { id:"19", prompt:"How many subsets does a singleton set have?", options:[{id:"a",text:"0",is_correct:false},{id:"b",text:"1",is_correct:false},{id:"c",text:"2",is_correct:true},{id:"d",text:"3",is_correct:false}]},
-    { id:"20", prompt:"Which mathematical field relies heavily on subset logic?", options:[{id:"a",text:"Geometry",is_correct:false},{id:"b",text:"Trigonometry",is_correct:false},{id:"c",text:"Probability and computer science",is_correct:true},{id:"d",text:"Calculus only",is_correct:false}]}
+    { id:"1", prompt:"In a Venn diagram, the region outside both A and B but inside U is:", options:[{id:"a",text:"(A ∪ B)'",is_correct:true},{id:"b",text:"A ∩ B",is_correct:false},{id:"c",text:"A' ∩ B'",is_correct:false},{id:"d",text:"A ∪ B'",is_correct:false}] },
+    { id:"2", prompt:"Which expression describes 'elements in A but not in B'?", options:[{id:"a",text:"A ∪ B",is_correct:false},{id:"b",text:"A ∩ B'",is_correct:true},{id:"c",text:"A' ∩ B",is_correct:false},{id:"d",text:"(A ∩ B)'",is_correct:false}] },
+    { id:"3", prompt:"The complement of A ∪ B is equivalent to:", options:[{id:"a",text:"A' ∩ B'",is_correct:true},{id:"b",text:"A' ∪ B'",is_correct:false},{id:"c",text:"A ∩ B",is_correct:false},{id:"d",text:"A ∪ B'",is_correct:false}] },
+    { id:"4", prompt:"If U = {1,2,3,4,5}, A = {1,2}, then A' =", options:[{id:"a",text:"{3,4,5}",is_correct:true},{id:"b",text:"{1,2}",is_correct:false},{id:"c",text:"∅",is_correct:false},{id:"d",text:"U",is_correct:false}] },
+    { id:"5", prompt:"In a two-set Venn diagram, how many distinct regions are there?", options:[{id:"a",text:"2",is_correct:false},{id:"b",text:"3",is_correct:false},{id:"c",text:"4",is_correct:true},{id:"d",text:"5",is_correct:false}] },
+    { id:"6", prompt:"The region 'in A and B and C' is written as:", options:[{id:"a",text:"A ∪ B ∪ C",is_correct:false},{id:"b",text:"A ∩ B ∩ C",is_correct:true},{id:"c",text:"(A ∩ B) ∪ C",is_correct:false},{id:"d",text:"A' ∩ B' ∩ C'",is_correct:false}] },
+    { id:"7", prompt:"Which describes 'not in A or B'?", options:[{id:"a",text:"A' ∩ B",is_correct:false},{id:"b",text:"A ∪ B'",is_correct:false},{id:"c",text:"(A ∪ B)'",is_correct:true},{id:"d",text:"A' ∪ B",is_correct:false}] },
+    { id:"8", prompt:"In a three-set Venn diagram, the number of regions is:", options:[{id:"a",text:"6",is_correct:false},{id:"b",text:"7",is_correct:false},{id:"c",text:"8",is_correct:true},{id:"d",text:"9",is_correct:false}] },
+    { id:"9", prompt:"The expression A ∩ B' ∩ C' describes:", options:[{id:"a",text:"Only in A",is_correct:true},{id:"b",text:"Only in B",is_correct:false},{id:"c",text:"In A and B",is_correct:false},{id:"d",text:"In none",is_correct:false}] },
+    { id:"10", prompt:"If a region is shaded that includes everything except the overlap of A and B, the set is:", options:[{id:"a",text:"A ∩ B",is_correct:false},{id:"b",text:"(A ∩ B)'",is_correct:true},{id:"c",text:"A' ∪ B'",is_correct:false},{id:"d",text:"A ∪ B",is_correct:false}] },
+    { id:"11", prompt:"Which is the universal set in a Venn diagram?", options:[{id:"a",text:"The union of all sets",is_correct:false},{id:"b",text:"The rectangle enclosing all circles",is_correct:true},{id:"c",text:"The empty set",is_correct:false},{id:"d",text:"The intersection of all sets",is_correct:false}] },
+    { id:"12", prompt:"'Elements in B but not in A' is:", options:[{id:"a",text:"A ∩ B'",is_correct:false},{id:"b",text:"A' ∩ B",is_correct:true},{id:"c",text:"(A ∪ B)'",is_correct:false},{id:"d",text:"A ∪ B'",is_correct:false}] },
+    { id:"13", prompt:"The region outside A is called:", options:[{id:"a",text:"A'",is_correct:true},{id:"b",text:"A",is_correct:false},{id:"c",text:"U",is_correct:false},{id:"d",text:"∅",is_correct:false}] },
+    { id:"14", prompt:"If A ⊆ B, then A ∩ B' =", options:[{id:"a",text:"A",is_correct:false},{id:"b",text:"B",is_correct:false},{id:"c",text:"∅",is_correct:true},{id:"d",text:"U",is_correct:false}] },
+    { id:"15", prompt:"Which expression includes all elements in at least one of A, B, or C?", options:[{id:"a",text:"A ∩ B ∩ C",is_correct:false},{id:"b",text:"A ∪ B ∪ C",is_correct:true},{id:"c",text:"(A ∪ B ∪ C)'",is_correct:false},{id:"d",text:"A' ∩ B' ∩ C'",is_correct:false}] },
+    { id:"16", prompt:"The region 'in A or B but not both' is:", options:[{id:"a",text:"(A ∩ B') ∪ (A' ∩ B)",is_correct:true},{id:"b",text:"A ∩ B",is_correct:false},{id:"c",text:"A ∪ B",is_correct:false},{id:"d",text:"(A ∪ B)'",is_correct:false}] },
+    { id:"17", prompt:"(A ∩ B)' represents:", options:[{id:"a",text:"Only in A",is_correct:false},{id:"b",text:"Only in B",is_correct:false},{id:"c",text:"Everything except the intersection",is_correct:true},{id:"d",text:"The intersection",is_correct:false}] },
+    { id:"18", prompt:"If U = all students, A = basketball players, B = chess club, then A' ∩ B = ?", options:[{id:"a",text:"Students in both",is_correct:false},{id:"b",text:"Students not in either",is_correct:false},{id:"c",text:"Chess players not in basketball",is_correct:true},{id:"d",text:"Basketball players not in chess",is_correct:false}] },
+    { id:"19", prompt:"In a Venn diagram, the unshaded region inside U but outside all circles is:", options:[{id:"a",text:"Union of all sets",is_correct:false},{id:"b",text:"Intersection",is_correct:false},{id:"c",text:"Complement of the union",is_correct:true},{id:"d",text:"Empty set",is_correct:false}] },
+    { id:"20", prompt:"Which notation means 'not in A and not in B'?", options:[{id:"a",text:"A' ∩ B'",is_correct:true},{id:"b",text:"A ∪ B'",is_correct:false},{id:"c",text:"A' ∪ B",is_correct:false},{id:"d",text:"A ∩ B",is_correct:false}] }
   ]
 };
 
 //======================
+// RENDER NAVIGATION BAR
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  // Button 1: HOME
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  
+  // Button 2: Current chapter
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // Buttons 3–5: Next up to 3 chapters (max 20)
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    if(next <= 20){
+      buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+    }
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
 // RENDER CHAPTER CONTENT
 //======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
 function renderChapter(){
   titleEl.textContent = CHAPTER_CONFIG.title;
   loTagsEl.innerHTML = '';
@@ -149,8 +195,7 @@ function renderChapter(){
             <p>${idx + 1}. ${item.prompt}</p>
             ${item.options.map(opt => `
               <label class="quiz-option">
-                <input type="radio" name="q-${item.id}" value="${opt.id}">
-                ${opt.text}
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
               </label>
             `).join('')}
           </div>
@@ -205,7 +250,7 @@ function showFeedback(answers){
       item,
       isCorrect,
       selected,
-      correctText: correctOpt ? correctOpt.text : ' — '
+      correctText: correctOpt ? correctOpt.text : ' —'
     };
   });
 
@@ -217,8 +262,8 @@ function showFeedback(answers){
       <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
       ${f.item.options.map(opt => `
         <label class="quiz-option">
-          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}>
-          ${opt.text}${opt.is_correct ? '<strong>(Correct)</strong>' : ''}
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
         </label>
       `).join('')}
       <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
@@ -247,70 +292,61 @@ function showFeedback(answers){
     </section>
   `;
 
-  // ➕ WHATSAPP BUTTON
-  if(CHAPTER_CONFIG.whatsappNumber){
-    const msg = encodeURIComponent(
-      `My quiz score: ${scorePercent}%\nChapter: ${CHAPTER_CONFIG.title}\nStudent: [Your Name]`
-    );
-    const url = `https://wa.me/${CHAPTER_CONFIG.whatsappNumber}?text=${msg}`;
-    const whatsappBtn = `
-      <div style="text-align: center; margin-top: 1.5rem;">
-        <a href="${url}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
-            <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
-          </svg> Send Score to Instructor
-        </a>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
-      </div>
-    `;
-    main.innerHTML += whatsappBtn;
-  }
-
-  // Re-inject chapter nav after feedback
-  const navHTML = `
-    <nav class="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;">
-      <a href="chapter-1.html" class="chapter-btn">1</a>
-      <a href="chapter-2.html" class="chapter-btn">2</a>
-      <a href="chapter-3.html" class="chapter-btn active">3</a>
-      <a href="chapter-4.html" class="chapter-btn">4</a>
-      <a href="chapter-5.html" class="chapter-btn">5</a>
-      <a href="chapter-6.html" class="chapter-btn">6</a>
-      <a href="chapter-7.html" class="chapter-btn">7</a>
-      <a href="chapter-8.html" class="chapter-btn">8</a>
-      <a href="chapter-9.html" class="chapter-btn">9</a>
-      <a href="chapter-10.html" class="chapter-btn">10</a>
-      <a href="chapter-11.html" class="chapter-btn">11</a>
-      <a href="chapter-12.html" class="chapter-btn">12</a>
-      <a href="chapter-13.html" class="chapter-btn">13</a>
-      <a href="chapter-14.html" class="chapter-btn">14</a>
-      <a href="chapter-15.html" class="chapter-btn">15</a>
-      <a href="chapter-16.html" class="chapter-btn">16</a>
-      <a href="chapter-17.html" class="chapter-btn">17</a>
-      <a href="chapter-18.html" class="chapter-btn">18</a>
-      <a href="chapter-19.html" class="chapter-btn">19</a>
-      <a href="chapter-20.html" class="chapter-btn">20</a>
-    </nav>
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
   `;
-  document.querySelector('.container').insertBefore(
-    document.createRange().createContextualFragment(navHTML),
-    main
-  );
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
 }
 
 //======================
 // INITIALIZE
 //======================
-document.addEventListener('DOMContentLoaded', renderChapter);
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
 })();
 </script>
 
 <style>
-/* Minimal inline styles for chapter nav if not in main.css */
-.chapter-nav { margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
 .chapter-btn {
-  display: inline-flex; justify-content: center; align-items: center;
-  width: 2.2rem; height: 2.2rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
   border: 1px solid #cbd5e1;
   border-radius: 4px;
   text-decoration: none;
@@ -318,9 +354,14 @@ document.addEventListener('DOMContentLoaded', renderChapter);
   font-size: 0.875rem;
   font-weight: 500;
 }
-.chapter-btn:hover { background: #f1f5f9; }
-.chapter-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
 </style>
-
 </body>
 </html>
