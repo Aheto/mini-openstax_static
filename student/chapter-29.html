@@ -134,24 +134,19 @@ const CHAPTER_CONFIG = {
 };
 
 //======================
-// RENDER NAVIGATION BAR — STOPS AT CHAPTER 20 (per template)
+// RENDER NAVIGATION — UNLIMITED (no Chapter 20 cap)
 //======================
 function renderNavigation(){
   const nav = document.getElementById('chapter-nav');
   let buttons = [];
 
-  // Button 1: HOME
   buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
-  
-  // Button 2: Current chapter
   buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
   
-  // Buttons 3–5: Next up to 3 chapters, but ONLY if ≤ 20
+  // 🔓 Always show next 3 chapters — NO LIMIT
   for(let i = 1; i <= 3; i++){
     const next = currentChapter + i;
-    if(next <= 20){
-      buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
-    }
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
   }
   
   nav.innerHTML = buttons.join('');
