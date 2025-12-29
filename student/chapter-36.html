@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Exterior Angle Theorem of a Triangle</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 36;
+const CHAPTER_CONFIG = {
+  title: "Exterior Angle Theorem of a Triangle",
+  loTags: ["LO 1.7.3: State and use the exterior angle theorem of a triangle"],
+  content: `
+    <h2>Key Concepts: Exterior Angle Theorem</h2>
+    <p>An <strong>exterior angle</strong> of a triangle is formed when one side is extended. It lies outside the triangle and is adjacent to an interior angle.</p>
+
+    <h3>The Exterior Angle Theorem</h3>
+    <p><strong>The measure of an exterior angle of a triangle is equal to the sum of the two opposite (non-adjacent) interior angles.</strong></p>
+
+    <p>For example, in triangle ABC, if side BC is extended to point D, then:<br>
+    <strong>∠ACD = ∠A + ∠B</strong></p>
+
+    <h3>Why It Works</h3>
+    <p>• The sum of interior angles in any triangle is **180°**.<br>
+    • Angles on a straight line also sum to **180°**.<br>
+    → So, exterior angle = 180° − adjacent interior angle<br>
+    → But 180° − adjacent = (sum of other two interior angles)<br>
+    → Hence, <strong>exterior = sum of opposite interiors</strong>.</p>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:</strong> In a triangle, two interior angles are 50° and 60°. What is the exterior angle adjacent to the third angle?<br>
+    → Exterior = 50° + 60° = <strong>110°</strong></p>
+
+    <p><strong>Example 2:</strong> Exterior angle = 130°, one opposite interior = 80°. Find the other.<br>
+    → 130° = 80° + x → x = <strong>50°</strong></p>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in architecture (roof trusses), engineering (joint stress analysis), and navigation (turning angles in paths).</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"What does the exterior angle theorem state?", options:[{id:"a",text:"Exterior angle = sum of two opposite interior angles",is_correct:true},{id:"b",text:"Exterior angle = 180°",is_correct:false},{id:"c",text:"Exterior angle = adjacent interior angle",is_correct:false},{id:"d",text:"Exterior angle = 90°",is_correct:false}] },
+    { id:"2", prompt:"In a triangle, interior angles are 40° and 50°. Exterior angle adjacent to the third is:", options:[{id:"a",text:"90°",is_correct:true},{id:"b",text:"100°",is_correct:false},{id:"c",text:"80°",is_correct:false},{id:"d",text:"180°",is_correct:false}] },
+    { id:"3", prompt:"If an exterior angle is 120° and one opposite interior is 70°, the other is:", options:[{id:"a",text:"50°",is_correct:true},{id:"b",text:"60°",is_correct:false},{id:"c",text:"70°",is_correct:false},{id:"d",text:"120°",is_correct:false}] },
+    { id:"4", prompt:"Which is always true about exterior angles of a triangle?", options:[{id:"a",text:"Greater than either opposite interior angle",is_correct:true},{id:"b",text:"Equal to the adjacent interior angle",is_correct:false},{id:"c",text:"Less than 90°",is_correct:false},{id:"d",text:"Always 180°",is_correct:false}] },
+    { id:"5", prompt:"Sum of interior angles of a triangle is:", options:[{id:"a",text:"180°",is_correct:true},{id:"b",text:"360°",is_correct:false},{id:"c",text:"90°",is_correct:false},{id:"d",text:"270°",is_correct:false}] },
+    { id:"6", prompt:"If exterior angle = 100°, and one opposite interior = 45°, find the other.", options:[{id:"a",text:"55°",is_correct:true},{id:"b",text:"45°",is_correct:false},{id:"c",text:"100°",is_correct:false},{id:"d",text:"35°",is_correct:false}] },
+    { id:"7", prompt:"Can an exterior angle be 80° if one opposite interior is 90°?", options:[{id:"a",text:"No, because exterior must be greater",is_correct:true},{id:"b",text:"Yes",is_correct:false},{id:"c",text:"Only in obtuse triangles",is_correct:false},{id:"d",text:"It depends",is_correct:false}] },
+    { id:"8", prompt:"In triangle ABC, ∠A = 30°, ∠B = 60°. Exterior at C is:", options:[{id:"a",text:"90°",is_correct:true},{id:"b",text:"60°",is_correct:false},{id:"c",text:"30°",is_correct:false},{id:"d",text:"120°",is_correct:false}] },
+    { id:"9", prompt:"Which angle is NOT an exterior angle?", options:[{id:"a",text:"An angle inside the triangle",is_correct:true},{id:"b",text:"Formed by extending a side",is_correct:false},{id:"c",text:"Adjacent to an interior angle",is_correct:false},{id:"d",text:"Outside the triangle",is_correct:false}] },
+    { id:"10", prompt:"Exterior angle = 140°. Possible opposite interiors:", options:[{id:"a",text:"80° and 60°",is_correct:true},{id:"b",text:"100° and 50°",is_correct:false},{id:"c",text:"140° and 0°",is_correct:false},{id:"d",text:"70° and 80°",is_correct:false}] },
+    { id:"11", prompt:"If all interior angles are 60°, each exterior angle is:", options:[{id:"a",text:"120°",is_correct:true},{id:"b",text:"60°",is_correct:false},{id:"c",text:"180°",is_correct:false},{id:"d",text:"90°",is_correct:false}] },
+    { id:"12", prompt:"Why is the exterior angle always greater than either remote interior?", options:[{id:"a",text:"Because it equals their sum",is_correct:true},{id:"b",text:"It's a rule",is_correct:false},{id:"c",text:"Only in right triangles",is_correct:false},{id:"d",text:"It's not always true",is_correct:false}] },
+    { id:"13", prompt:"Triangle has angles 25° and x. Exterior = 100°. Find x.", options:[{id:"a",text:"75°",is_correct:true},{id:"b",text:"25°",is_correct:false},{id:"c",text:"100°",is_correct:false},{id:"d",text:"55°",is_correct:false}] },
+    { id:"14", prompt:"Which is a valid set of angles for a triangle?", options:[{id:"a",text:"50°, 60°, 70°",is_correct:true},{id:"b",text:"100°, 50°, 40°",is_correct:false},{id:"c",text:"90°, 90°, 0°",is_correct:false},{id:"d",text:"120°, 30°, 40°",is_correct:false}] },
+    { id:"15", prompt:"Exterior angle and its adjacent interior angle always sum to:", options:[{id:"a",text:"180°",is_correct:true},{id:"b",text:"90°",is_correct:false},{id:"c",text:"360°",is_correct:false},{id:"d",text:"0°",is_correct:false}] },
+    { id:"16", prompt:"In a right-angled triangle, exterior at right angle is:", options:[{id:"a",text:"90°",is_correct:true},{id:"b",text:"180°",is_correct:false},{id:"c",text:"0°",is_correct:false},{id:"d",text:"270°",is_correct:false}] },
+    { id:"17", prompt:"If exterior = x, and opposite interiors = 2x and –x, what's wrong?", options:[{id:"a",text:"Negative angle not possible",is_correct:true},{id:"b",text:"Nothing",is_correct:false},{id:"c",text:"x cancels",is_correct:false},{id:"d",text:"Exterior can be negative",is_correct:false}] },
+    { id:"18", prompt:"Triangle angles: 35°, 45°. Exterior at third vertex:", options:[{id:"a",text:"80°",is_correct:true},{id:"b",text:"100°",is_correct:false},{id:"c",text:"35°",is_correct:false},{id:"d",text:"45°",is_correct:false}] },
+    { id:"19", prompt:"What is the minimum possible exterior angle in a triangle?", options:[{id:"a",text:"Just over 0°",is_correct:true},{id:"b",text:"60°",is_correct:false},{id:"c",text:"90°",is_correct:false},{id:"d",text:"120°",is_correct:false}] },
+    { id:"20", prompt:"Why is the theorem useful?", options:[{id:"a",text:"It lets us find unknown angles without measuring",is_correct:true},{id:"b",text:"It proves triangles exist",is_correct:false},{id:"c",text:"Only for equilateral triangles",is_correct:false},{id:"d",text:"It's not useful",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    return {
+      item,
+      isCorrect,
+      selected,
+      correctText: correctOpt ? correctOpt.text : ' —'
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  const feedbackHTML = feedback.map(f => `
+    <div class="quiz-item">
+      <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
