@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Mini OpenStax: Interactive learning module"/>
-<title>Mini OpenStax — Zero and Undefined Algebraic Fractions</title>
+<title>Mini OpenStax — Simplifying Surds</title>
 <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
@@ -32,52 +32,53 @@
 //======================
 // 🔧 CONFIGURATION — EDIT PER CHAPTER
 //======================
-const currentChapter = 19;
+const currentChapter = 20;
 const CHAPTER_CONFIG = {
-  title: "Zero and Undefined Algebraic Fractions",
-  loTags: ["LO 1.3.7: Determine the conditions under which algebraic fraction is zero or undefined"],
+  title: "Simplifying Surds",
+  loTags: ["LO 1.4.1: Simplify surds"],
   content: `
-    <h2>Key Concepts: When is an Algebraic Fraction Zero or Undefined?</h2>
-    <p>An algebraic fraction has the form <code>N(x)/D(x)</code>, where N(x) = numerator and D(x) = denominator.</p>
+    <h2>Key Concepts: Surds</h2>
+    <p>A <strong>surds</strong> is a square root (or other root) that cannot be simplified to a whole number or rational number.<br>
+    Examples: √2, √3, √5 are surds. But √4 = 2 and √9 = 3 are <em>not</em> surds—they are rational.</p>
 
-    <h3>When is a fraction <strong>UNDEFINED</strong>?</h3>
-    <p>→ When the <strong>denominator is zero</strong>.<br>
-    Division by zero is undefined in mathematics.<br>
-    <strong>Example:</strong> (x + 2)/(x − 3) is undefined when x − 3 = 0 → <strong>x = 3</strong>.</p>
+    <h3>Why Simplify Surds?</h3>
+    <p>Simplified surds are easier to work with, compare, and combine. We aim for the form <strong>a√b</strong>, where <em>b</em> has no square factors.</p>
 
-    <h3>When is a fraction <strong>equal to ZERO</strong>?</h3>
-    <p>→ When the <strong>numerator is zero</strong> AND the <strong>denominator is NOT zero</strong>.<br>
-    <strong>Example:</strong> (x − 5)/(x + 1) = 0 when x − 5 = 0 → x = 5.<br>
-    Check: denominator at x=5 is 6 ≠ 0 → valid.</p>
+    <h3>Rules for Simplifying Surds</h3>
+    <p><strong>1. Product Rule:</strong> √(ab) = √a × √b<br>
+    <strong>2. Square Factor Removal:</strong> Look for the largest square factor inside the root.<br>
+    <strong>Example:</strong> √12 = √(4 × 3) = √4 × √3 = 2√3</p>
 
-    <h3>Step-by-Step Method</h3>
-    <p><strong>To find where a fraction is undefined:</strong><br>
-    1. Set denominator = 0<br>
-    2. Solve for x → these values make the fraction undefined</p>
-
-    <p><strong>To find where a fraction is zero:</strong><br>
-    1. Set numerator = 0<br>
-    2. Solve for x<br>
-    3. <em>Reject any solution that also makes the denominator zero</em></p>
+    <h3>Common Square Factors to Remember</h3>
+    <p>4, 9, 16, 25, 36, 49, 64, 81, 100, ...</p>
 
     <h3>Examples</h3>
-    <p><strong>1.</strong> Fraction: (x² − 4)/(x − 2)<br>
-      – Undefined when x − 2 = 0 → x = 2<br>
-      – Zero when x² − 4 = 0 → x = ±2<br>
-      – But x = 2 makes denominator zero → only <strong>x = −2</strong> makes it zero</p>
+    <ul>
+      <li>√18 = √(9 × 2) = 3√2</li>
+      <li>√50 = √(25 × 2) = 5√2</li>
+      <li>√72 = √(36 × 2) = 6√2</li>
+      <li>√(1/2) = √2 / 2 (after rationalising)</li>
+    </ul>
 
-    <p><strong>2.</strong> Fraction: (3x)/(x² − 9)<br>
-      – Undefined when x² − 9 = 0 → x = ±3<br>
-      – Zero when 3x = 0 → x = 0 (and denominator = −9 ≠ 0) → valid</p>
+    <h3>Adding and Subtracting Surds</h3>
+    <p>Only <strong>like surds</strong> can be combined (same irrational part).<br>
+    • 3√2 + 5√2 = 8√2 ✅<br>
+    • 2√3 + √2 = cannot be simplified ❌</p>
 
-    <h3>Why It Matters</h3>
-    <p>Knowing where a fraction is zero or undefined is essential for:<br>
-      – Solving rational equations<br>
-      – Graphing rational functions (vertical asymptotes and x-intercepts)<br>
-      – Avoiding errors in calculations (e.g., in calculators or code)</p>
+    <h3>Multiplying Surds</h3>
+    <p>√a × √b = √(ab)<br>
+    <strong>Example:</strong> √6 × √3 = √18 = 3√2</p>
 
-    <h3>Real-Life Analogy</h3>
-    <p>Imagine sharing GH₵10 among friends: if there are 0 friends, “10 ÷ 0” makes no sense—it’s undefined. But if you have GH₵0 to share, everyone gets GH₵0—so the result is zero.</p>
+    <h3>Rationalising the Denominator</h3>
+    <p>Never leave a surd in the denominator. Multiply numerator and denominator by the surd.<br>
+    <strong>Example:</strong> 1/√3 = √3/3<br>
+    <strong>Example:</strong> 5/√2 = (5√2)/2</p>
+
+    <h3>Real-Life Use</h3>
+    <p>Simplified surds appear in:<br>
+      – Exact answers in geometry (e.g., diagonal of a square: side × √2)<br>
+      – Physics formulas<br>
+      – Engineering calculations where precision matters</p>
 
     <!-- 💬 WhatsApp Support -->
     <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
@@ -117,31 +118,31 @@ const CHAPTER_CONFIG = {
   `,
   whatsappNumber: "233257320201",
   assessmentItems: [
-    { id:"1", prompt:"For (x − 3)/(x + 2), when is the fraction undefined?", options:[{id:"a",text:"x = 3",is_correct:false},{id:"b",text:"x = −2",is_correct:true},{id:"c",text:"x = 2",is_correct:false},{id:"d",text:"Never",is_correct:false}] },
-    { id:"2", prompt:"When is (2x + 4)/(x − 1) equal to zero?", options:[{id:"a",text:"x = 1",is_correct:false},{id:"b",text:"x = −2",is_correct:true},{id:"c",text:"x = 2",is_correct:false},{id:"d",text:"x = 0",is_correct:false}] },
-    { id:"3", prompt:"The fraction (x² − 9)/(x − 3) is undefined when:", options:[{id:"a",text:"x = 3",is_correct:true},{id:"b",text:"x = ±3",is_correct:false},{id:"c",text:"x = −3",is_correct:false},{id:"d",text:"Never",is_correct:false}] },
-    { id:"4", prompt:"When is (5x)/(x² − 4) zero?", options:[{id:"a",text:"x = 0",is_correct:true},{id:"b",text:"x = ±2",is_correct:false},{id:"c",text:"x = 5",is_correct:false},{id:"d",text:"Never",is_correct:false}] },
-    { id:"5", prompt:"For (x + 1)/(x² + 1), when is it undefined?", options:[{id:"a",text:"x = 1",is_correct:false},{id:"b",text:"x = −1",is_correct:false},{id:"c",text:"Never (x² + 1 ≠ 0 for real x)",is_correct:true},{id:"d",text:"x = 0",is_correct:false}] },
-    { id:"6", prompt:"The fraction (x − 4)/(x² − 16) is zero when:", options:[{id:"a",text:"x = 4",is_correct:false},{id:"b",text:"x = −4",is_correct:false},{id:"c",text:"Never (x=4 makes denominator 0)",is_correct:true},{id:"d",text:"x = 0",is_correct:false}] },
-    { id:"7", prompt:"When is (3 − x)/(x + 5) undefined?", options:[{id:"a",text:"x = 3",is_correct:false},{id:"b",text:"x = −5",is_correct:true},{id:"c",text:"x = 5",is_correct:false},{id:"d",text:"x = −3",is_correct:false}] },
-    { id:"8", prompt:"For (x² − 2x)/(x − 2), when is it zero?", options:[{id:"a",text:"x = 0 only",is_correct:true},{id:"b",text:"x = 2 only",is_correct:false},{id:"c",text:"x = 0 and x = 2",is_correct:false},{id:"d",text:"Never",is_correct:false}] },
-    { id:"9", prompt:"Which value makes (x + 7)/(x² − 49) undefined?", options:[{id:"a",text:"x = 7",is_correct:false},{id:"b",text:"x = −7",is_correct:false},{id:"c",text:"Both x = 7 and x = −7",is_correct:true},{id:"d",text:"x = 0",is_correct:false}] },
-    { id:"10", prompt:"When is (4x − 8)/(x² + 3) zero?", options:[{id:"a",text:"x = 2",is_correct:true},{id:"b",text:"x = −3",is_correct:false},{id:"c",text:"x = 0",is_correct:false},{id:"d",text:"Never",is_correct:false}] },
-    { id:"11", prompt:"The fraction (x² − 1)/(x − 1) is zero when:", options:[{id:"a",text:"x = 1",is_correct:false},{id:"b",text:"x = −1",is_correct:true},{id:"c",text:"x = 0",is_correct:false},{id:"d",text:"Never",is_correct:false}] },
-    { id:"12", prompt:"For (2x + 6)/(x² − 9), undefined when:", options:[{id:"a",text:"x = 3",is_correct:false},{id:"b",text:"x = −3",is_correct:false},{id:"c",text:"x = ±3",is_correct:true},{id:"d",text:"x = −6",is_correct:false}] },
-    { id:"13", prompt:"When is (x − 1)/(x² + 2x + 1) zero?", options:[{id:"a",text:"x = 1",is_correct:true},{id:"b",text:"x = −1",is_correct:false},{id:"c",text:"x = 0",is_correct:false},{id:"d",text:"Never",is_correct:false}] },
-    { id:"14", prompt:"Which fraction is never undefined for real x?", options:[{id:"a",text:"(x + 1)/x",is_correct:false},{id:"b",text:"x/(x² + 1)",is_correct:true},{id:"c",text:"(x − 2)/(x − 2)",is_correct:false},{id:"d",text:"1/(x² − 4)",is_correct:false}] },
-    { id:"15", prompt:"For (x² − 5x + 6)/(x − 2), zero when:", options:[{id:"a",text:"x = 2",is_correct:false},{id:"b",text:"x = 3",is_correct:true},{id:"c",text:"x = 2 and x = 3",is_correct:false},{id:"d",text:"Never",is_correct:false}] },
-    { id:"16", prompt:"When is (7)/(x + 8) zero?", options:[{id:"a",text:"x = −8",is_correct:false},{id:"b",text:"x = 7",is_correct:false},{id:"c",text:"Never (numerator ≠ 0)",is_correct:true},{id:"d",text:"x = 0",is_correct:false}] },
-    { id:"17", prompt:"The fraction (x² + 4)/(x − 5) is zero when:", options:[{id:"a",text:"x = 2",is_correct:false},{id:"b",text:"x = −2",is_correct:false},{id:"c",text:"x = 5",is_correct:false},{id:"d",text:"Never",is_correct:true}] },
-    { id:"18", prompt:"For (3x − 6)/(x² − 4x + 4), undefined when:", options:[{id:"a",text:"x = 2",is_correct:true},{id:"b",text:"x = −2",is_correct:false},{id:"c",text:"x = 0",is_correct:false},{id:"d",text:"Never",is_correct:false}] },
-    { id:"19", prompt:"When is (x² − x)/(x² − 1) zero?", options:[{id:"a",text:"x = 0 only",is_correct:false},{id:"b",text:"x = 1 only",is_correct:false},{id:"c",text:"x = 0 and x = 1",is_correct:false},{id:"d",text:"x = 0 only (x=1 makes denom 0)",is_correct:true}] },
-    { id:"20", prompt:"Why can't a fraction be zero if the denominator is also zero?", options:[{id:"a",text:"0/0 is indeterminate, not zero",is_correct:true},{id:"b",text:"It’s always undefined",is_correct:false},{id:"c",text:"Zero divided by anything is 1",is_correct:false},{id:"d",text:"Because teachers say so",is_correct:false}] }
+    { id:"1", prompt:"Simplify √12", options:[{id:"a",text:"2√3",is_correct:true},{id:"b",text:"3√2",is_correct:false},{id:"c",text:"4√3",is_correct:false},{id:"d",text:"6",is_correct:false}] },
+    { id:"2", prompt:"Which is a surd?", options:[{id:"a",text:"√16",is_correct:false},{id:"b",text:"√25",is_correct:false},{id:"c",text:"√7",is_correct:true},{id:"d",text:"√100",is_correct:false}] },
+    { id:"3", prompt:"Simplify √50", options:[{id:"a",text:"5√2",is_correct:true},{id:"b",text:"2√5",is_correct:false},{id:"c",text:"10√5",is_correct:false},{id:"d",text:"25√2",is_correct:false}] },
+    { id:"4", prompt:"Simplify √72", options:[{id:"a",text:"6√2",is_correct:true},{id:"b",text:"8√3",is_correct:false},{id:"c",text:"4√18",is_correct:false},{id:"d",text:"9√8",is_correct:false}] },
+    { id:"5", prompt:"Add: 3√5 + 2√5", options:[{id:"a",text:"5√5",is_correct:true},{id:"b",text:"6√10",is_correct:false},{id:"c",text:"5√10",is_correct:false},{id:"d",text:"6√5",is_correct:false}] },
+    { id:"6", prompt:"Multiply: √6 × √3", options:[{id:"a",text:"√18",is_correct:false},{id:"b",text:"3√2",is_correct:true},{id:"c",text:"√9",is_correct:false},{id:"d",text:"2√3",is_correct:false}] },
+    { id:"7", prompt:"Rationalise: 1/√2", options:[{id:"a",text:"√2/2",is_correct:true},{id:"b",text:"2/√2",is_correct:false},{id:"c",text:"1/2",is_correct:false},{id:"d",text:"√2",is_correct:false}] },
+    { id:"8", prompt:"Simplify √98", options:[{id:"a",text:"7√2",is_correct:true},{id:"b",text:"14√7",is_correct:false},{id:"c",text:"2√49",is_correct:false},{id:"d",text:"49√2",is_correct:false}] },
+    { id:"9", prompt:"Which cannot be simplified further?", options:[{id:"a",text:"√20",is_correct:false},{id:"b",text:"√15",is_correct:true},{id:"c",text:"√32",is_correct:false},{id:"d",text:"√27",is_correct:false}] },
+    { id:"10", prompt:"Simplify √(1/4)", options:[{id:"a",text:"1/2",is_correct:true},{id:"b",text:"√2/2",is_correct:false},{id:"c",text:"2",is_correct:false},{id:"d",text:"1/√2",is_correct:false}] },
+    { id:"11", prompt:"Add: 4√3 + √2 + 2√3", options:[{id:"a",text:"6√3 + √2",is_correct:true},{id:"b",text:"7√5",is_correct:false},{id:"c",text:"6√5",is_correct:false},{id:"d",text:"5√3 + √2",is_correct:false}] },
+    { id:"12", prompt:"Simplify √200", options:[{id:"a",text:"10√2",is_correct:true},{id:"b",text:"2√100",is_correct:false},{id:"c",text:"20√10",is_correct:false},{id:"d",text:"5√8",is_correct:false}] },
+    { id:"13", prompt:"Rationalise: 3/√5", options:[{id:"a",text:"3√5/5",is_correct:true},{id:"b",text:"√15/5",is_correct:false},{id:"c",text:"5/3√5",is_correct:false},{id:"d",text:"√5",is_correct:false}] },
+    { id:"14", prompt:"Multiply: √8 × √2", options:[{id:"a",text:"√16",is_correct:false},{id:"b",text:"4",is_correct:true},{id:"c",text:"2√4",is_correct:false},{id:"d",text:"√10",is_correct:false}] },
+    { id:"15", prompt:"Simplify √45", options:[{id:"a",text:"3√5",is_correct:true},{id:"b",text:"5√3",is_correct:false},{id:"c",text:"9√5",is_correct:false},{id:"d",text:"√9×√5",is_correct:false}] },
+    { id:"16", prompt:"Which expression is rational?", options:[{id:"a",text:"√2",is_correct:false},{id:"b",text:"√7",is_correct:false},{id:"c",text:"√9",is_correct:true},{id:"d",text:"√12",is_correct:false}] },
+    { id:"17", prompt:"Simplify √(3/4)", options:[{id:"a",text:"√3/2",is_correct:true},{id:"b",text:"√3/√4",is_correct:false},{id:"c",text:"2/√3",is_correct:false},{id:"d",text:"√12/4",is_correct:false}] },
+    { id:"18", prompt:"Add: √18 + √8", options:[{id:"a",text:"5√2",is_correct:true},{id:"b",text:"√26",is_correct:false},{id:"c",text:"2√9 + 2√4",is_correct:false},{id:"d",text:"10√2",is_correct:false}] },
+    { id:"19", prompt:"Which is the simplified form of √108?", options:[{id:"a",text:"6√3",is_correct:true},{id:"b",text:"3√12",is_correct:false},{id:"c",text:"12√3",is_correct:false},{id:"d",text:"9√12",is_correct:false}] },
+    { id:"20", prompt:"Why do we rationalise denominators?", options:[{id:"a",text:"To remove surds from the denominator for standard form",is_correct:true},{id:"b",text:"To make numbers larger",is_correct:false},{id:"c",text:"It’s optional",is_correct:false},{id:"d",text:"Only for decimals",is_correct:false}] }
   ]
 };
 
 //======================
-// RENDER NAVIGATION BAR
+// RENDER NAVIGATION BAR — UNLOCKED (NO 20-CHAPTER LIMIT)
 //======================
 function renderNavigation(){
   const nav = document.getElementById('chapter-nav');
@@ -153,12 +154,10 @@ function renderNavigation(){
   // Button 2: Current chapter
   buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
   
-  // Buttons 3–5: Next up to 3 chapters (max 20)
+  // Buttons 3–5: Next 3 chapters (unlimited)
   for(let i = 1; i <= 3; i++){
     const next = currentChapter + i;
-    if(next <= 20){
-      buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
-    }
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
   }
   
   nav.innerHTML = buttons.join('');
