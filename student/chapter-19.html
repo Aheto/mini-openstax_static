@@ -141,7 +141,7 @@ const CHAPTER_CONFIG = {
 };
 
 //======================
-// RENDER NAVIGATION BAR
+// RENDER NAVIGATION BAR — UNLOCKED (NO 20-CHAPTER LIMIT)
 //======================
 function renderNavigation(){
   const nav = document.getElementById('chapter-nav');
@@ -153,12 +153,10 @@ function renderNavigation(){
   // Button 2: Current chapter
   buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
   
-  // Buttons 3–5: Next up to 3 chapters (max 20)
+  // Buttons 3–5: Next 3 chapters (unlimited)
   for(let i = 1; i <= 3; i++){
     const next = currentChapter + i;
-    if(next <= 20){
-      buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
-    }
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
   }
   
   nav.innerHTML = buttons.join('');
