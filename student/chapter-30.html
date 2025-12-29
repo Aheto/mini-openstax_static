@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Gradient of a Straight Line</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 30;
+const CHAPTER_CONFIG = {
+  title: "Gradient of a Straight Line",
+  loTags: ["LO 1.6.5: Find the gradient of a straight line, given the coordinates of two points on the line"],
+  content: `
+    <h2>Key Concepts: Gradient of a Line</h2>
+    <p>The <strong>gradient</strong> (or <strong>slope</strong>) of a straight line measures its steepness and direction. It is calculated using two points on the line.</p>
+
+    <h3>Gradient Formula</h3>
+    <p>Given two points <strong>(x₁, y₁)</strong> and <strong>(x₂, y₂)</strong>, the gradient <strong>m</strong> is:</p>
+    <p><strong>m = (y₂ − y₁) / (x₂ − x₁)</strong></p>
+    <p>• If <strong>m > 0</strong> → line slopes <strong>upward</strong> (from left to right)<br>
+    • If <strong>m < 0</strong> → line slopes <strong>downward</strong><br>
+    • If <strong>m = 0</strong> → horizontal line<br>
+    • If <strong>x₂ = x₁</strong> → vertical line → <strong>gradient is undefined</strong></p>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:</strong> Points (2, 3) and (5, 9)<br>
+    m = (9 − 3) / (5 − 2) = 6 / 3 = <strong>2</strong></p>
+    <p><strong>Example 2:</strong> Points (−1, 4) and (3, −2)<br>
+    m = (−2 − 4) / (3 − (−1)) = (−6) / 4 = <strong>−3/2</strong></p>
+    <p><strong>Example 3:</strong> Points (1, 5) and (1, −2)<br>
+    m = (−2 − 5) / (1 − 1) = −7 / 0 → <strong>undefined</strong> (vertical line)</p>
+
+    <h3>Real-Life Insight</h3>
+    <p>Gradient is used in physics (velocity-time graphs), geography (hill steepness), economics (rate of change in cost/revenue), and engineering (road incline design).</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"Find the gradient of the line through (1,2) and (3,8).", options:[{id:"a",text:"3",is_correct:true},{id:"b",text:"2",is_correct:false},{id:"c",text:"4",is_correct:false},{id:"d",text:"6",is_correct:false}] },
+    { id:"2", prompt:"Find the gradient of the line through (0,5) and (4,1).", options:[{id:"a",text:"−1",is_correct:true},{id:"b",text:"1",is_correct:false},{id:"c",text:"−4",is_correct:false},{id:"d",text:"4",is_correct:false}] },
+    { id:"3", prompt:"What is the gradient of the line through (2,3) and (2,7)?", options:[{id:"a",text:"Undefined",is_correct:true},{id:"b",text:"0",is_correct:false},{id:"c",text:"2",is_correct:false},{id:"d",text:"1",is_correct:false}] },
+    { id:"4", prompt:"Find the gradient of the line through (−1,4) and (2,−2).", options:[{id:"a",text:"−2",is_correct:true},{id:"b",text:"2",is_correct:false},{id:"c",text:"−6",is_correct:false},{id:"d",text:"−3",is_correct:false}] },
+    { id:"5", prompt:"What is the gradient of the line through (5,5) and (8,5)?", options:[{id:"a",text:"0",is_correct:true},{id:"b",text:"1",is_correct:false},{id:"c",text:"3",is_correct:false},{id:"d",text:"Undefined",is_correct:false}] },
+    { id:"6", prompt:"Find the gradient of the line through (−3,−1) and (1,7).", options:[{id:"a",text:"2",is_correct:true},{id:"b",text:"3",is_correct:false},{id:"c",text:"4",is_correct:false},{id:"d",text:"1",is_correct:false}] },
+    { id:"7", prompt:"Which pair of points gives a gradient of ½?", options:[{id:"a",text:"(2,3) and (6,5)",is_correct:true},{id:"b",text:"(0,0) and (2,1)",is_correct:false},{id:"c",text:"(1,1) and (3,2)",is_correct:false},{id:"d",text:"(4,0) and (6,2)",is_correct:false}] },
+    { id:"8", prompt:"Find the gradient of the line through (3,−2) and (7,6).", options:[{id:"a",text:"2",is_correct:true},{id:"b",text:"4",is_correct:false},{id:"c",text:"8",is_correct:false},{id:"d",text:"1",is_correct:false}] },
+    { id:"9", prompt:"What is the gradient of a horizontal line?", options:[{id:"a",text:"0",is_correct:true},{id:"b",text:"1",is_correct:false},{id:"c",text:"Undefined",is_correct:false},{id:"d",text:"∞",is_correct:false}] },
+    { id:"10", prompt:"Find the gradient of the line through (−2,5) and (3,−5).", options:[{id:"a",text:"−2",is_correct:true},{id:"b",text:"2",is_correct:false},{id:"c",text:"−10",is_correct:false},{id:"d",text:"−5",is_correct:false}] },
+    { id:"11", prompt:"Which line has a negative gradient?", options:[{id:"a",text:"From (1,4) to (2,2)",is_correct:true},{id:"b",text:"From (0,0) to (3,6)",is_correct:false},{id:"c",text:"From (−1,−1) to (2,5)",is_correct:false},{id:"d",text:"From (2,3) to (5,9)",is_correct:false}] },
+    { id:"12", prompt:"Find the gradient of the line through (1,1) and (4,7).", options:[{id:"a",text:"2",is_correct:true},{id:"b",text:"3",is_correct:false},{id:"c",text:"6",is_correct:false},{id:"d",text:"1.5",is_correct:false}] },
+    { id:"13", prompt:"What is the gradient of a vertical line?", options:[{id:"a",text:"Undefined",is_correct:true},{id:"b",text:"0",is_correct:false},{id:"c",text:"1",is_correct:false},{id:"d",text:"Infinite",is_correct:false}] },
+    { id:"14", prompt:"Find the gradient of the line through (0,−3) and (5,2).", options:[{id:"a",text:"1",is_correct:true},{id:"b",text:"5",is_correct:false},{id:"c",text:"−1",is_correct:false},{id:"d",text:"2",is_correct:false}] },
+    { id:"15", prompt:"Which pair gives gradient = −3?", options:[{id:"a",text:"(1,5) and (2,2)",is_correct:true},{id:"b",text:"(0,0) and (1,3)",is_correct:false},{id:"c",text:"(2,1) and (3,4)",is_correct:false},{id:"d",text:"(−1,−2) and (1,4)",is_correct:false}] },
+    { id:"16", prompt:"Find the gradient of the line through (−4,−1) and (−2,3).", options:[{id:"a",text:"2",is_correct:true},{id:"b",text:"4",is_correct:false},{id:"c",text:"1",is_correct:false},{id:"d",text:"−2",is_correct:false}] },
+    { id:"17", prompt:"If the gradient is 0, the line is:", options:[{id:"a",text:"Horizontal",is_correct:true},{id:"b",text:"Vertical",is_correct:false},{id:"c",text:"Diagonal",is_correct:false},{id:"d",text:"Curved",is_correct:false}] },
+    { id:"18", prompt:"Find the gradient of the line through (6,8) and (9,2).", options:[{id:"a",text:"−2",is_correct:true},{id:"b",text:"2",is_correct:false},{id:"c",text:"−6",is_correct:false},{id:"d",text:"−3",is_correct:false}] },
+    { id:"19", prompt:"Which statement is TRUE?", options:[{id:"a",text:"Gradient = rise / run",is_correct:true},{id:"b",text:"Gradient = run / rise",is_correct:false},{id:"c",text:"Vertical lines have gradient 0",is_correct:false},{id:"d",text:"Horizontal lines have undefined gradient",is_correct:false}] },
+    { id:"20", prompt:"Why is the gradient undefined for vertical lines?", options:[{id:"a",text:"Division by zero in the formula",is_correct:true},{id:"b",text:"No y-values",is_correct:false},{id:"c",text:"Infinite slope is not a number",is_correct:false},{id:"d",text:"They are not straight",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    return {
+      item,
+      isCorrect,
+      selected,
+      correctText: correctOpt ? correctOpt.text : ' —'
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  const feedbackHTML = feedback.map(f => `
+    <div class="quiz-item">
+      <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
