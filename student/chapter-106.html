@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Minimum and Maximum Values from Graphs</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 106;
+const CHAPTER_CONFIG = {
+  title: "Minimum and Maximum Values from Graphs",
+  loTags: ["LO 2.8.3: Find the minimum and maximum values and points from graphs."],
+  content: `
+    <h2>Key Concepts: Minima and Maxima of Quadratic Graphs</h2>
+    <p>The graph of a quadratic function <strong>y = ax² + bx + c** is a <strong>parabola**. The highest or lowest point on this graph is called the <strong>vertex**, and it gives either a <strong>maximum** or <strong>minimum** value.</p>
+
+    <h3>How to Determine Min/Max</h3>
+    <ul>
+      <li>If <strong>a > 0** (opens upward), the vertex is the <strong>minimum point**.</li>
+      <li>If <strong>a < 0** (opens downward), the vertex is the <strong>maximum point**.</li>
+    </ul>
+
+    <h3>Vertex Coordinates</h3>
+    <p>The x-coordinate of the vertex is: <strong>x = −b/(2a)**<br>
+    Substitute this x into the equation to find the y-coordinate.</p>
+    <p>The <strong>vertex point** is <strong>(x, y)**.<br>
+    The <strong>minimum or maximum value** is the <strong>y-coordinate**.</p>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:** y = x² − 4x + 3 (a = 1 > 0 → minimum)<br>
+    → x = −(−4)/(2×1) = 4/2 = <strong>2**<br>
+    → y = (2)² − 4(2) + 3 = 4 − 8 + 3 = <strong>−1**<br>
+    → <strong>Minimum point: (2, −1)**, <strong>Minimum value: −1**</p>
+
+    <p><strong>Example 2:** y = −x² + 6x − 5 (a = −1 < 0 → maximum)<br>
+    → x = −6/(2×−1) = −6/−2 = <strong>3**<br>
+    → y = −(3)² + 6(3) − 5 = −9 + 18 − 5 = <strong>4**<br>
+    → <strong>Maximum point: (3, 4)**, <strong>Maximum value: 4**</p>
+
+    <h3>Key Notes</h3>
+    <ul>
+      <li>The vertex lies on the <strong>axis of symmetry**: x = −b/(2a).</li>
+      <li>Minimum/maximum <strong>value** = y at vertex.</li>
+      <li>Minimum/maximum <strong>point** = (x, y) of vertex.</li>
+      <li>You can also <strong>estimate** min/max from a well-drawn graph.</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in physics (maximum height of a projectile), economics (maximum profit or minimum cost), engineering (optimal design), and agriculture (maximum yield).</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"For y = x² + 2x + 3, the graph has a:", options:[{id:"a",text:"Minimum point",is_correct:true},{id:"b",text:"Maximum point",is_correct:false},{id:"c",text:"No turning point",is_correct:false},{id:"d",text:"Two maxima",is_correct:false}] },
+    { id:"2", prompt:"For y = −2x² + 4x − 1, the graph has a:", options:[{id:"a",text:"Maximum point",is_correct:true},{id:"b",text:"Minimum point",is_correct:false},{id:"c",text:"No vertex",is_correct:false},{id:"d",text:"Constant value",is_correct:false}] },
+    { id:"3", prompt:"Vertex x-coordinate for y = x² − 6x + 5 is:", options:[{id:"a",text:"3",is_correct:true},{id:"b",text:"6",is_correct:false},{id:"c",text:"−3",is_correct:false},{id:"d",text:"0",is_correct:false}] },
+    { id:"4", prompt:"For y = x² − 4x + 1, minimum value is:", options:[{id:"a",text:"−3",is_correct:true},{id:"b",text:"1",is_correct:false},{id:"c",text:"4",is_correct:false},{id:"d",text:"0",is_correct:false}] },
+    { id:"5", prompt:"Maximum point of y = −x² + 4x is:", options:[{id:"a",text:"(2, 4)",is_correct:true},{id:"b",text:"(−2, 4)",is_correct:false},{id:"c",text:"(0, 0)",is_correct:false},{id:"d",text:"(4, 0)",is_correct:false}] },
+    { id:"6", prompt:"The minimum value of a quadratic is the:", options:[{id:"a",text:"y-coordinate of the vertex",is_correct:true},{id:"b",text:"x-coordinate of the vertex",is_correct:false},{id:"c",text:"y-intercept",is_correct:false},{id:"d",text:"Discriminant",is_correct:false}] },
+    { id:"7", prompt:"For y = 2x² − 8x + 6, minimum point is:", options:[{id:"a",text:"(2, −2)",is_correct:true},{id:"b",text:"(−2, 2)",is_correct:false},{id:"c",text:"(0, 6)",is_correct:false},{id:"d",text:"(4, 6)",is_correct:false}] },
+    { id:"8", prompt:"If a > 0, the vertex gives a:", options:[{id:"a",text:"Minimum",is_correct:true},{id:"b",text:"Maximum",is_correct:false},{id:"c",text:"Zero",is_correct:false},{id:"d",text:"Asymptote",is_correct:false}] },
+    { id:"9", prompt:"For y = −x² − 2x + 3, maximum value is:", options:[{id:"a",text:"4",is_correct:true},{id:"b",text:"3",is_correct:false},{id:"c",text:"−1",is_correct:false},{id:"d",text:"0",is_correct:false}] },
+    { id:"10", prompt:"Axis of symmetry for y = x² + 4x is:", options:[{id:"a",text:"x = −2",is_correct:true},{id:"b",text:"x = 2",is_correct:false},{id:"c",text:"x = 4",is_correct:false},{id:"d",text:"x = 0",is_correct:false}] },
+    { id:"11", prompt:"Minimum point of y = x² − 2x − 3 is:", options:[{id:"a",text:"(1, −4)",is_correct:true},{id:"b",text:"(−1, −4)",is_correct:false},{id:"c",text:"(0, −3)",is_correct:false},{id:"d",text:"(2, −3)",is_correct:false}] },
+    { id:"12", prompt:"For y = −3x² + 6x, maximum value is:", options:[{id:"a",text:"3",is_correct:true},{id:"b",text:"0",is_correct:false},{id:"c",text:"6",is_correct:false},{id:"d",text:"−3",is_correct:false}] },
+    { id:"13", prompt:"Vertex of y = x² + 6x + 9 is:", options:[{id:"a",text:"(−3, 0)",is_correct:true},{id:"b",text:"(3, 0)",is_correct:false},{id:"c",text:"(0, 9)",is_correct:false},{id:"d",text:"(−6, 9)",is_correct:false}] },
+    { id:"14", prompt:"If a = −0.5 in y = ax² + bx + c, the graph:", options:[{id:"a",text:"Has a maximum point",is_correct:true},{id:"b",text:"Has a minimum point",is_correct:false},{id:"c",text:"Is linear",is_correct:false},{id:"d",text:"Opens upward",is_correct:false}] },
+    { id:"15", prompt:"For y = 4x² − 8x + 1, minimum value =", options:[{id:"a",text:"−3",is_correct:true},{id:"b",text:"1",is_correct:false},{id:"c",text:"4",is_correct:false},{id:"d",text:"−8",is_correct:false}] },
+    { id:"16", prompt:"Maximum point means:", options:[{id:"a",text:"Highest point on the graph",is_correct:true},{id:"b",text:"Lowest point",is_correct:false},{id:"c",text:"y-intercept",is_correct:false},{id:"d",text:"x-intercept",is_correct:false}] },
+    { id:"17", prompt:"For y = x², the minimum value is:", options:[{id:"a",text:"0",is_correct:true},{id:"b",text:"1",is_correct:false},{id:"c",text:"−1",is_correct:false},{id:"d",text:"2",is_correct:false}] },
+    { id:"18", prompt:"For y = −(x−1)² + 5, maximum value is:", options:[{id:"a",text:"5",is_correct:true},{id:"b",text:"1",is_correct:false},{id:"c",text:"−5",is_correct:false},{id:"d",text:"0",is_correct:false}] },
+    { id:"19", prompt:"Why find min/max values?", options:[{id:"a",text:"To solve optimization problems (e.g., max profit, min cost)",is_correct:true},{id:"b",text:"Only for graphing",is_correct:false},{id:"c",text:"To find x-intercepts",is_correct:false},{id:"d",text:"They are always zero",is_correct:false}] },
+    { id:"20", prompt:"For y = −2x² + 8x − 5, maximum point is:", options:[{id:"a",text:"(2, 3)",is_correct:true},{id:"b",text:"(−2, 3)",is_correct:false},{id:"c",text:"(0, −5)",is_correct:false},{id:"d",text:"(4, −5)",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
