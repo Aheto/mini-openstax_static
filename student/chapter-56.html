@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Equal and Parallel Vectors</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 56;
+const CHAPTER_CONFIG = {
+  title: "Equal and Parallel Vectors",
+  loTags: ["LO 1.9.10: State the conditions for two vectors to be equal or parallel"],
+  content: `
+    <h2>Key Concepts: Equality and Parallelism of Vectors</h2>
+    <p>Vectors are compared based on their <strong>magnitude** (length) and <strong>direction**. Two key relationships are <strong>equality** and <strong>parallelism**.</p>
+
+    <h3>1. Equal Vectors</h3>
+    <p>Two vectors are <strong>equal** if and only if they have:<br>
+    • The <strong>same magnitude**, AND<br>
+    • The <strong>same direction**.</p>
+    <p><strong>In column form:**<br>
+    Vectors **u** = [a] and **v** = [c] are equal if and only if **a = c** and **b = d**.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[b]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[d]</p>
+    <p>→ Equal vectors are <strong>identical in component form**, regardless of position.</p>
+
+    <h3>2. Parallel Vectors</h3>
+    <p>Two vectors are <strong>parallel** if they have the <strong>same or exactly opposite direction**.<br>
+    This happens when one is a <strong>scalar multiple** of the other.</p>
+    <p><strong>Condition:**<br>
+    **u** and **v** are parallel ⇔ **u = k v** for some scalar **k ≠ 0**.</p>
+    <p>• If **k > 0**: same direction.<br>
+    • If **k < 0**: opposite direction.</p>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1 (Equal):**<br>
+    **a** = [3], **b** = [3] → **a = b** (same components).<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[−2]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[−2]</p>
+
+    <p><strong>Example 2 (Parallel):**<br>
+    **u** = [4], **v** = [2] → **u = 2 v** → parallel (same direction).<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3]</p>
+
+    <p><strong>Example 3 (Parallel, opposite):**<br>
+    **p** = [−5], **q** = [10] → **q = −2 p** → parallel (opposite direction).<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[−6]</p>
+
+    <p><strong>Example 4 (Not parallel):**<br>
+    **m** = [1], **n** = [2] → No scalar **k** such that [1] = k[2] → not parallel.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2]&nbsp;&nbsp;&nbsp;[3]</p>
+
+    <h3>Key Notes</h3>
+    <ul>
+      <li>All <strong>equal vectors are parallel**, but not all parallel vectors are equal.</li>
+      <li>Parallel vectors have <strong>proportional components**: a/c = b/d (if c,d ≠ 0).</li>
+      <li>The zero vector is <strong>parallel to every vector**, but equality requires identical components.</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in physics (forces in same line), engineering (stress alignment), computer graphics (scaling objects without rotation), and navigation (following same bearing).</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"Two vectors are equal if they have:", options:[{id:"a",text:"Same magnitude and direction",is_correct:true},{id:"b",text:"Same magnitude only",is_correct:false},{id:"c",text:"Same direction only",is_correct:false},{id:"d",text:"Same starting point",is_correct:false}] },
+    { id:"2", prompt:"**u** = [4], **v** = [4]. Are they equal?", options:[{id:"a",text:"Yes",is_correct:true},{id:"b",text:"No",is_correct:false},{id:"c",text:"Only if same position",is_correct:false},{id:"d",text:"Undefined",is_correct:false}] },
+    { id:"3", prompt:"Two vectors are parallel if:", options:[{id:"a",text:"One is a scalar multiple of the other",is_correct:true},{id:"b",text:"They have same magnitude",is_correct:false},{id:"c",text:"They are equal",is_correct:false},{id:"d",text:"They start at origin",is_correct:false}] },
+    { id:"4", prompt:"**a** = [6], **b** = [3]. Are they parallel?", options:[{id:"a",text:"Yes, because **a** = 2**b**",is_correct:true},{id:"b",text:"No",is_correct:false},{id:"c",text:"Only if same direction",is_correct:false},{id:"d",text:"They are equal",is_correct:false}] },
+    { id:"5", prompt:"**p** = [−2], **q** = [4]. Are they parallel?", options:[{id:"a",text:"Yes, because **q** = −2**p**",is_correct:true},{id:"b",text:"No",is_correct:false},{id:"c",text:"Only if magnitudes equal",is_correct:false},{id:"d",text:"They are equal",is_correct:false}] },
+    { id:"6", prompt:"Which pair is equal?", options:[{id:"a",text:"[5] and [5]",is_correct:true},{id:"b",text:"[5] and [−5]",is_correct:false},{id:"c",text:"[5] and [10]",is_correct:false},{id:"d",text:"[0] and [1]",is_correct:false}] },
+    { id:"7", prompt:"**m** = [1], **n** = [3]. Are they parallel?", options:[{id:"a",text:"Yes, because **n** = 3**m**",is_correct:true},{id:"b",text:"No",is_correct:false},{id:"c",text:"Only if **m** = **n**",is_correct:false},{id:"d",text:"Undefined",is_correct:false}] },
+    { id:"8", prompt:"All equal vectors are:", options:[{id:"a",text:"Parallel",is_correct:true},{id:"b",text:"Perpendicular",is_correct:false},{id:"c",text:"Opposite",is_correct:false},{id:"d",text:"Zero vectors",is_correct:false}] },
+    { id:"9", prompt:"**u** = [2], **v** = [5]. Are they parallel?", options:[{id:"a",text:"No, because 2/5 ≠ 3/7",is_correct:true},{id:"b",text:"Yes",is_correct:false},{id:"c",text:"Only if magnitudes equal",is_correct:false},{id:"d",text:"They are equal",is_correct:false}] },
+    { id:"10", prompt:"Scalar k = 0 makes **u** = k**v**:", options:[{id:"a",text:"Zero vector, not considered parallel in strict contexts",is_correct:true},{id:"b",text:"Equal to **v**",is_correct:false},{id:"c",text:"Parallel always",is_correct:false},{id:"d",text:"Undefined",is_correct:false}] },
+    { id:"11", prompt:"**a** = [−4], **b** = [2]. Parallel?", options:[{id:"a",text:"Yes, **a** = −2**b**",is_correct:true},{id:"b",text:"No",is_correct:false},{id:"c",text:"Only if same magnitude",is_correct:false},{id:"d",text:"Equal",is_correct:false}] },
+    { id:"12", prompt:"Which condition guarantees parallelism?", options:[{id:"a",text:"Components are proportional",is_correct:true},{id:"b",text:"Magnitudes equal",is_correct:false},{id:"c",text:"Same starting point",is_correct:false},{id:"d",text:"Both are horizontal",is_correct:false}] },
+    { id:"13", prompt:"**p** = [0], **q** = [0]. Are they equal?", options:[{id:"a",text:"Yes",is_correct:true},{id:"b",text:"No",is_correct:false},{id:"c",text:"Only if non-zero",is_correct:false},{id:"d",text:"Parallel only",is_correct:false}] },
+    { id:"14", prompt:"**u** = [3], **v** = [6]. Which is true?", options:[{id:"a",text:"**v** = 2**u**, so parallel",is_correct:true},{id:"b",text:"Not parallel",is_correct:false},{id:"c",text:"Equal",is_correct:false},{id:"d",text:"Perpendicular",is_correct:false}] },
+    { id:"15", prompt:"Two vectors with same direction but different magnitudes are:", options:[{id:"a",text:"Parallel but not equal",is_correct:true},{id:"b",text:"Equal",is_correct:false},{id:"c",text:"Not parallel",is_correct:false},{id:"d",text:"Perpendicular",is_correct:false}] },
+    { id:"16", prompt:"**a** = [1], **b** = [−2]. Parallel?", options:[{id:"a",text:"Yes, **b** = −2**a**",is_correct:true},{id:"b",text:"No",is_correct:false},{id:"c",text:"Only if magnitudes equal",is_correct:false},{id:"d",text:"Equal",is_correct:false}] },
+    { id:"17", prompt:"True about equal vectors:", options:[{id:"a",text:"Same components",is_correct:true},{id:"b",text:"Can have different directions",is_correct:false},{id:"c",text:"Must start at origin",is_correct:false},{id:"d",text:"Always parallel to x-axis",is_correct:false}] },
+    { id:"18", prompt:"**m** = [5], **n** = [10]. Parallel?", options:[{id:"a",text:"Yes",is_correct:true},{id:"b",text:"No",is_correct:false},{id:"c",text:"Only if vertical",is_correct:false},{id:"d",text:"Equal",is_correct:false}] },
+    { id:"19", prompt:"If **u** = k**v** and k = −1, then **u** and **v** are:", options:[{id:"a",text:"Parallel and opposite",is_correct:true},{id:"b",text:"Equal",is_correct:false},{id:"c",text:"Perpendicular",is_correct:false},{id:"d",text:"Not related",is_correct:false}] },
+    { id:"20", prompt:"Why is proportionality key for parallel vectors?", options:[{id:"a",text:"It ensures same or opposite direction",is_correct:true},{id:"b",text:"It makes magnitudes equal",is_correct:false},{id:"c",text:"It forces equality",is_correct:false},{id:"d",text:"It’s just a rule",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    return {
+      item,
+      isCorrect,
+      selected,
+      correctText: correctOpt ? correctOpt.text : ' —'
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  const feedbackHTML = feedback.map(f => `
+    <div class="quiz-item">
+      <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
