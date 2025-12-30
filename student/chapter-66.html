@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Dividing Quantities in a Given Ratio</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 66;
+const CHAPTER_CONFIG = {
+  title: "Dividing Quantities in a Given Ratio",
+  loTags: ["LO 1.12.1: Divide a quantity in a given ratio."],
+  content: `
+    <h2>Key Concepts: Ratio Division</h2>
+    <p>To <strong>divide a quantity in a given ratio**, share it into parts that are proportional to the numbers in the ratio.</p>
+
+    <h3>Step-by-Step Method</h3>
+    <ol>
+      <li><strong>Add the parts** of the ratio to get the total number of shares.<br>
+        Example: Ratio 2:3 → total parts = 2 + 3 = 5</li>
+      <li><strong>Divide the total quantity** by the total number of parts to find the value of **one part**.<br>
+        Example: GH₵50 ÷ 5 = GH₵10 per part</li>
+      <li><strong>Multiply** the value of one part by each number in the ratio.<br>
+        → First share = 2 × GH₵10 = GH₵20<br>
+        → Second share = 3 × GH₵10 = GH₵30</li>
+    </ol>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:** Divide 60 kg in the ratio 1:2.<br>
+    → Total parts = 1 + 2 = 3<br>
+    → One part = 60 ÷ 3 = 20 kg<br>
+    → Shares: 1×20 = <strong>20 kg</strong>, 2×20 = <strong>40 kg</strong></p>
+
+    <p><strong>Example 2:** GH₵120 divided between A and B in ratio 3:5.<br>
+    → Total parts = 3 + 5 = 8<br>
+    → One part = 120 ÷ 8 = GH₵15<br>
+    → A gets 3×15 = <strong>GH₵45</strong>, B gets 5×15 = <strong>GH₵75</strong></p>
+
+    <p><strong>Example 3:** A 45 cm rope cut in ratio 2:3:4.<br>
+    → Total parts = 2 + 3 + 4 = 9<br>
+    → One part = 45 ÷ 9 = 5 cm<br>
+    → Lengths: 10 cm, 15 cm, 20 cm</p>
+
+    <h3>Key Notes</h3>
+    <ul>
+      <li>The sum of the shares **must equal** the original quantity.</li>
+      <li>Ratios can have **2 or more parts** (e.g., 1:2:3).</li>
+      <li>Always **check your answer**: 20 + 40 = 60 ✓</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in sharing profits, dividing inheritance, mixing ingredients (recipes), allocating budgets, and splitting bills.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"Divide GH₵60 in ratio 1:2. Shares?", options:[{id:"a",text:"GH₵20, GH₵40",is_correct:true},{id:"b",text:"GH₵30, GH₵30",is_correct:false},{id:"c",text:"GH₵10, GH₵50",is_correct:false},{id:"d",text:"GH₵15, GH₵45",is_correct:false}] },
+    { id:"2", prompt:"Share 45 kg in ratio 2:3. Parts?", options:[{id:"a",text:"18 kg, 27 kg",is_correct:true},{id:"b",text:"15 kg, 30 kg",is_correct:false},{id:"c",text:"20 kg, 25 kg",is_correct:false},{id:"d",text:"10 kg, 35 kg",is_correct:false}] },
+    { id:"3", prompt:"Divide GH₵100 in ratio 3:7. Larger share?", options:[{id:"a",text:"GH₵70",is_correct:true},{id:"b",text:"GH₵30",is_correct:false},{id:"c",text:"GH₵50",is_correct:false},{id:"d",text:"GH₵100",is_correct:false}] },
+    { id:"4", prompt:"64 cm in ratio 3:5. Smaller part?", options:[{id:"a",text:"24 cm",is_correct:true},{id:"b",text:"40 cm",is_correct:false},{id:"c",text:"32 cm",is_correct:false},{id:"d",text:"20 cm",is_correct:false}] },
+    { id:"5", prompt:"Total parts in ratio 4:5?", options:[{id:"a",text:"9",is_correct:true},{id:"b",text:"4",is_correct:false},{id:"c",text:"5",is_correct:false},{id:"d",text:"20",is_correct:false}] },
+    { id:"6", prompt:"Divide 90 in ratio 1:2:3. Largest share?", options:[{id:"a",text:"45",is_correct:true},{id:"b",text:"15",is_correct:false},{id:"c",text:"30",is_correct:false},{id:"d",text:"60",is_correct:false}] },
+    { id:"7", prompt:"GH₵80 shared as 1:3. Difference between shares?", options:[{id:"a",text:"GH₵40",is_correct:true},{id:"b",text:"GH₵20",is_correct:false},{id:"c",text:"GH₵60",is_correct:false},{id:"d",text:"GH₵80",is_correct:false}] },
+    { id:"8", prompt:"120 g in ratio 1:4. Smaller part?", options:[{id:"a",text:"24 g",is_correct:true},{id:"b",text:"96 g",is_correct:false},{id:"c",text:"30 g",is_correct:false},{id:"d",text:"48 g",is_correct:false}] },
+    { id:"9", prompt:"Ratio 2:5, total quantity 70. Value of one part?", options:[{id:"a",text:"10",is_correct:true},{id:"b",text:"14",is_correct:false},{id:"c",text:"35",is_correct:false},{id:"d",text:"7",is_correct:false}] },
+    { id:"10", prompt:"Divide GH₵150 in ratio 2:3. Shares?", options:[{id:"a",text:"GH₵60, GH₵90",is_correct:true},{id:"b",text:"GH₵50, GH₵100",is_correct:false},{id:"c",text:"GH₵75, GH₵75",is_correct:false},{id:"d",text:"GH₵30, GH₵120",is_correct:false}] },
+    { id:"11", prompt:"A rope 55 m cut in ratio 4:7. Longer piece?", options:[{id:"a",text:"35 m",is_correct:true},{id:"b",text:"20 m",is_correct:false},{id:"c",text:"25 m",is_correct:false},{id:"d",text:"30 m",is_correct:false}] },
+    { id:"12", prompt:"Divide 108 in ratio 2:3:4. Middle share?", options:[{id:"a",text:"36",is_correct:true},{id:"b",text:"24",is_correct:false},{id:"c",text:"48",is_correct:false},{id:"d",text:"54",is_correct:false}] },
+    { id:"13", prompt:"Ratio 5:3, total 64. Larger share?", options:[{id:"a",text:"40",is_correct:true},{id:"b",text:"24",is_correct:false},{id:"c",text:"32",is_correct:false},{id:"d",text:"20",is_correct:false}] },
+    { id:"14", prompt:"GH₵200 divided as 3:5:2. Smallest share?", options:[{id:"a",text:"GH₵40",is_correct:true},{id:"b",text:"GH₵60",is_correct:false},{id:"c",text:"GH₵100",is_correct:false},{id:"d",text:"GH₵20",is_correct:false}] },
+    { id:"15", prompt:"Total parts in ratio 1:3:6?", options:[{id:"a",text:"10",is_correct:true},{id:"b",text:"3",is_correct:false},{id:"c",text:"6",is_correct:false},{id:"d",text:"18",is_correct:false}] },
+    { id:"16", prompt:"80 L in ratio 3:7. Difference between shares?", options:[{id:"a",text:"32 L",is_correct:true},{id:"b",text:"16 L",is_correct:false},{id:"c",text:"48 L",is_correct:false},{id:"d",text:"24 L",is_correct:false}] },
+    { id:"17", prompt:"Divide GH₵90 in ratio 1:2. How much more does the second get?", options:[{id:"a",text:"GH₵30",is_correct:true},{id:"b",text:"GH₵60",is_correct:false},{id:"c",text:"GH₵45",is_correct:false},{id:"d",text:"GH₵90",is_correct:false}] },
+    { id:"18", prompt:"27 kg shared as 2:7. Heavier share?", options:[{id:"a",text:"21 kg",is_correct:true},{id:"b",text:"6 kg",is_correct:false},{id:"c",text:"18 kg",is_correct:false},{id:"d",text:"9 kg",is_correct:false}] },
+    { id:"19", prompt:"Ratio 4:5, quantity 180. One part = ?", options:[{id:"a",text:"20",is_correct:true},{id:"b",text:"45",is_correct:false},{id:"c",text:"36",is_correct:false},{id:"d",text:"15",is_correct:false}] },
+    { id:"20", prompt:"Why check that shares add to original?", options:[{id:"a",text:"To ensure accuracy and avoid errors",is_correct:true},{id:"b",text:"It’s optional",is_correct:false},{id:"c",text:"Only for exams",is_correct:false},{id:"d",text:"Ratios don’t need checking",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
