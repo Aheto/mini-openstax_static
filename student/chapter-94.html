@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Solving Direct Variation Problems</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 94;
+const CHAPTER_CONFIG = {
+  title: "Solving Direct Variation Problems",
+  loTags: ["LO 2.5.2: Solve problems involving direct variation."],
+  content: `
+    <h2>Key Concepts: Solving Direct Variation Problems</h2>
+    <p>When two quantities vary directly, we use the equation <strong>y = kx**, where <strong>k** is the constant of proportionality. Solving problems involves:</p>
+    <ol>
+      <li><strong>Identifying** the variables and their relationship.</li>
+      <li><strong>Finding k** using given values.</li>
+      <li><strong>Using the equation** to find unknown values.</li>
+    </ol>
+
+    <h3>Problem-Solving Steps</h3>
+    <p><strong>Step 1:** Write the variation statement.<br>
+    <strong>Step 2:** Convert to equation: y = kx.<br>
+    <strong>Step 3:** Substitute known values to find <strong>k**.<br>
+    <strong>Step 4:** Use the equation to solve for the unknown.</p>
+
+    <h3>Common Problem Types</h3>
+    <p><strong>1. Cost Problems:**<br>
+    “The cost of rice varies directly with the weight. 5 kg costs GH₵20. Find cost of 8 kg.”<br>
+    → C = kw → 20 = k(5) → k = 4 → C = 4w → C = 4×8 = <strong>GH₵32**</p>
+
+    <p><strong>2. Distance-Time (Constant Speed):**<br>
+    “A car travels 120 km in 2 hours. How far in 5 hours?”<br>
+    → d = kt → 120 = k(2) → k = 60 km/h → d = 60×5 = <strong>300 km**</p>
+
+    <p><strong>3. Wages:**<br>
+    “Kwame earns GH₵150 for 10 hours. How much for 16 hours?”<br>
+    → W = kh → 150 = k(10) → k = 15 → W = 15×16 = <strong>GH₵240**</p>
+
+    <p><strong>4. Physics (Hooke’s Law):**<br>
+    “Extension e of a spring varies directly with force F. F = 10 N gives e = 2 cm. Find e when F = 25 N.”<br>
+    → e = kF → 2 = k(10) → k = 0.2 → e = 0.2×25 = <strong>5 cm**</p>
+
+    <h3>Key Tips</h3>
+    <ul>
+      <li>Always find <strong>k first**—it’s the key to the relationship.</li>
+      <li>Units must be consistent (e.g., hours with hours, kg with kg).</li>
+      <li>If x = 0, then y = 0 (passes through origin).</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in pricing, travel planning, salary calculations, engineering design, and scientific experiments.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"5 kg of rice costs GH₵25. Find cost of 7 kg (direct variation).", options:[{id:"a",text:"GH₵35",is_correct:true},{id:"b",text:"GH₵30",is_correct:false},{id:"c",text:"GH₵40",is_correct:false},{id:"d",text:"GH₵25",is_correct:false}] },
+    { id:"2", prompt:"A car travels 180 km in 3 hours. Distance in 5 hours?", options:[{id:"a",text:"300 km",is_correct:true},{id:"b",text:"250 km",is_correct:false},{id:"c",text:"360 km",is_correct:false},{id:"d",text:"200 km",is_correct:false}] },
+    { id:"3", prompt:"Wages: GH₵120 for 8 hours. Earnings for 10 hours?", options:[{id:"a",text:"GH₵150",is_correct:true},{id:"b",text:"GH₵120",is_correct:false},{id:"c",text:"GH₵100",is_correct:false},{id:"d",text:"GH₵180",is_correct:false}] },
+    { id:"4", prompt:"Force F = 12 N gives extension e = 3 cm. Find e when F = 20 N.", options:[{id:"a",text:"5 cm",is_correct:true},{id:"b",text:"6 cm",is_correct:false},{id:"c",text:"4 cm",is_correct:false},{id:"d",text:"10 cm",is_correct:false}] },
+    { id:"5", prompt:"Cost of pens varies directly with number. 6 pens cost GH₵9. Cost of 10 pens?", options:[{id:"a",text:"GH₵15",is_correct:true},{id:"b",text:"GH₵12",is_correct:false},{id:"c",text:"GH₵18",is_correct:false},{id:"d",text:"GH₵9",is_correct:false}] },
+    { id:"6", prompt:"Distance d ∝ time t. d = 80 km when t = 2 h. Find d when t = 6 h.", options:[{id:"a",text:"240 km",is_correct:true},{id:"b",text:"160 km",is_correct:false},{id:"c",text:"480 km",is_correct:false},{id:"d",text:"120 km",is_correct:false}] },
+    { id:"7", prompt:"y ∝ x. y = 14 when x = 2. Find y when x = 5.", options:[{id:"a",text:"35",is_correct:true},{id:"b",text:"28",is_correct:false},{id:"c",text:"7",is_correct:false},{id:"d",text:"10",is_correct:false}] },
+    { id:"8", prompt:"Paint needed ∝ wall area. 3 L for 15 m². How much for 25 m²?", options:[{id:"a",text:"5 L",is_correct:true},{id:"b",text:"4 L",is_correct:false},{id:"c",text:"6 L",is_correct:false},{id:"d",text:"10 L",is_correct:false}] },
+    { id:"9", prompt:"Electricity cost ∝ units used. 100 units cost GH₵20. Cost for 250 units?", options:[{id:"a",text:"GH₵50",is_correct:true},{id:"b",text:"GH₵40",is_correct:false},{id:"c",text:"GH₵60",is_correct:false},{id:"d",text:"GH₵30",is_correct:false}] },
+    { id:"10", prompt:"Mass m ∝ volume v. m = 24 kg when v = 3 m³. Find m when v = 7 m³.", options:[{id:"a",text:"56 kg",is_correct:true},{id:"b",text:"48 kg",is_correct:false},{id:"c",text:"72 kg",is_correct:false},{id:"d",text:"21 kg",is_correct:false}] },
+    { id:"11", prompt:"y = kx, y = 18 when x = 3. Find y when x = 7.", options:[{id:"a",text:"42",is_correct:true},{id:"b",text:"21",is_correct:false},{id:"c",text:"54",is_correct:false},{id:"d",text:"36",is_correct:false}] },
+    { id:"12", prompt:"Sugar needed ∝ number of cakes. 2 kg for 5 cakes. For 15 cakes?", options:[{id:"a",text:"6 kg",is_correct:true},{id:"b",text:"4 kg",is_correct:false},{id:"c",text:"5 kg",is_correct:false},{id:"d",text:"10 kg",is_correct:false}] },
+    { id:"13", prompt:"Pressure P ∝ depth d. P = 30 kPa at d = 3 m. Find P at d = 8 m.", options:[{id:"a",text:"80 kPa",is_correct:true},{id:"b",text:"60 kPa",is_correct:false},{id:"c",text:"90 kPa",is_correct:false},{id:"d",text:"24 kPa",is_correct:false}] },
+    { id:"14", prompt:"If y ∝ x and y = 0.6 when x = 2, find y when x = 5.", options:[{id:"a",text:"1.5",is_correct:true},{id:"b",text:"0.6",is_correct:false},{id:"c",text:"2.5",is_correct:false},{id:"d",text:"3.0",is_correct:false}] },
+    { id:"15", prompt:"Fabric cost ∝ length. 4 m costs GH₵24. Cost of 9 m?", options:[{id:"a",text:"GH₵54",is_correct:true},{id:"b",text:"GH₵48",is_correct:false},{id:"c",text:"GH₵36",is_correct:false},{id:"d",text:"GH₵72",is_correct:false}] },
+    { id:"16", prompt:"Work done ∝ time. 200 J in 4 s. Work in 10 s?", options:[{id:"a",text:"500 J",is_correct:true},{id:"b",text:"400 J",is_correct:false},{id:"c",text:"800 J",is_correct:false},{id:"d",text:"250 J",is_correct:false}] },
+    { id:"17", prompt:"Speed is constant. Distance ∝ time. True or false?", options:[{id:"a",text:"True",is_correct:true},{id:"b",text:"False",is_correct:false},{id:"c",text:"Only for cars",is_correct:false},{id:"d",text:"Depends on road",is_correct:false}] },
+    { id:"18", prompt:"y ∝ x, y = 9 when x = 3. Find x when y = 21.", options:[{id:"a",text:"7",is_correct:true},{id:"b",text:"9",is_correct:false},{id:"c",text:"21",is_correct:false},{id:"d",text:"3",is_correct:false}] },
+    { id:"19", prompt:"Why solve direct variation problems?", options:[{id:"a",text:"To predict outcomes in proportional relationships",is_correct:true},{id:"b",text:"Only for exams",is_correct:false},{id:"c",text:"It’s always linear",is_correct:false},{id:"d",text:"To avoid math",is_correct:false}] },
+    { id:"20", prompt:"If cost ∝ quantity and 2 items cost GH₵10, how much for 1 item?", options:[{id:"a",text:"GH₵5",is_correct:true},{id:"b",text:"GH₵10",is_correct:false},{id:"c",text:"GH₵2",is_correct:false},{id:"d",text:"GH₵20",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
