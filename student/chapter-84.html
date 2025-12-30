@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Word Problems with Simultaneous Equations</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 84;
+const CHAPTER_CONFIG = {
+  title: "Word Problems with Simultaneous Equations",
+  loTags: ["LO 2.3.3: Solve word problems involving simultaneous linear equations."],
+  content: `
+    <h2>Key Concepts: Solving Real-Life Problems</h2>
+    <p>Many real-world situations can be modeled using two linear equations. The solution gives meaningful values (e.g., prices, ages, quantities).</p>
+
+    <h3>Steps to Solve Word Problems</h3>
+    <ol>
+      <li><strong>Define variables** (e.g., Let x = price of pencil, y = price of eraser).</li>
+      <li><strong>Translate the problem** into two equations.</li>
+      <li><strong>Solve the system** using substitution or elimination.</li>
+      <li><strong>Interpret the answer** in context.</li>
+    </ol>
+
+    <h3>Common Problem Types</h3>
+    <p><strong>1. Money Problems:**<br>
+    “3 pens and 2 pencils cost GH₵12. 1 pen and 4 pencils cost GH₵10.”<br>
+    → 3x + 2y = 12, x + 4y = 10</p>
+
+    <p><strong>2. Age Problems:**<br>
+    “Ama is 5 years older than Kofi. In 3 years, their ages will sum to 35.”<br>
+    → A = K + 5, (A+3) + (K+3) = 35</p>
+
+    <p><strong>3. Geometry Problems:**<br>
+    “A rectangle has perimeter 30 cm. Its length is 3 cm more than its width.”<br>
+    → 2L + 2W = 30, L = W + 3</p>
+
+    <p><strong>4. Mixture Problems:**<br>
+    “5 kg of rice A and 3 kg of rice B cost GH₵46. 2 kg of A and 4 kg of B cost GH₵36.”<br>
+    → 5a + 3b = 46, 2a + 4b = 36</p>
+
+    <h3>Example</h3>
+    <p><strong>Problem:** 4 books and 3 pens cost GH₵47. 2 books and 5 pens cost GH₵39. Find the cost of each.</p>
+    <p><strong>Solution:**<br>
+    Let b = cost of book, p = cost of pen.<br>
+    Eq1: 4b + 3p = 47<br>
+    Eq2: 2b + 5p = 39 → Multiply by 2: 4b + 10p = 78<br>
+    Subtract Eq1: (4b + 10p) − (4b + 3p) = 78 − 47 → 7p = 31 → p ≈ 4.43<br>
+    → 4b + 3(4.43) = 47 → b ≈ 8.43<br>
+    → Book ≈ GH₵8.43, Pen ≈ GH₵4.43</p>
+
+    <h3>Tips</h3>
+    <ul>
+      <li>Read carefully—identify what is being asked.</li>
+      <li>Check units (e.g., kg, years, cedis).</li>
+      <li>Verify your solution in both equations.</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in shopping, budgeting, resource allocation, engineering design, and business planning.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"5 apples and 3 oranges cost GH₵23. 2 apples and 4 oranges cost GH₵16. Find cost of orange.", options:[{id:"a",text:"GH₵2",is_correct:true},{id:"b",text:"GH₵3",is_correct:false},{id:"c",text:"GH₵4",is_correct:false},{id:"d",text:"GH₵1",is_correct:false}] },
+    { id:"2", prompt:"Kwame is 4 years older than Ama. Their ages sum to 28. How old is Kwame?", options:[{id:"a",text:"16",is_correct:true},{id:"b",text:"12",is_correct:false},{id:"c",text:"24",is_correct:false},{id:"d",text:"14",is_correct:false}] },
+    { id:"3", prompt:"A rectangle’s length is 5 cm more than width. Perimeter = 38 cm. Find length.", options:[{id:"a",text:"12 cm",is_correct:true},{id:"b",text:"7 cm",is_correct:false},{id:"c",text:"10 cm",is_correct:false},{id:"d",text:"15 cm",is_correct:false}] },
+    { id:"4", prompt:"3 books and 2 pens cost GH₵27. 1 book and 4 pens cost GH₵21. Find book price.", options:[{id:"a",text:"GH₵7",is_correct:true},{id:"b",text:"GH₵5",is_correct:false},{id:"c",text:"GH₵6",is_correct:false},{id:"d",text:"GH₵9",is_correct:false}] },
+    { id:"5", prompt:"Two numbers sum to 20. Their difference is 6. Find the larger number.", options:[{id:"a",text:"13",is_correct:true},{id:"b",text:"7",is_correct:false},{id:"c",text:"10",is_correct:false},{id:"d",text:"16",is_correct:false}] },
+    { id:"6", prompt:"10 kg rice A and 5 kg rice B cost GH₵150. 4 kg A and 6 kg B cost GH₵92. Find cost of A per kg.", options:[{id:"a",text:"GH₵10",is_correct:true},{id:"b",text:"GH₵12",is_correct:false},{id:"c",text:"GH₵8",is_correct:false},{id:"d",text:"GH₵15",is_correct:false}] },
+    { id:"7", prompt:"In 5 years, Yaw will be twice as old as Akua is now. Yaw is now 15. How old is Akua?", options:[{id:"a",text:"10",is_correct:true},{id:"b",text:"5",is_correct:false},{id:"c",text:"20",is_correct:false},{id:"d",text:"15",is_correct:false}] },
+    { id:"8", prompt:"The sum of two numbers is 30. One number is 4 more than the other. Find the smaller.", options:[{id:"a",text:"13",is_correct:true},{id:"b",text:"17",is_correct:false},{id:"c",text:"15",is_correct:false},{id:"d",text:"10",is_correct:false}] },
+    { id:"9", prompt:"4 shirts and 3 trousers cost GH₵290. 2 shirts and 5 trousers cost GH₵310. Find trouser price.", options:[{id:"a",text:"GH₵50",is_correct:true},{id:"b",text:"GH₵40",is_correct:false},{id:"c",text:"GH₵60",is_correct:false},{id:"d",text:"GH₵70",is_correct:false}] },
+    { id:"10", prompt:"A number x is 3 times another number y. Their sum is 24. Find x.", options:[{id:"a",text:"18",is_correct:true},{id:"b",text:"6",is_correct:false},{id:"c",text:"12",is_correct:false},{id:"d",text:"21",is_correct:false}] },
+    { id:"11", prompt:"Perimeter of rectangle is 50 m. Length = width + 8 m. Find width.", options:[{id:"a",text:"8.5 m",is_correct:true},{id:"b",text:"16.5 m",is_correct:false},{id:"c",text:"10 m",is_correct:false},{id:"d",text:"12 m",is_correct:false}] },
+    { id:"12", prompt:"5 pens and 2 pencils cost GH₵19. 3 pens and 4 pencils cost GH₵17. Find pencil cost.", options:[{id:"a",text:"GH₵2",is_correct:true},{id:"b",text:"GH₵3",is_correct:false},{id:"c",text:"GH₵1",is_correct:false},{id:"d",text:"GH₵4",is_correct:false}] },
+    { id:"13", prompt:"Esi is twice as old as Kofi. In 6 years, sum of ages = 42. How old is Esi now?", options:[{id:"a",text:"20",is_correct:true},{id:"b",text:"10",is_correct:false},{id:"c",text:"14",is_correct:false},{id:"d",text:"24",is_correct:false}] },
+    { id:"14", prompt:"Two numbers differ by 7. Their sum is 33. Find the numbers.", options:[{id:"a",text:"20 and 13",is_correct:true},{id:"b",text:"18 and 15",is_correct:false},{id:"c",text:"25 and 8",is_correct:false},{id:"d",text:"16 and 17",is_correct:false}] },
+    { id:"15", prompt:"3 kg sugar and 2 kg salt cost GH₵21. 1 kg sugar and 5 kg salt cost GH₵19. Find sugar price.", options:[{id:"a",text:"GH₵5",is_correct:true},{id:"b",text:"GH₵4",is_correct:false},{id:"c",text:"GH₵6",is_correct:false},{id:"d",text:"GH₵3",is_correct:false}] },
+    { id:"16", prompt:"Length of rectangle is twice its width. Perimeter = 48 cm. Find area.", options:[{id:"a",text:"128 cm²",is_correct:true},{id:"b",text:"96 cm²",is_correct:false},{id:"c",text:"64 cm²",is_correct:false},{id:"d",text:"256 cm²",is_correct:false}] },
+    { id:"17", prompt:"The cost of 6 cups and 4 plates is GH₵44. 2 cups and 3 plates cost GH₵21. Find cup cost.", options:[{id:"a",text:"GH₵5",is_correct:true},{id:"b",text:"GH₵4",is_correct:false},{id:"c",text:"GH₵6",is_correct:false},{id:"d",text:"GH₵7",is_correct:false}] },
+    { id:"18", prompt:"A father is 3 times as old as his son. In 10 years, he’ll be twice as old. Son’s current age?", options:[{id:"a",text:"10",is_correct:true},{id:"b",text:"5",is_correct:false},{id:"c",text:"15",is_correct:false},{id:"d",text:"20",is_correct:false}] },
+    { id:"19", prompt:"Why define variables first?", options:[{id:"a",text:"To translate words into math clearly",is_correct:true},{id:"b",text:"It’s optional",is_correct:false},{id:"c",text:"Only for hard problems",is_correct:false},{id:"d",text:"To make it longer",is_correct:false}] },
+    { id:"20", prompt:"What must you do after solving?", options:[{id:"a",text:"Check in original problem context",is_correct:true},{id:"b",text:"Ignore units",is_correct:false},{id:"c",text:"Stop immediately",is_correct:false},{id:"d",text:"Guess the answer",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
