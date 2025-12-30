@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Interpreting Data in Tables</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 60;
+const CHAPTER_CONFIG = {
+  title: "Interpreting Data in Tables",
+  loTags: ["LO 1.10.2: Read, interpret, and draw simple inferences from data/information presented in tables"],
+  content: `
+    <h2>Key Concepts: Reading and Interpreting Tables</h2>
+    <p>Tables organize data clearly, making it easier to <strong>read**, <strong>compare**, and <strong>draw conclusions** (inferences).</p>
+
+    <h3>Types of Tables You’ll Encounter</h3>
+    <ul>
+      <li><strong>Frequency tables** (ungrouped or grouped)</li>
+      <li><strong>Tally charts**</li>
+      <li><strong>Survey results** (e.g., favorite subjects, transport methods)</li>
+      <li><strong>Time schedules**, sales records, population data</li>
+    </ul>
+
+    <h3>How to Interpret a Table</h3>
+    <ol>
+      <li><strong>Read the title** – What is the table about?</li>
+      <li><strong>Check column/row headings** – What do the categories represent?</li>
+      <li><strong>Look at units** – Are values in numbers, percentages, kg, etc.?</li>
+      <li><strong>Identify the highest/lowest values** – What stands out?</li>
+      <li><strong>Compare values** – Which category is most/least common?</li>
+      <li><strong>Draw inferences** – What can you reasonably conclude?</li>
+    </ol>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1: Frequency Table**<br>
+    <table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+      <thead><tr style="background:#f1f5f9;"><th style="border:1px solid #cbd5e1; padding:0.5rem;">Score</th><th style="border:1px solid #cbd5e1; padding:0.5rem;">Frequency</th></tr></thead>
+      <tbody>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">5</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">2</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">6</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">5</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">7</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">8</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">8</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">3</td></tr>
+      </tbody>
+    </table>
+    → Inference: Most students scored 7.</p>
+
+    <p><strong>Example 2: Grouped Table**<br>
+    <table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+      <thead><tr style="background:#f1f5f9;"><th style="border:1px solid #cbd5e1; padding:0.5rem;">Age Group</th><th style="border:1px solid #cbd5e1; padding:0.5rem;">Number of People</th></tr></thead>
+      <tbody>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">10–19</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">12</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">20–29</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">18</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">30–39</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">9</td></tr>
+      </tbody>
+    </table>
+    → Inference: The 20–29 age group is the largest.</p>
+
+    <h3>Common Inferences</h3>
+    <ul>
+      <li>“Most people prefer…”</li>
+      <li>“The majority are in the … range.”</li>
+      <li>“Fewer than … chose …”</li>
+      <li>“There are twice as many … as …”</li>
+    </ul>
+
+    <h3>Pitfalls to Avoid</h3>
+    <ul>
+      <li>Making claims not supported by the data (e.g., “Everyone…” when only 60% are shown).</li>
+      <li>Confusing frequency with value (e.g., high frequency ≠ high score).</li>
+      <li>Ignoring the total number of responses.</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in news reports (election results), business (sales dashboards), health (patient records), education (exam results), and government (census data).</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"What should you check first when reading a table?", options:[{id:"a",text:"The title",is_correct:true},{id:"b",text:"The last row",is_correct:false},{id:"c",text:"The color",is_correct:false},{id:"d",text:"The font size",is_correct:false}] },
+    { id:"2", prompt:"In a frequency table, 'frequency' tells you:", options:[{id:"a",text:"How often a value occurs",is_correct:true},{id:"b",text:"The average value",is_correct:false},{id:"c",text:"The highest value",is_correct:false},{id:"d",text:"The total sum",is_correct:false}] },
+    { id:"3", prompt:"Table shows: Apples (12), Oranges (8), Bananas (5). Which fruit is most common?", options:[{id:"a",text:"Apples",is_correct:true},{id:"b",text:"Oranges",is_correct:false},{id:"c",text:"Bananas",is_correct:false},{id:"d",text:"None",is_correct:false}] },
+    { id:"4", prompt:"A grouped table has class 20–29 with frequency 15. What does this mean?", options:[{id:"a",text:"15 people are aged 20 to 29",is_correct:true},{id:"b",text:"The average age is 24.5",is_correct:false},{id:"c",text:"Only 20 and 29 are included",is_correct:false},{id:"d",text:"15 is the age",is_correct:false}] },
+    { id:"5", prompt:"Which is a valid inference from a table?", options:[{id:"a",text:"Most students scored above 70%",is_correct:true},{id:"b",text:"All students passed",is_correct:false},{id:"c",text:"The teacher is strict",is_correct:false},{id:"d",text:"Next test will be harder",is_correct:false}] },
+    { id:"6", prompt:"Data: Score 5 (f=3), 6 (f=7), 7 (f=4). Which score is mode?", options:[{id:"a",text:"6",is_correct:true},{id:"b",text:"5",is_correct:false},{id:"c",text:"7",is_correct:false},{id:"d",text:"18",is_correct:false}] },
+    { id:"7", prompt:"Why read row/column headings?", options:[{id:"a",text:"To understand what the data represents",is_correct:true},{id:"b",text:"To count the rows",is_correct:false},{id:"c",text:"To find the title",is_correct:false},{id:"d",text:"To color the table",is_correct:false}] },
+    { id:"8", prompt:"Table: Boys (20), Girls (25). Total students?", options:[{id:"a",text:"45",is_correct:true},{id:"b",text:"20",is_correct:false},{id:"c",text:"25",is_correct:false},{id:"d",text:"5",is_correct:false}] },
+    { id:"9", prompt:"What is an inference?", options:[{id:"a",text:"A conclusion based on evidence",is_correct:true},{id:"b",text:"A guess with no basis",is_correct:false},{id:"c",text:"A table header",is_correct:false},{id:"d",text:"Raw data",is_correct:false}] },
+    { id:"10", prompt:"Grouped table: 0–9 (f=2), 10–19 (f=6). How many scored less than 20?", options:[{id:"a",text:"8",is_correct:true},{id:"b",text:"6",is_correct:false},{id:"c",text:"2",is_correct:false},{id:"d",text:"4",is_correct:false}] },
+    { id:"11", prompt:"Which is NOT a good inference?", options:[{id:"a",text:"Everyone prefers tea",is_correct:true},{id:"b",text:"Most prefer tea",is_correct:false},{id:"c",text:"Tea is the most popular",is_correct:false},{id:"d",text:"Few prefer coffee",is_correct:false}] },
+    { id:"12", prompt:"Table shows transport: Walk (10), Bus (15), Car (5). Which is least used?", options:[{id:"a",text:"Car",is_correct:true},{id:"b",text:"Walk",is_correct:false},{id:"c",text:"Bus",is_correct:false},{id:"d",text:"Bicycle",is_correct:false}] },
+    { id:"13", prompt:"Frequency table total frequency = 30. What does 30 represent?", options:[{id:"a",text:"Total number of data items",is_correct:true},{id:"b",text:"Number of categories",is_correct:false},{id:"c",text:"Highest value",is_correct:false},{id:"d",text:"Average",is_correct:false}] },
+    { id:"14", prompt:"Data: Age 10–14 (f=8), 15–19 (f=12). Which group is larger?", options:[{id:"a",text:"15–19",is_correct:true},{id:"b",text:"10–14",is_correct:false},{id:"c",text:"Equal",is_correct:false},{id:"d",text:"None",is_correct:false}] },
+    { id:"15", prompt:"What should you avoid when interpreting tables?", options:[{id:"a",text:"Making unsupported claims",is_correct:true},{id:"b",text:"Reading the title",is_correct:false},{id:"c",text:"Comparing values",is_correct:false},{id:"d",text:"Counting frequencies",is_correct:false}] },
+    { id:"16", prompt:"Table: Subject – Maths (10), Science (10). Inference?", options:[{id:"a",text:"Maths and Science are equally popular",is_correct:true},{id:"b",text:"Students hate both",is_correct:false},{id:"c",text:"Maths is better",is_correct:false},{id:"d",text:"Science is harder",is_correct:false}] },
+    { id:"17", prompt:"What does 'read a table' mean?", options:[{id:"a",text:"Find specific information in it",is_correct:true},{id:"b",text:"Memorize all numbers",is_correct:false},{id:"c",text:"Draw it again",is_correct:false},{id:"d",text:"Ignore it",is_correct:false}] },
+    { id:"18", prompt:"Table: Grade A (5), B (10), C (3). Most common grade?", options:[{id:"a",text:"B",is_correct:true},{id:"b",text:"A",is_correct:false},{id:"c",text:"C",is_correct:false},{id:"d",text:"F",is_correct:false}] },
+    { id:"19", prompt:"Why is interpreting tables important?", options:[{id:"a",text:"To make informed decisions from data",is_correct:true},{id:"b",text:"To fill time",is_correct:false},{id:"c",text:"Only for exams",is_correct:false},{id:"d",text:"Tables are always wrong",is_correct:false}] },
+    { id:"20", prompt:"Grouped data: 50–59 (f=7), 60–69 (f=7). Inference?", options:[{id:"a",text:"Both groups have equal frequency",is_correct:true},{id:"b",text:"50–59 is larger",is_correct:false},{id:"c",text:"60–69 is smaller",is_correct:false},{id:"d",text:"No one is aged 50–69",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    return {
+      item,
+      isCorrect,
+      selected,
+      correctText: correctOpt ? correctOpt.text : ' —'
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  const feedbackHTML = feedback.map(f => `
+    <div class="quiz-item">
+      <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
