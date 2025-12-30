@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Frequency Tables</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 59;
+const CHAPTER_CONFIG = {
+  title: "Frequency Tables",
+  loTags: ["LO 1.10.1: Organise data in frequency tables (i.e. ungrouped and grouped)"],
+  content: `
+    <h2>Key Concepts: Frequency Tables</h2>
+    <p>A <strong>frequency table** organizes raw data to show how often each value (or range of values) occurs.</p>
+
+    <h3>1. Ungrouped Frequency Table</h3>
+    <p>Used when data values are few and repeated.<br>
+    • Each distinct value is listed.<br>
+    • The <strong>frequency** (f) is the count of how many times it appears.</p>
+    <p><strong>Example (Test scores of 10 students):**<br>
+    Raw data: 5, 7, 5, 8, 7, 5, 9, 7, 7, 6<br>
+    <table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+      <thead><tr style="background:#f1f5f9;"><th style="border:1px solid #cbd5e1; padding:0.5rem;">Score (x)</th><th style="border:1px solid #cbd5e1; padding:0.5rem;">Frequency (f)</th></tr></thead>
+      <tbody>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">5</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">3</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">6</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">1</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">7</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">4</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">8</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">1</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">9</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">1</td></tr>
+      </tbody>
+    </table></p>
+
+    <h3>2. Grouped Frequency Table</h3>
+    <p>Used when data is large or spread out.<br>
+    • Data is divided into <strong>class intervals** (e.g., 10–19, 20–29).<br>
+    • Each interval must be the same width and non-overlapping.<br>
+    • Frequency = number of data values in that interval.</p>
+    <p><strong>Example (Ages of 20 people):**<br>
+    Raw data: 12, 15, 22, 24, 27, 31, 33, 35, 38, 42, 44, 45, 47, 49, 51, 53, 55, 58, 61, 64<br>
+    <table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+      <thead><tr style="background:#f1f5f9;"><th style="border:1px solid #cbd5e1; padding:0.5rem;">Age Group</th><th style="border:1px solid #cbd5e1; padding:0.5rem;">Frequency (f)</th></tr></thead>
+      <tbody>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">10–19</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">2</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">20–29</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">3</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">30–39</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">3</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">40–49</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">5</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">50–59</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">4</td></tr>
+        <tr><td style="border:1px solid #cbd5e1; padding:0.5rem;">60–69</td><td style="border:1px solid #cbd5e1; padding:0.5rem;">3</td></tr>
+      </tbody>
+    </table></p>
+
+    <h3>Key Rules for Grouped Tables</h3>
+    <ul>
+      <li>Intervals must be <strong>mutually exclusive** (no overlap).</li>
+      <li>Intervals must be <strong>exhaustive** (cover all data).</li>
+      <li>Use consistent <strong>class width** (e.g., all 10s: 10–19, 20–29, etc.).</li>
+      <li>Class boundaries: 10–19 means ≥10 and ≤19.</li>
+    </ul>
+
+    <h3>When to Use Which?</h3>
+    <p>• <strong>Ungrouped**: Small data sets with repeated values (e.g., dice rolls, small survey scores).<br>
+    • <strong>Grouped**: Large data sets or continuous data (e.g., heights, weights, exam scores of a whole class).</p>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in census data, market research, school grading systems, health statistics (age groups), and business analytics (sales ranges).</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"When is an ungrouped frequency table best used?", options:[{id:"a",text:"When data values are few and repeated",is_correct:true},{id:"b",text:"When data is very large and spread out",is_correct:false},{id:"c",text:"Only for continuous data",is_correct:false},{id:"d",text:"When there are no repeated values",is_correct:false}] },
+    { id:"2", prompt:"What is 'frequency'?", options:[{id:"a",text:"Number of times a value occurs",is_correct:true},{id:"b",text:"The largest value",is_correct:false},{id:"c",text:"The average",is_correct:false},{id:"d",text:"The range",is_correct:false}] },
+    { id:"3", prompt:"Data: 2, 3, 2, 4, 3, 2. Frequency of 2 is:", options:[{id:"a",text:"3",is_correct:true},{id:"b",text:"2",is_correct:false},{id:"c",text:"6",is_correct:false},{id:"d",text:"1",is_correct:false}] },
+    { id:"4", prompt:"Which is a valid class interval for grouped data?", options:[{id:"a",text:"10–19, 20–29, 30–39",is_correct:true},{id:"b",text:"10–20, 20–30, 30–40",is_correct:false},{id:"c",text:"10–19, 18–27, 26–35",is_correct:false},{id:"d",text:"10–15, 20–25, 30–35",is_correct:false}] },
+    { id:"5", prompt:"Raw data: 5,5,6,7,7,7. Ungrouped frequency of 7 is:", options:[{id:"a",text:"3",is_correct:true},{id:"b",text:"2",is_correct:false},{id:"c",text:"6",is_correct:false},{id:"d",text:"0",is_correct:false}] },
+    { id:"6", prompt:"In grouped data, class intervals must be:", options:[{id:"a",text:"Non-overlapping and same width",is_correct:true},{id:"b",text:"Overlapping",is_correct:false},{id:"c",text:"Different widths",is_correct:false},{id:"d",text:"Only for even numbers",is_correct:false}] },
+    { id:"7", prompt:"Data: 12,15,18,22,25,28. Which table is appropriate?", options:[{id:"a",text:"Grouped (e.g., 10–19, 20–29)",is_correct:true},{id:"b",text:"Ungrouped",is_correct:false},{id:"c",text:"Pie chart only",is_correct:false},{id:"d",text:"No table needed",is_correct:false}] },
+    { id:"8", prompt:"Class interval 30–39 includes:", options:[{id:"a",text:"30, 31, ..., 39",is_correct:true},{id:"b",text:"30 to 40",is_correct:false},{id:"c",text:"Only 30 and 39",is_correct:false},{id:"d",text:"31 to 38",is_correct:false}] },
+    { id:"9", prompt:"Why group data?", options:[{id:"a",text:"To simplify large or spread-out data",is_correct:true},{id:"b",text:"To increase the number of values",is_correct:false},{id:"c",text:"To make data less accurate",is_correct:false},{id:"d",text:"Only for exams",is_correct:false}] },
+    { id:"10", prompt:"Data: 1,1,2,2,2,3,3,3,3. Frequency of 3 is:", options:[{id:"a",text:"4",is_correct:true},{id:"b",text:"3",is_correct:false},{id:"c",text:"9",is_correct:false},{id:"d",text:"2",is_correct:false}] },
+    { id:"11", prompt:"Which data set is best for ungrouped table?", options:[{id:"a",text:"Dice rolls: 1,3,2,4,2,5,3,2",is_correct:true},{id:"b",text:"Heights of 100 students",is_correct:false},{id:"c",text:"Ages of a village population",is_correct:false},{id:"d",text:"Monthly rainfall over 10 years",is_correct:false}] },
+    { id:"12", prompt:"In a frequency table, the sum of frequencies equals:", options:[{id:"a",text:"Total number of data values",is_correct:true},{id:"b",text:"Number of unique values",is_correct:false},{id:"c",text:"The mean",is_correct:false},{id:"d",text:"The range",is_correct:false}] },
+    { id:"13", prompt:"Class width for 40–49 is:", options:[{id:"a",text:"10",is_correct:true},{id:"b",text:"9",is_correct:false},{id:"c",text:"40",is_correct:false},{id:"d",text:"49",is_correct:false}] },
+    { id:"14", prompt:"Data: 8,9,10,11,12,13,14,15. Best table type?", options:[{id:"a",text:"Grouped (e.g., 8–11, 12–15)",is_correct:true},{id:"b",text:"Ungrouped",is_correct:false},{id:"c",text:"No table",is_correct:false},{id:"d",text:"Only bar chart",is_correct:false}] },
+    { id:"15", prompt:"Which is NOT a rule for grouped tables?", options:[{id:"a",text:"Intervals can overlap",is_correct:true},{id:"b",text:"Same width",is_correct:false},{id:"c",text:"Cover all data",is_correct:false},{id:"d",text:"Non-overlapping",is_correct:false}] },
+    { id:"16", prompt:"Frequency of a value not in data is:", options:[{id:"a",text:"0",is_correct:true},{id:"b",text:"1",is_correct:false},{id:"c",text:"Undefined",is_correct:false},{id:"d",text:"The total",is_correct:false}] },
+    { id:"17", prompt:"Data: 10,20,30,40,50,60. Class interval 20–29 includes:", options:[{id:"a",text:"20 only",is_correct:true},{id:"b",text:"20,21,...,29",is_correct:false},{id:"c",text:"29",is_correct:false},{id:"d",text:"None",is_correct:false}] },
+    { id:"18", prompt:"Ungrouped tables list:", options:[{id:"a",text:"Each distinct value",is_correct:true},{id:"b",text:"Ranges of values",is_correct:false},{id:"c",text:"Only averages",is_correct:false},{id:"d",text:"Medians",is_correct:false}] },
+    { id:"19", prompt:"Grouped tables are useful for:", options:[{id:"a",text:"Large data sets",is_correct:true},{id:"b",text:"Two data points",is_correct:false},{id:"c",text:"Identical values",is_correct:false},{id:"d",text:"Algebraic equations",is_correct:false}] },
+    { id:"20", prompt:"What does a frequency table help us see?", options:[{id:"a",text:"How often values occur",is_correct:true},{id:"b",text:"Exact original order",is_correct:false},{id:"c",text:"Missing data",is_correct:false},{id:"d",text:"Causation",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    return {
+      item,
+      isCorrect,
+      selected,
+      correctText: correctOpt ? correctOpt.text : ' —'
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  const feedbackHTML = feedback.map(f => `
+    <div class="quiz-item">
+      <p>${items.indexOf(f.item) + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons after feedback
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=My%20quiz%20score%3A%20${scorePercent}%5CnChapter%3A%20${encodeURIComponent(CHAPTER_CONFIG.title)}%5CnStudent%3A%20%5BYour%20Name%5D" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
