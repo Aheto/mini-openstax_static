@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Trigonometry in Real-World Problems</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 126;
+const CHAPTER_CONFIG = {
+  title: "Trigonometry in Real-World Problems",
+  loTags: ["LO 2.11.6: Apply the use of trigonometric ratios to calculate distances and heights."],
+  content: `
+    <h2>Key Concept: Solving Real Problems with Trigonometry</h2>
+    <p>Trigonometric ratios (sine, cosine, tangent) are powerful tools for finding unknown <strong>heights**, <strong>distances**, or <strong>lengths** in real-life situations involving right-angled triangles.</p>
+
+    <h3>Common Applications</h3>
+    <ul>
+      <li>Finding the height of a tree, building, or cliff</li>
+      <li>Finding the distance across a river or canyon</li>
+      <li>Determining the length of a ladder leaning against a wall</li>
+      <li>Calculating the height of a kite or drone</li>
+      <li>Navigation and surveying</li>
+    </ul>
+
+    <h3>Step-by-Step Approach</h3>
+    <ol>
+      <li><strong>Draw a diagram**: Sketch the situation and mark known and unknown values.</li>
+      <li><strong>Identify the right-angled triangle**: Ensure one angle is 90°.</li>
+      <li><strong>Label sides**: Opposite, adjacent, hypotenuse relative to the known/unknown angle.</li>
+      <li><strong>Choose the correct ratio**:
+        <ul>
+          <li>Use <strong>tan** if you have or need <strong>opposite and adjacent**.</li>
+          <li>Use <strong>sin** if you have or need <strong>opposite and hypotenuse**.</li>
+          <li>Use <strong>cos** if you have or need <strong>adjacent and hypotenuse**.</li>
+        </ul>
+      </li>
+      <li><strong>Write the equation** and solve for the unknown.</li>
+      <li><strong>Use a calculator** (in DEGREE mode) if needed.</li>
+    </ol>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:** A 10 m ladder leans against a wall at 60° to the ground. How high up the wall does it reach?<br>
+    → sin 60° = height / 10 → height = 10 × sin 60° = 10 × (√3/2) ≈ <strong>8.66 m**</p>
+
+    <p><strong>Example 2:** From 80 m away, the angle of elevation to a mountain peak is 25°. Find the height.<br>
+    → tan 25° = height / 80 → height = 80 × tan 25° ≈ <strong>37.3 m**</p>
+
+    <p><strong>Example 3:** A wire is tied from the top of a 12 m pole to a point on the ground 9 m away. Find the wire length.<br>
+    → Use Pythagoras or cos: cos θ = 9 / hypotenuse, but easier: hypotenuse = √(12² + 9²) = √225 = <strong>15 m**<br>
+    (Or use sin: sin θ = 12 / hypotenuse → hypotenuse = 12 / sin θ)</p>
+
+    <h3>Key Notes</h3>
+    <ul>
+      <li>Always assume the ground is horizontal and walls are vertical (forms right angle).</li>
+      <li>Include eye-level height if specified (e.g., observer is 1.6 m tall).</li>
+      <li>Round answers appropriately (usually to 1 decimal place unless stated).</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used by engineers, architects, surveyors, pilots, sailors, and even in sports (e.g., basketball shot angles, golf distances).</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"A 13 m ladder leans against a wall. Base is 5 m from wall. Height reached:", options:[{id:"a",text:"12 m",is_correct:true},{id:"b",text:"13 m",is_correct:false},{id:"c",text:"5 m",is_correct:false},{id:"d",text:"8 m",is_correct:false}] },
+    { id:"2", prompt:"From 100 m away, angle of elevation to tower top is 30°. Tower height:", options:[{id:"a",text:"100/√3 ≈ 57.7 m",is_correct:true},{id:"b",text:"100√3 m",is_correct:false},{id:"c",text:"50 m",is_correct:false},{id:"d",text:"200 m",is_correct:false}] },
+    { id:"3", prompt:"Kite string 150 m long, angle of elevation 60°. Height of kite:", options:[{id:"a",text:"150 × sin 60° ≈ 129.9 m",is_correct:true},{id:"b",text:"150 × cos 60°",is_correct:false},{id:"c",text:"150 × tan 60°",is_correct:false},{id:"d",text:"75 m",is_correct:false}] },
+    { id:"4", prompt:"Man 1.7 m tall sees top of 20 m building at 45° elevation. Distance to building:", options:[{id:"a",text:"18.3 m",is_correct:true},{id:"b",text:"20 m",is_correct:false},{id:"c",text:"1.7 m",is_correct:false},{id:"d",text:"21.7 m",is_correct:false}] },
+    { id:"5", prompt:"Flagpole casts 20 m shadow. Sun elevation 45°. Height of pole:", options:[{id:"a",text:"20 m",is_correct:true},{id:"b",text:"20√2 m",is_correct:false},{id:"c",text:"10 m",is_correct:false},{id:"d",text:"40 m",is_correct:false}] },
+    { id:"6", prompt:"Balloon is 500 m high. Angle of elevation from ground is 30°. Distance to point below balloon:", options:[{id:"a",text:"500√3 ≈ 866 m",is_correct:true},{id:"b",text:"500/√3 m",is_correct:false},{id:"c",text:"250 m",is_correct:false},{id:"d",text:"1000 m",is_correct:false}] },
+    { id:"7", prompt:"Ladder 6.5 m long reaches 6 m up a wall. Distance from wall:", options:[{id:"a",text:"2.5 m",is_correct:true},{id:"b",text:"6 m",is_correct:false},{id:"c",text:"6.5 m",is_correct:false},{id:"d",text:"12.5 m",is_correct:false}] },
+    { id:"8", prompt:"Observer on 90 m cliff sees boat at 30° depression. Distance to boat:", options:[{id:"a",text:"90√3 ≈ 155.9 m",is_correct:true},{id:"b",text:"90/√3 m",is_correct:false},{id:"c",text:"45 m",is_correct:false},{id:"d",text:"180 m",is_correct:false}] },
+    { id:"9", prompt:"Wire from top of 8 m pole to ground 6 m away. Wire length:", options:[{id:"a",text:"10 m",is_correct:true},{id:"b",text:"14 m",is_correct:false},{id:"c",text:"2 m",is_correct:false},{id:"d",text:"8 m",is_correct:false}] },
+    { id:"10", prompt:"From 200 m away, angle of elevation to mountain is 20°. Height ≈", options:[{id:"a",text:"200 × tan 20° ≈ 72.8 m",is_correct:true},{id:"b",text:"200 / tan 20°",is_correct:false},{id:"c",text:"200 sin 20°",is_correct:false},{id:"d",text:"550 m",is_correct:false}] },
+    { id:"11", prompt:"Tree height 15 m, shadow 15√3 m. Sun elevation angle:", options:[{id:"a",text:"30°",is_correct:true},{id:"b",text:"60°",is_correct:false},{id:"c",text:"45°",is_correct:false},{id:"d",text:"90°",is_correct:false}] },
+    { id:"12", prompt:"Hot air balloon 1200 m high. Angle of depression to landmark is 10°. Horizontal distance ≈", options:[{id:"a",text:"1200 / tan 10° ≈ 6805 m",is_correct:true},{id:"b",text:"1200 tan 10°",is_correct:false},{id:"c",text:"1200 sin 10°",is_correct:false},{id:"d",text:"2000 m",is_correct:false}] },
+    { id:"13", prompt:"Ladder makes 70° with ground, reaches 8 m high. Ladder length:", options:[{id:"a",text:"8 / sin 70° ≈ 8.5 m",is_correct:true},{id:"b",text:"8 sin 70°",is_correct:false},{id:"c",text:"8 cos 70°",is_correct:false},{id:"d",text:"8 tan 70°",is_correct:false}] },
+    { id:"14", prompt:"Which ratio is best for height vs ground distance?", options:[{id:"a",text:"tan θ = height/distance",is_correct:true},{id:"b",text:"sin θ = height/distance",is_correct:false},{id:"c",text:"cos θ = height/distance",is_correct:false},{id:"d",text:"None",is_correct:false}] },
+    { id:"15", prompt:"Building 50 m tall. Angle of depression to car is 40°. Distance to car:", options:[{id:"a",text:"50 / tan 40° ≈ 59.6 m",is_correct:true},{id:"b",text:"50 tan 40°",is_correct:false},{id:"c",text:"50 sin 40°",is_correct:false},{id:"d",text:"40 m",is_correct:false}] },
+    { id:"16", prompt:"Drone is 100 m away horizontally, 60 m high. Angle of elevation:", options:[{id:"a",text:"tan⁻¹(60/100) ≈ 31.0°",is_correct:true},{id:"b",text:"tan⁻¹(100/60)",is_correct:false},{id:"c",text:"sin⁻¹(60/100)",is_correct:false},{id:"d",text:"45°",is_correct:false}] },
+    { id:"17", prompt:"Observer 2 m tall sees top of pole at 15° elevation from 80 m away. Pole height ≈", options:[{id:"a",text:"2 + 80 tan 15° ≈ 23.5 m",is_correct:true},{id:"b",text:"80 tan 15°",is_correct:false},{id:"c",text:"2 + 80 sin 15°",is_correct:false},{id:"d",text:"80 m",is_correct:false}] },
+    { id:"18", prompt:"Cable from top of 30 m tower to ground 40 m away. Cable length:", options:[{id:"a",text:"50 m",is_correct:true},{id:"b",text:"70 m",is_correct:false},{id:"c",text:"10 m",is_correct:false},{id:"d",text:"30 m",is_correct:false}] },
+    { id:"19", prompt:"Why use trigonometry for heights/distances?", options:[{id:"a",text:"When direct measurement is impossible or unsafe",is_correct:true},{id:"b",text:"Only for homework",is_correct:false},{id:"c",text:"To avoid calculators",is_correct:false},{id:"d",text:"It gives exact answers always",is_correct:false}] },
+    { id:"20", prompt:"From ship, angle of elevation to lighthouse top (45 m high) is 12°. Distance to lighthouse:", options:[{id:"a",text:"45 / tan 12° ≈ 212 m",is_correct:true},{id:"b",text:"45 tan 12°",is_correct:false},{id:"c",text:"45 sin 12°",is_correct:false},{id:"d",text:"450 m",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
