@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Comparing Quantities Using Percentages</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 72;
+const CHAPTER_CONFIG = {
+  title: "Comparing Quantities Using Percentages",
+  loTags: ["LO 1.13.1: Compare two amounts or quantities by expressing one as a percentage of the other."],
+  content: `
+    <h2>Key Concepts: Percentage Comparison</h2>
+    <p>To compare two quantities, we often express <strong>one as a percentage of the other**. This shows their relative size clearly.</p>
+
+    <h3>Formula</h3>
+    <p><strong>Percentage = (Part ÷ Whole) × 100%**</p>
+    <p>• The “<strong>Part**” is the quantity you’re comparing.<br>
+    • The “<strong>Whole**” is the reference quantity.</p>
+
+    <h3>How to Apply</h3>
+    <ol>
+      <li>Identify which quantity is the <strong>part** and which is the <strong>whole** (the whole is usually the total, original, or reference value).</li>
+      <li>Divide <strong>part by whole**.</li>
+      <li>Multiply by <strong>100** and add the <strong>%** sign.</li>
+    </ol>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:** A got 45 marks out of 60. What percentage?<br>
+    → (45 ÷ 60) × 100% = 0.75 × 100% = <strong>75%**</p>
+
+    <p><strong>Example 2:** Population of Town A = 8,000; Town B = 10,000.<br>
+    → A as % of B = (8,000 ÷ 10,000) × 100% = <strong>80%**</p>
+
+    <p><strong>Example 3:** Price of Item X = GH₵40; Item Y = GH₵50.<br>
+    → X as % of Y = (40 ÷ 50) × 100% = <strong>80%**</p>
+
+    <h3>Common Mistakes</h3>
+    <ul>
+      <li>Dividing the wrong way (e.g., whole ÷ part → gives >100% incorrectly).</li>
+      <li>Forgetting to multiply by 100.</li>
+      <li>Not identifying the correct “whole” (e.g., in “A is what % of B?”, B is the whole).</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in exam scores, sales discounts (“20% off”), budgeting (“rent is 30% of income”), population studies, and business profit comparisons.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"25 out of 50 as a percentage:", options:[{id:"a",text:"50%",is_correct:true},{id:"b",text:"25%",is_correct:false},{id:"c",text:"100%",is_correct:false},{id:"d",text:"75%",is_correct:false}] },
+    { id:"2", prompt:"A scored 36 out of 40. Percentage?", options:[{id:"a",text:"90%",is_correct:true},{id:"b",text:"36%",is_correct:false},{id:"c",text:"40%",is_correct:false},{id:"d",text:"72%",is_correct:false}] },
+    { id:"3", prompt:"45 is what % of 90?", options:[{id:"a",text:"50%",is_correct:true},{id:"b",text:"45%",is_correct:false},{id:"c",text:"90%",is_correct:false},{id:"d",text:"200%",is_correct:false}] },
+    { id:"4", prompt:"Town X pop = 12,000; Y = 15,000. X as % of Y?", options:[{id:"a",text:"80%",is_correct:true},{id:"b",text:"125%",is_correct:false},{id:"c",text:"20%",is_correct:false},{id:"d",text:"15%",is_correct:false}] },
+    { id:"5", prompt:"Formula for percentage:", options:[{id:"a",text:"(Part ÷ Whole) × 100%",is_correct:true},{id:"b",text:"(Whole ÷ Part) × 100%",is_correct:false},{id:"c",text:"Part × Whole",is_correct:false},{id:"d",text:"Part + Whole",is_correct:false}] },
+    { id:"6", prompt:"60 out of 80 as %:", options:[{id:"a",text:"75%",is_correct:true},{id:"b",text:"60%",is_correct:false},{id:"c",text:"80%",is_correct:false},{id:"d",text:"120%",is_correct:false}] },
+    { id:"7", prompt:"Price A = GH₵30, B = GH₵60. A as % of B?", options:[{id:"a",text:"50%",is_correct:true},{id:"b",text:"100%",is_correct:false},{id:"c",text:"200%",is_correct:false},{id:"d",text:"30%",is_correct:false}] },
+    { id:"8", prompt:"8 is what % of 20?", options:[{id:"a",text:"40%",is_correct:true},{id:"b",text:"8%",is_correct:false},{id:"c",text:"20%",is_correct:false},{id:"d",text:"25%",is_correct:false}] },
+    { id:"9", prompt:"If 24 is 60% of a number, what is the number?", options:[{id:"a",text:"40",is_correct:true},{id:"b",text:"24",is_correct:false},{id:"c",text:"60",is_correct:false},{id:"d",text:"14.4",is_correct:false}] },
+    { id:"10", prompt:"A’s salary = GH₵500, B’s = GH₵400. B as % of A?", options:[{id:"a",text:"80%",is_correct:true},{id:"b",text:"125%",is_correct:false},{id:"c",text:"20%",is_correct:false},{id:"d",text:"500%",is_correct:false}] },
+    { id:"11", prompt:"18 out of 25 as %:", options:[{id:"a",text:"72%",is_correct:true},{id:"b",text:"18%",is_correct:false},{id:"c",text:"25%",is_correct:false},{id:"d",text:"90%",is_correct:false}] },
+    { id:"12", prompt:"Country P: 5M people; Q: 20M. P as % of Q?", options:[{id:"a",text:"25%",is_correct:true},{id:"b",text:"400%",is_correct:false},{id:"c",text:"5%",is_correct:false},{id:"d",text:"20%",is_correct:false}] },
+    { id:"13", prompt:"To find what % 15 is of 75, calculate:", options:[{id:"a",text:"(15 ÷ 75) × 100%",is_correct:true},{id:"b",text:"(75 ÷ 15) × 100%",is_correct:false},{id:"c",text:"15 × 75",is_correct:false},{id:"d",text:"15 + 75",is_correct:false}] },
+    { id:"14", prompt:"32 out of 40 = ?%", options:[{id:"a",text:"80%",is_correct:true},{id:"b",text:"32%",is_correct:false},{id:"c",text:"40%",is_correct:false},{id:"d",text:"75%",is_correct:false}] },
+    { id:"15", prompt:"Which is 90% of 60?", options:[{id:"a",text:"54",is_correct:true},{id:"b",text:"60",is_correct:false},{id:"c",text:"90",is_correct:false},{id:"d",text:"15",is_correct:false}] },
+    { id:"16", prompt:"Cost X = GH₵200, Y = GH₵250. X as % of Y?", options:[{id:"a",text:"80%",is_correct:true},{id:"b",text:"125%",is_correct:false},{id:"c",text:"20%",is_correct:false},{id:"d",text:"250%",is_correct:false}] },
+    { id:"17", prompt:"If 30% of a number is 60, the number is:", options:[{id:"a",text:"200",is_correct:true},{id:"b",text:"60",is_correct:false},{id:"c",text:"30",is_correct:false},{id:"d",text:"18",is_correct:false}] },
+    { id:"18", prompt:"21 out of 28 as %:", options:[{id:"a",text:"75%",is_correct:true},{id:"b",text:"21%",is_correct:false},{id:"c",text:"28%",is_correct:false},{id:"d",text:"84%",is_correct:false}] },
+    { id:"19", prompt:"Expressing one amount as % of another helps:", options:[{id:"a",text:"Compare relative sizes clearly",is_correct:true},{id:"b",text:"Find absolute difference only",is_correct:false},{id:"c",text:"Ignore units",is_correct:false},{id:"d",text:"Only for large numbers",is_correct:false}] },
+    { id:"20", prompt:"Why is 40 out of 50 = 80%?", options:[{id:"a",text:"Because (40 ÷ 50) × 100 = 80",is_correct:true},{id:"b",text:"Because 50 − 40 = 10",is_correct:false},{id:"c",text:"Because 40 + 50 = 90",is_correct:false},{id:"d",text:"Because 40 × 50 = 2000",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
