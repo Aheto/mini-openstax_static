@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Currency Conversion</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 68;
+const CHAPTER_CONFIG = {
+  title: "Currency Conversion",
+  loTags: ["LO 1.12.3: Convert foreign currencies into Ghana cedis and vice versa."],
+  content: `
+    <h2>Key Concepts: Converting Currencies</h2>
+    <p>Currency conversion uses an <strong>exchange rate**—the value of one currency compared to another (e.g., 1 USD = GH₵15.00).</p>
+
+    <h3>Key Terms</h3>
+    <ul>
+      <li><strong>Buying rate**: Price a bank/bureau pays to buy foreign currency.</li>
+      <li><strong>Selling rate**: Price a bank/bureau charges to sell foreign currency.</li>
+      <li><strong>For this syllabus**, we assume a single <strong>given exchange rate** unless stated.</li>
+    </ul>
+
+    <h3>Conversion Rules</h3>
+    <p><strong>Foreign → Ghana cedis:**<br>
+    <strong>Amount in GH₵ = Foreign amount × Exchange rate</strong></p>
+
+    <p><strong>Ghana cedis → Foreign:**<br>
+    <strong>Foreign amount = GH₵ amount ÷ Exchange rate</strong></p>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:** 1 USD = GH₵15.00. Convert $50 to cedis.<br>
+    → GH₵ = 50 × 15 = <strong>GH₵750</strong></p>
+
+    <p><strong>Example 2:** 1 GBP = GH₵20.00. Convert GH₵400 to pounds.<br>
+    → GBP = 400 ÷ 20 = <strong>£20</strong></p>
+
+    <p><strong>Example 3:** 1 EUR = GH₵16.50. How many euros is GH₵330?<br>
+    → EUR = 330 ÷ 16.50 = <strong>€20</strong></p>
+
+    <h3>Common Currencies</h3>
+    <ul>
+      <li>USD – US Dollar ($)</li>
+      <li>GBP – British Pound (£)</li>
+      <li>EUR – Euro (€)</li>
+      <li>NGN – Nigerian Naira (₦)</li>
+      <li>CFA – West African CFA Franc (CFA or F)</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in international travel, online shopping, remittances, business imports/exports, and foreign investment.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"1 USD = GH₵15.00. Convert $40 to cedis.", options:[{id:"a",text:"GH₵600",is_correct:true},{id:"b",text:"GH₵40",is_correct:false},{id:"c",text:"GH₵15",is_correct:false},{id:"d",text:"GH₵400",is_correct:false}] },
+    { id:"2", prompt:"1 GBP = GH₵20.00. Convert GH₵500 to pounds.", options:[{id:"a",text:"£25",is_correct:true},{id:"b",text:"£500",is_correct:false},{id:"c",text:"£20",is_correct:false},{id:"d",text:"£100",is_correct:false}] },
+    { id:"3", prompt:"1 EUR = GH₵16.00. €30 = ? GH₵", options:[{id:"a",text:"GH₵480",is_correct:true},{id:"b",text:"GH₵30",is_correct:false},{id:"c",text:"GH₵16",is_correct:false},{id:"d",text:"GH₵48",is_correct:false}] },
+    { id:"4", prompt:"GH₵720 at 1 USD = GH₵18.00 → USD?", options:[{id:"a",text:"$40",is_correct:true},{id:"b",text:"$720",is_correct:false},{id:"c",text:"$18",is_correct:false},{id:"d",text:"$1,296",is_correct:false}] },
+    { id:"5", prompt:"1 NGN = GH₵0.01. ₦5,000 = ?", options:[{id:"a",text:"GH₵50",is_correct:true},{id:"b",text:"GH₵500",is_correct:false},{id:"c",text:"GH₵5",is_correct:false},{id:"d",text:"GH₵0.01",is_correct:false}] },
+    { id:"6", prompt:"To convert foreign to cedis, you:", options:[{id:"a",text:"Multiply by exchange rate",is_correct:true},{id:"b",text:"Divide by exchange rate",is_correct:false},{id:"c",text:"Add the rate",is_correct:false},{id:"d",text:"Subtract the rate",is_correct:false}] },
+    { id:"7", prompt:"1 USD = GH₵14.50. $100 = ?", options:[{id:"a",text:"GH₵1,450",is_correct:true},{id:"b",text:"GH₵145",is_correct:false},{id:"c",text:"GH₵14.50",is_correct:false},{id:"d",text:"GH₵100",is_correct:false}] },
+    { id:"8", prompt:"GH₵390 at 1 EUR = GH₵19.50 → EUR?", options:[{id:"a",text:"€20",is_correct:true},{id:"b",text:"€390",is_correct:false},{id:"c",text:"€19.50",is_correct:false},{id:"d",text:"€7,605",is_correct:false}] },
+    { id:"9", prompt:"1 GBP = GH₵22.00. £15 = ?", options:[{id:"a",text:"GH₵330",is_correct:true},{id:"b",text:"GH₵22",is_correct:false},{id:"c",text:"GH₵15",is_correct:false},{id:"d",text:"GH₵375",is_correct:false}] },
+    { id:"10", prompt:"To convert cedis to foreign currency, you:", options:[{id:"a",text:"Divide by exchange rate",is_correct:true},{id:"b",text:"Multiply by exchange rate",is_correct:false},{id:"c",text:"Add the rate",is_correct:false},{id:"d",text:"Use subtraction",is_correct:false}] },
+    { id:"11", prompt:"1 USD = GH₵15.50. $20 = ?", options:[{id:"a",text:"GH₵310",is_correct:true},{id:"b",text:"GH₵155",is_correct:false},{id:"c",text:"GH₵31",is_correct:false},{id:"d",text:"GH₵20",is_correct:false}] },
+    { id:"12", prompt:"GH₵640 at 1 GBP = GH₵16.00 → GBP?", options:[{id:"a",text:"£40",is_correct:true},{id:"b",text:"£640",is_correct:false},{id:"c",text:"£16",is_correct:false},{id:"d",text:"£10,240",is_correct:false}] },
+    { id:"13", prompt:"1 EUR = GH₵17.00. €25 = ?", options:[{id:"a",text:"GH₵425",is_correct:true},{id:"b",text:"GH₵17",is_correct:false},{id:"c",text:"GH₵25",is_correct:false},{id:"d",text:"GH₵42.50",is_correct:false}] },
+    { id:"14", prompt:"₦10,000 at 1 NGN = GH₵0.012 → GH₵?", options:[{id:"a",text:"GH₵120",is_correct:true},{id:"b",text:"GH₵12",is_correct:false},{id:"c",text:"GH₵1,200",is_correct:false},{id:"d",text:"GH₵0.012",is_correct:false}] },
+    { id:"15", prompt:"1 USD = GH₵14.00. GH₵280 = ? USD", options:[{id:"a",text:"$20",is_correct:true},{id:"b",text:"$280",is_correct:false},{id:"c",text:"$14",is_correct:false},{id:"d",text:"$3,920",is_correct:false}] },
+    { id:"16", prompt:"If 1 GBP = GH₵21.00, how many GBP is GH₵630?", options:[{id:"a",text:"£30",is_correct:true},{id:"b",text:"£630",is_correct:false},{id:"c",text:"£21",is_correct:false},{id:"d",text:"£13,230",is_correct:false}] },
+    { id:"17", prompt:"Currency conversion depends on:", options:[{id:"a",text:"The current exchange rate",is_correct:true},{id:"b",text:"Time of day only",is_correct:false},{id:"c",text:"Color of money",is_correct:false},{id:"d",text:"Bank manager",is_correct:false}] },
+    { id:"18", prompt:"1 EUR = GH₵18.50. GH₵370 = ? EUR", options:[{id:"a",text:"€20",is_correct:true},{id:"b",text:"€370",is_correct:false},{id:"c",text:"€18.50",is_correct:false},{id:"d",text:"€6,845",is_correct:false}] },
+    { id:"19", prompt:"Which is true?", options:[{id:"a",text:"Exchange rates change over time",is_correct:true},{id:"b",text:"Rates are the same worldwide",is_correct:false},{id:"c",text:"Cedis are always stronger",is_correct:false},{id:"d",text:"Conversion is optional",is_correct:false}] },
+    { id:"20", prompt:"Why learn currency conversion?", options:[{id:"a",text:"For travel, trade, and financial literacy",is_correct:true},{id:"b",text:"Only for bankers",is_correct:false},{id:"c",text:"It’s not useful",is_correct:false},{id:"d",text:"Only in exams",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
