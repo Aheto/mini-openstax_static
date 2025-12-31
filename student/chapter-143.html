@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Mini OpenStax: Interactive learning module"/>
-<title>Mini OpenStax — Volume of Prisms</title>
+<title>Mini OpenStax — Total Surface Area of a Cone</title>
 <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
@@ -32,50 +32,45 @@
 //======================
 // 🔧 CONFIGURATION — EDIT PER CHAPTER
 //======================
-const currentChapter = 142;
+const currentChapter = 143;
 const CHAPTER_CONFIG = {
-  title: "Volume of Prisms",
-  loTags: ["LO 3.2.3: Calculate volumes of prisms."],
+  title: "Total Surface Area of a Cone",
+  loTags: ["LO 3.2.4: Calculate the total surface area of a cone."],
   content: `
-    <h2>Key Concept: Volume of Prisms</h2>
-    <p>The <strong>volume** of a prism is the amount of space it occupies. All prisms use the same fundamental formula:</p>
-    <p style="text-align: center; font-size: 1.2rem; margin: 1.5rem 0;">
-      <strong>Volume = Base Area × Height of Prism**
-    </p>
-    <p>Where:<br>
-    – <strong>Base Area** = area of one of the two identical parallel bases<br>
-    – <<strong>Height** = perpendicular distance between the two bases (also called length or depth)</p>
+    <h2>Key Concept: Total Surface Area of a Cone</h2>
+    <p>A <strong>right circular cone** has a circular base and a curved surface that tapers to a point (vertex). Its <strong>total surface area (TSA)** includes both the curved surface and the base.</p>
 
-    <h3>1. Cube</h3>
-    <p>All sides equal (<strong>s**).<br>
-    → Base area = s²<br>
-    → Volume = s² × s = <strong>s³**</p>
+    <h3>Key Formulas</h3>
+    <p>Let:<br>
+    – <strong>r** = radius of the base<br>
+    – <strong>h** = vertical height<br>
+    – <strong>l** = slant height = √(r² + h²)</p>
 
-    <h3>2. Cuboid (Rectangular Prism)</h3>
-    <p>Length <strong>l**, width <strong>w**, height <strong>h**.<br>
-    → Base area = l × w<br>
-    → Volume = <strong>l × w × h**</p>
-
-    <h3>3. Triangular Prism</h3>
-    <p>Triangular base with base <strong>b** and height <strong>hₜ**, prism height <strong>H**.<br>
-    → Base area = ½ × b × hₜ<br>
-    → Volume = <strong>½ × b × hₜ × H**</p>
+    <p><strong>Curved Surface Area (CSA)** = πrl<br>
+    <strong>Base Area** = πr²<br>
+    <strong>Total Surface Area (TSA)** = CSA + Base = <strong>πrl + πr² = πr(l + r)**</p>
 
     <h3>Examples</h3>
-    <p><strong>Example 1:** Cube, side = 5 cm → V = 5³ = <strong>125 cm³**</p>
-    <p><strong>Example 2:** Cuboid, l=6 cm, w=4 cm, h=3 cm → V = 6×4×3 = <strong>72 cm³**</p>
-    <p><strong>Example 3:** Triangular prism: triangle base=8 cm, height=5 cm; prism height=10 cm.<br>
-    → V = ½ × 8 × 5 × 10 = <strong>200 cm³**</p>
+    <p><strong>Example 1:** Cone, r = 3 cm, l = 5 cm.<br>
+    → TSA = π × 3 × (5 + 3) = 24π ≈ <strong>75.4 cm²**</p>
+
+    <p><strong>Example 2:** Cone, r = 4 cm, h = 3 cm.<br>
+    → First find l = √(4² + 3²) = √25 = <strong>5 cm**<br>
+    → TSA = π × 4 × (5 + 4) = 36π ≈ <strong>113.1 cm²**</p>
+
+    <p><strong>Example 3:** Cone, diameter = 10 cm → r = 5 cm, l = 13 cm.<br>
+    → TSA = π × 5 × (13 + 5) = 90π ≈ <strong>282.7 cm²**</p>
 
     <h3>Key Notes</h3>
     <ul>
-      <li>Volume is always in <strong>cubic units** (cm³, m³, etc.).</li>
-      <li>Do not confuse height of the <strong>triangle** (hₜ) with height of the <strong>prism** (H).</li>
-      <li>The base can be <strong>any face**, but you must use the corresponding perpendicular height.</li>
+      <li><strong>Slant height (l) is NOT the same as vertical height (h)**.</li>
+      <li>If only <strong>r** and <strong>h** are given, you **must find l first** using Pythagoras.</li>
+      <li>Surface area is always in <strong>square units** (cm², m²).</li>
+      <li>Do not forget the **base** in total surface area (some exams ask for curved only — read carefully!).</li>
     </ul>
 
     <h3>Real-Life Use</h3>
-    <p>Used in packaging (capacity), construction (concrete needed), liquid storage (tanks), and shipping (cargo volume).</p>
+    <p>Used in manufacturing (conical cups, traffic cones), architecture (turrets), packaging (ice cream cones), and material estimation.</p>
 
     <!-- 💬 WhatsApp Support -->
     <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
@@ -115,26 +110,26 @@ const CHAPTER_CONFIG = {
   `,
   whatsappNumber: "233257320201",
   assessmentItems: [
-    { id:"1", prompt:"Volume of cube side 4 cm:", options:[{id:"a",text:"64 cm³",is_correct:true},{id:"b",text:"16 cm³",is_correct:false},{id:"c",text:"48 cm³",is_correct:false},{id:"d",text:"24 cm³",is_correct:false}] },
-    { id:"2", prompt:"Cuboid: l=5 cm, w=3 cm, h=2 cm. Volume =", options:[{id:"a",text:"30 cm³",is_correct:true},{id:"b",text:"15 cm³",is_correct:false},{id:"c",text:"25 cm³",is_correct:false},{id:"d",text:"10 cm³",is_correct:false}] },
-    { id:"3", prompt:"Triangular prism: b=6 cm, hₜ=4 cm, H=10 cm. V =", options:[{id:"a",text:"120 cm³",is_correct:true},{id:"b",text:"60 cm³",is_correct:false},{id:"c",text:"240 cm³",is_correct:false},{id:"d",text:"80 cm³",is_correct:false}] },
-    { id:"4", prompt:"General prism volume formula:", options:[{id:"a",text:"Base area × height",is_correct:true},{id:"b",text:"Perimeter × height",is_correct:false},{id:"c",text:"6 × side²",is_correct:false},{id:"d",text:"½ × base × height",is_correct:false}] },
-    { id:"5", prompt:"Units for volume:", options:[{id:"a",text:"Cubic units",is_correct:true},{id:"b",text:"Square units",is_correct:false},{id:"c",text:"Linear units",is_correct:false},{id:"d",text:"Degrees",is_correct:false}] },
-    { id:"6", prompt:"Cube volume = 27 cm³. Side =", options:[{id:"a",text:"3 cm",is_correct:true},{id:"b",text:"9 cm",is_correct:false},{id:"c",text:"6 cm",is_correct:false},{id:"d",text:"4.5 cm",is_correct:false}] },
-    { id:"7", prompt:"Cuboid: l=10 cm, w=5 cm, h=4 cm. V =", options:[{id:"a",text:"200 cm³",is_correct:true},{id:"b",text:"100 cm³",is_correct:false},{id:"c",text:"190 cm³",is_correct:false},{id:"d",text:"50 cm³",is_correct:false}] },
-    { id:"8", prompt:"Which is NOT a prism?", options:[{id:"a",text:"Pyramid",is_correct:true},{id:"b",text:"Cube",is_correct:false},{id:"c",text:"Cuboid",is_correct:false},{id:"d",text:"Triangular prism",is_correct:false}] },
-    { id:"9", prompt:"Triangular prism: equilateral triangle side 2 cm, H=5 cm. Base area ≈", options:[{id:"a",text:"1.732 cm²",is_correct:true},{id:"b",text:"2 cm²",is_correct:false},{id:"c",text:"4 cm²",is_correct:false},{id:"d",text:"3 cm²",is_correct:false}] },
-    { id:"10", prompt:"In V = lwh, 'h' represents:", options:[{id:"a",text:"Height of cuboid",is_correct:true},{id:"b",text:"Hypotenuse",is_correct:false},{id:"c",text:"Diagonal",is_correct:false},{id:"d",text:"Perimeter",is_correct:false}] },
-    { id:"11", prompt:"Cube side = 6 cm. Volume =", options:[{id:"a",text:"216 cm³",is_correct:true},{id:"b",text:"36 cm³",is_correct:false},{id:"c",text:"108 cm³",is_correct:false},{id:"d",text:"72 cm³",is_correct:false}] },
-    { id:"12", prompt:"Triangular prism: V = 150 cm³, base area = 25 cm². H =", options:[{id:"a",text:"6 cm",is_correct:true},{id:"b",text:"5 cm",is_correct:false},{id:"c",text:"10 cm",is_correct:false},{id:"d",text:"7.5 cm",is_correct:false}] },
-    { id:"13", prompt:"Volume measures:", options:[{id:"a",text:"Space inside a solid",is_correct:true},{id:"b",text:"Total surface",is_correct:false},{id:"c",text:"Edge length",is_correct:false},{id:"d",text:"Weight",is_correct:false}] },
-    { id:"14", prompt:"Cuboid V = 120 cm³, l=8 cm, w=3 cm. h =", options:[{id:"a",text:"5 cm",is_correct:true},{id:"b",text:"4 cm",is_correct:false},{id:"c",text:"6 cm",is_correct:false},{id:"d",text:"10 cm",is_correct:false}] },
-    { id:"15", prompt:"How many vertices in a triangular prism?", options:[{id:"a",text:"6",is_correct:true},{id:"b",text:"5",is_correct:false},{id:"c",text:"8",is_correct:false},{id:"d",text:"4",is_correct:false}] },
-    { id:"16", prompt:"V = ½ × b × hₜ × H is for:", options:[{id:"a",text:"Triangular prism",is_correct:true},{id:"b",text:"Cube",is_correct:false},{id:"c",text:"Cuboid",is_correct:false},{id:"d",text:"Cylinder",is_correct:false}] },
-    { id:"17", prompt:"Cuboid: l=7 cm, w=2 cm, h=3 cm. V =", options:[{id:"a",text:"42 cm³",is_correct:true},{id:"b",text:"21 cm³",is_correct:false},{id:"c",text:"35 cm³",is_correct:false},{id:"d",text:"14 cm³",is_correct:false}] },
-    { id:"18", prompt:"If cube volume = 512 cm³, surface area =", options:[{id:"a",text:"384 cm²",is_correct:true},{id:"b",text:"512 cm²",is_correct:false},{id:"c",text:"64 cm²",is_correct:false},{id:"d",text:"256 cm²",is_correct:false}] },
-    { id:"19", prompt:"Why calculate volume?", options:[{id:"a",text:"To find capacity or material needed",is_correct:true},{id:"b",text:"To find surface area",is_correct:false},{id:"c",text:"To measure angles",is_correct:false},{id:"d",text:"Only for exams",is_correct:false}] },
-    { id:"20", prompt:"Triangular prism: right triangle legs 3,4 cm, H=10 cm. V =", options:[{id:"a",text:"60 cm³",is_correct:true},{id:"b",text:"120 cm³",is_correct:false},{id:"c",text:"30 cm³",is_correct:false},{id:"d",text:"50 cm³",is_correct:false}] }
+    { id:"1", prompt:"Total surface area of cone formula:", options:[{id:"a",text:"πr(l + r)",is_correct:true},{id:"b",text:"πrl",is_correct:false},{id:"c",text:"πr²h",is_correct:false},{id:"d",text:"2πr(l + r)",is_correct:false}] },
+    { id:"2", prompt:"Cone: r=3 cm, l=5 cm. TSA =", options:[{id:"a",text:"24π cm²",is_correct:true},{id:"b",text:"15π cm²",is_correct:false},{id:"c",text:"9π cm²",is_correct:false},{id:"d",text:"30π cm²",is_correct:false}] },
+    { id:"3", prompt:"Cone: r=5 cm, h=12 cm. Find l first:", options:[{id:"a",text:"13 cm",is_correct:true},{id:"b",text:"17 cm",is_correct:false},{id:"c",text:"10 cm",is_correct:false},{id:"d",text:"7 cm",is_correct:false}] },
+    { id:"4", prompt:"TSA includes:", options:[{id:"a",text:"Curved surface + base",is_correct:true},{id:"b",text:"Curved surface only",is_correct:false},{id:"c",text:"Base only",is_correct:false},{id:"d",text:"Volume",is_correct:false}] },
+    { id:"5", prompt:"Units for TSA:", options:[{id:"a",text:"Square units",is_correct:true},{id:"b",text:"Cubic units",is_correct:false},{id:"c",text:"Linear units",is_correct:false},{id:"d",text:"Radians",is_correct:false}] },
+    { id:"6", prompt:"Cone: r=4 cm, l=10 cm. TSA =", options:[{id:"a",text:"56π cm²",is_correct:true},{id:"b",text:"40π cm²",is_correct:false},{id:"c",text:"16π cm²",is_correct:false},{id:"d",text:"80π cm²",is_correct:false}] },
+    { id:"7", prompt:"Cone: diameter=10 cm, l=13 cm. TSA =", options:[{id:"a",text:"90π cm²",is_correct:true},{id:"b",text:"65π cm²",is_correct:false},{id:"c",text:"130π cm²",is_correct:false},{id:"d",text:"25π cm²",is_correct:false}] },
+    { id:"8", prompt:"If r=6 cm, h=8 cm, then l =", options:[{id:"a",text:"10 cm",is_correct:true},{id:"b",text:"14 cm",is_correct:false},{id:"c",text:"2 cm",is_correct:false},{id:"d",text:"48 cm",is_correct:false}] },
+    { id:"9", prompt:"Cone: r=7 cm, l=25 cm. TSA =", options:[{id:"a",text:"224π cm²",is_correct:true},{id:"b",text:"175π cm²",is_correct:false},{id:"c",text:"49π cm²",is_correct:false},{id:"d",text:"350π cm²",is_correct:false}] },
+    { id:"10", prompt:"Which is NOT needed for TSA?", options:[{id:"a",text:"Volume",is_correct:true},{id:"b",text:"Radius",is_correct:false},{id:"c",text:"Slant height",is_correct:false},{id:"d",text:"Base area",is_correct:false}] },
+    { id:"11", prompt:"Cone: r=2 cm, h=1.5 cm. l =", options:[{id:"a",text:"2.5 cm",is_correct:true},{id:"b",text:"3.5 cm",is_correct:false},{id:"c",text:"0.5 cm",is_correct:false},{id:"d",text:"4 cm",is_correct:false}] },
+    { id:"12", prompt:"Cone: r=9 cm, l=15 cm. TSA =", options:[{id:"a",text:"216π cm²",is_correct:true},{id:"b",text:"135π cm²",is_correct:false},{id:"c",text:"81π cm²",is_correct:false},{id:"d",text:"270π cm²",is_correct:false}] },
+    { id:"13", prompt:"Slant height l is found using:", options:[{id:"a",text:"Pythagoras theorem",is_correct:true},{id:"b",text:"Area formula",is_correct:false},{id:"c",text:"Volume formula",is_correct:false},{id:"d",text:"Circumference",is_correct:false}] },
+    { id:"14", prompt:"Cone: r=5 cm, h=12 cm. TSA =", options:[{id:"a",text:"90π cm²",is_correct:true},{id:"b",text:"60π cm²",is_correct:false},{id:"c",text:"25π cm²",is_correct:false},{id:"d",text:"156π cm²",is_correct:false}] },
+    { id:"15", prompt:"If l is given, you:", options:[{id:"a",text:"Use it directly in TSA",is_correct:true},{id:"b",text:"Must find h first",is_correct:false},{id:"c",text:"Ignore r",is_correct:false},{id:"d",text:"Calculate volume",is_correct:false}] },
+    { id:"16", prompt:"TSA = πr(l + r). What is πr²?", options:[{id:"a",text:"Base area",is_correct:true},{id:"b",text:"Curved area",is_correct:false},{id:"c",text:"Lateral height",is_correct:false},{id:"d",text:"Diameter",is_correct:false}] },
+    { id:"17", prompt:"Cone: r=10 cm, l=26 cm. TSA =", options:[{id:"a",text:"360π cm²",is_correct:true},{id:"b",text:"260π cm²",is_correct:false},{id:"c",text:"100π cm²",is_correct:false},{id:"d",text:"520π cm²",is_correct:false}] },
+    { id:"18", prompt:"Common mistake in TSA:", options:[{id:"a",text:"Using h instead of l",is_correct:true},{id:"b",text:"Using diameter",is_correct:false},{id:"c",text:"Adding volume",is_correct:false},{id:"d",text:"Using 2πr",is_correct:false}] },
+    { id:"19", prompt:"Why study cone surface area?", options:[{id:"a",text:"For material estimation in real objects",is_correct:true},{id:"b",text:"Only for exams",is_correct:false},{id:"c",text:"To find weight",is_correct:false},{id:"d",text:"Not used in real life",is_correct:false}] },
+    { id:"20", prompt:"Cone: r=6 cm, h=8 cm. TSA =", options:[{id:"a",text:"96π cm²",is_correct:true},{id:"b",text:"48π cm²",is_correct:false},{id:"c",text:"36π cm²",is_correct:false},{id:"d",text:"144π cm²",is_correct:false}] }
   ]
 };
 
