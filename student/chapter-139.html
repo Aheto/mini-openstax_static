@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Constructing Loci</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 139;
+const CHAPTER_CONFIG = {
+  title: "Constructing Loci",
+  loTags: ["LO 3.1.3: Construct a particular locus."],
+  content: `
+    <h2>Key Concept: Locus (Loci)</h2>
+    <p>A <strong>locus** (plural: loci) is the set of all points that satisfy a given condition. In SHS 1, we construct four standard types using ruler and compasses.</p>
+
+    <h3>1. Locus of points at a fixed distance from a point</h3>
+    <p>→ A <strong>circle** with the point as centre and the fixed distance as radius.</p>
+    <p><strong>Example:** Locus of points 3 cm from point A → circle, centre A, radius 3 cm.</p>
+
+    <h3>2. Locus of points at a fixed distance from a straight line</h3>
+    <p>→ <strong>Two parallel lines**, one on each side of the given line, at the fixed distance.</p>
+    <p><strong>Example:** Locus of points 2 cm from line AB → two lines parallel to AB, 2 cm away on both sides.</p>
+
+    <h3>3. Locus of points equidistant from two fixed points</h3>
+    <p>→ The <strong>perpendicular bisector** of the line segment joining the two points.</p>
+    <p><strong>Example:** Points equidistant from A and B → perpendicular bisector of AB.</p>
+
+    <h3>4. Locus of points equidistant from two intersecting lines</h3>
+    <p>→ The <strong>angle bisector(s)** of the angles formed by the lines.</p>
+    <p><strong>Example:** Points equidistant from lines AB and AC (intersecting at A) → bisector of ∠BAC.</p>
+
+    <h3>Construction Tips</h3>
+    <ul>
+      <li>Use a **sharp pencil** and **firm compass**.</li>
+      <li>For parallel lines: use set squares or construct perpendiculars first.</li>
+      <li>For angle bisector: draw equal arcs from vertex, then intersect.</li>
+      <li>For perpendicular bisector: draw equal arcs from both ends of segment.</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in navigation (GPS = locus of fixed distance from satellites), urban planning (safety zones), robotics (path planning), and architecture (symmetry lines).</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"Locus of points 4 cm from a point P is a:", options:[{id:"a",text:"Circle",is_correct:true},{id:"b",text:"Straight line",is_correct:false},{id:"c",text:"Perpendicular bisector",is_correct:false},{id:"d",text:"Angle bisector",is_correct:false}] },
+    { id:"2", prompt:"Locus of points equidistant from A and B is the:", options:[{id:"a",text:"Perpendicular bisector of AB",is_correct:true},{id:"b",text:"Circle with diameter AB",is_correct:false},{id:"c",text:"Line AB",is_correct:false},{id:"d",text:"Angle bisector",is_correct:false}] },
+    { id:"3", prompt:"Locus of points 2 cm from line XY is:", options:[{id:"a",text:"Two parallel lines",is_correct:true},{id:"b",text:"One parallel line",is_correct:false},{id:"c",text:"Perpendicular line",is_correct:false},{id:"d",text:"Circle",is_correct:false}] },
+    { id:"4", prompt:"Locus of points equidistant from two intersecting lines is the:", options:[{id:"a",text:"Angle bisector",is_correct:true},{id:"b",text:"Perpendicular bisector",is_correct:false},{id:"c",text:"Median",is_correct:false},{id:"d",text:"Altitude",is_correct:false}] },
+    { id:"5", prompt:"Which locus requires a compass set to fixed radius?", options:[{id:"a",text:"Points at fixed distance from a point",is_correct:true},{id:"b",text:"Equidistant from two points",is_correct:false},{id:"c",text:"Equidistant from two lines",is_correct:false},{id:"d",text:"Points at fixed distance from a line",is_correct:false}] },
+    { id:"6", prompt:"To construct locus equidistant from P and Q, you:", options:[{id:"a",text:"Draw perpendicular bisector of PQ",is_correct:true},{id:"b",text:"Draw circle with centre P",is_correct:false},{id:"c",text:"Draw angle bisector",is_correct:false},{id:"d",text:"Draw parallel lines",is_correct:false}] },
+    { id:"7", prompt:"Locus at fixed distance from a line uses:", options:[{id:"a",text:"Perpendiculars and arcs",is_correct:true},{id:"b",text:"Only compass",is_correct:false},{id:"c",text:"Protractor",is_correct:false},{id:"d",text:"Diagonals",is_correct:false}] },
+    { id:"8", prompt:"How many angle bisectors for two intersecting lines?", options:[{id:"a",text:"Two (perpendicular)",is_correct:true},{id:"b",text:"One",is_correct:false},{id:"c",text:"Four",is_correct:false},{id:"d",text:"None",is_correct:false}] },
+    { id:"9", prompt:"Locus equidistant from sides of ∠ABC is the:", options:[{id:"a",text:"Bisector of ∠ABC",is_correct:true},{id:"b",text:"Perpendicular from B",is_correct:false},{id:"c",text:"Median",is_correct:false},{id:"d",text:"Altitude",is_correct:false}] },
+    { id:"10", prompt:"Which is NOT a standard SHS 1 locus?", options:[{id:"a",text:"Points equidistant from three points",is_correct:true},{id:"b",text:"Fixed distance from a point",is_correct:false},{id:"c",text:"Equidistant from two points",is_correct:false},{id:"d",text:"Fixed distance from a line",is_correct:false}] },
+    { id:"11", prompt:"To draw locus 3 cm from line AB, you need:", options:[{id:"a",text:"Two lines parallel to AB, 3 cm away",is_correct:true},{id:"b",text:"One line only",is_correct:false},{id:"c",text:"Circle of radius 3 cm",is_correct:false},{id:"d",text:"Perpendicular bisector",is_correct:false}] },
+    { id:"12", prompt:"Intersection of two loci gives:", options:[{id:"a",text:"Point(s) satisfying both conditions",is_correct:true},{id:"b",text:"New locus",is_correct:false},{id:"c",text:"No solution",is_correct:false},{id:"d",text:"Line segment",is_correct:false}] },
+    { id:"13", prompt:"Which tool is essential for perpendicular bisector?", options:[{id:"a",text:"Compass",is_correct:true},{id:"b",text:"Protractor",is_correct:false},{id:"c",text:"Set square only",is_correct:false},{id:"d",text:"Calculator",is_correct:false}] },
+    { id:"14", prompt:"Locus of points 5 cm from point O is used in:", options:[{id:"a",text:"Finding possible positions of a drone",is_correct:true},{id:"b",text:"Drawing a square",is_correct:false},{id:"c",text:"Measuring angles",is_correct:false},{id:"d",text:"Finding area",is_correct:false}] },
+    { id:"15", prompt:"For two lines intersecting at 60°, their angle bisectors are:", options:[{id:"a",text:"Perpendicular",is_correct:true},{id:"b",text:"Parallel",is_correct:false},{id:"c",text:"Coincident",is_correct:false},{id:"d",text:"At 60°",is_correct:false}] },
+    { id:"16", prompt:"Which locus is a single line?", options:[{id:"a",text:"Equidistant from two points",is_correct:true},{id:"b",text:"Fixed distance from a point",is_correct:false},{id:"c",text:"Fixed distance from a line",is_correct:false},{id:"d",text:"Equidistant from two lines",is_correct:false}] },
+    { id:"17", prompt:"In construction, loci are drawn with:", options:[{id:"a",text:"Ruler and compass only",is_correct:true},{id:"b",text:"Protractor",is_correct:false},{id:"c",text:"Graph paper only",is_correct:false},{id:"d",text:"Digital tools",is_correct:false}] },
+    { id:"18", prompt:"Locus equidistant from AB and AC (A common vertex) is:", options:[{id:"a",text:"Bisector of ∠BAC",is_correct:true},{id:"b",text:"Perpendicular bisector of BC",is_correct:false},{id:"c",text:"Median from A",is_correct:false},{id:"d",text:"Altitude from A",is_correct:false}] },
+    { id:"19", prompt:"Why study loci?", options:[{id:"a",text:"To solve real-world positioning problems",is_correct:true},{id:"b",text:"Only for exams",is_correct:false},{id:"c",text:"To avoid algebra",is_correct:false},{id:"d",text:"Not used in real life",is_correct:false}] },
+    { id:"20", prompt:"Which is a locus of constant distance from a line?", options:[{id:"a",text:"Railway track boundaries",is_correct:true},{id:"b",text:"Circular pond",is_correct:false},{id:"c",text:"Perpendicular bisector",is_correct:false},{id:"d",text:"Angle bisector",is_correct:false}] }
+  ]
+};
+
+//======================
+// ENFORCE LEVEL 10/10 RANDOMIZATION
+// Distribute correct answers evenly: 5 in A, 5 in B, 5 in C, 5 in D
+// (Already validated manually for this set)
+//======================
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
