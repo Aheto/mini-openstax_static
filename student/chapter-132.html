@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Rotational Symmetry</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 132;
+const CHAPTER_CONFIG = {
+  title: "Rotational Symmetry",
+  loTags: ["LO 2.13.1: Identify shapes with rotational symmetry."],
+  content: `
+    <h2>Key Concept: Rotational Symmetry</h2>
+    <p>A shape has <strong>rotational symmetry** if it looks exactly the same after being rotated (less than 360°) about a fixed point called the <strong>center of rotation**.</p>
+
+    <h3>Order of Rotational Symmetry</h3>
+    <p>The <strong>order** is the number of times the shape matches itself during a full 360° rotation.<br>
+    → Order = 360° ÷ smallest angle of rotation that maps shape onto itself.</p>
+
+    <h3>Common Shapes and Their Order</h3>
+    <ul>
+      <li><strong>Equilateral triangle**: order 3 (120°, 240°, 360°)</li>
+      <li><strong>Square**: order 4 (90°, 180°, 270°, 360°)</li>
+      <li><strong>Regular pentagon**: order 5</li>
+      <li><strong>Regular hexagon**: order 6</li>
+      <li><strong>Circle**: infinite order (looks the same at any angle)</li>
+      <li><strong>Rectangle (non-square)**: order 2 (180°, 360°)</li>
+      <li><strong>Parallelogram (non-rectangle)**: order 2</li>
+      <li><strong>Isosceles triangle**: order 1 (only at 360° → <strong>no rotational symmetry**)</li>
+      <li><strong>Scalene triangle**: order 1 → no rotational symmetry</li>
+    </ul>
+
+    <h3>How to Determine Rotational Symmetry</h3>
+    <ol>
+      <li>Identify the center of the shape.</li>
+      <li>Rotate the shape around this center.</li>
+      <li>Count how many times (including 360°) it looks identical to the original.</li>
+      <li>If it only matches at 360°, it has <strong>no rotational symmetry** (order 1).</li>
+    </ol>
+
+    <h3>Key Notes</h3>
+    <ul>
+      <li><strong>Order ≥ 2** means the shape has rotational symmetry.</li>
+      <li>All regular polygons have rotational symmetry equal to their number of sides.</li>
+      <li>A shape can have rotational symmetry without line symmetry (e.g., parallelogram).</li>
+      <li>Rotational symmetry is different from <strong>line (reflection) symmetry**.</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in design (logos, art, tiles), engineering (gears, wheels), nature (flowers, snowflakes), and computer graphics.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"A shape has rotational symmetry if it looks the same after rotation of less than:", options:[{id:"a",text:"360°",is_correct:true},{id:"b",text:"180°",is_correct:false},{id:"c",text:"90°",is_correct:false},{id:"d",text:"0°",is_correct:false}] },
+    { id:"2", prompt:"Order of rotational symmetry of a square:", options:[{id:"a",text:"4",is_correct:true},{id:"b",text:"2",is_correct:false},{id:"c",text:"3",is_correct:false},{id:"d",text:"1",is_correct:false}] },
+    { id:"3", prompt:"Equilateral triangle has order:", options:[{id:"a",text:"3",is_correct:true},{id:"b",text:"2",is_correct:false},{id:"c",text:"1",is_correct:false},{id:"d",text:"6",is_correct:false}] },
+    { id:"4", prompt:"A shape with only 360° matching has order:", options:[{id:"a",text:"1",is_correct:true},{id:"b",text:"0",is_correct:false},{id:"c",text:"2",is_correct:false},{id:"d",text:"Infinite",is_correct:false}] },
+    { id:"5", prompt:"Which shape has NO rotational symmetry?", options:[{id:"a",text:"Scalene triangle",is_correct:true},{id:"b",text:"Square",is_correct:false},{id:"c",text:"Regular hexagon",is_correct:false},{id:"d",text:"Circle",is_correct:false}] },
+    { id:"6", prompt:"Order of a regular pentagon:", options:[{id:"a",text:"5",is_correct:true},{id:"b",text:"4",is_correct:false},{id:"c",text:"6",is_correct:false},{id:"d",text:"10",is_correct:false}] },
+    { id:"7", prompt:"Rectangle (non-square) has order:", options:[{id:"a",text:"2",is_correct:true},{id:"b",text:"4",is_correct:false},{id:"c",text:"1",is_correct:false},{id:"d",text:"0",is_correct:false}] },
+    { id:"8", prompt:"Circle has order of rotational symmetry:", options:[{id:"a",text:"Infinite",is_correct:true},{id:"b",text:"0",is_correct:false},{id:"c",text:"360",is_correct:false},{id:"d",text:"1",is_correct:false}] },
+    { id:"9", prompt:"Parallelogram (non-rectangle) has order:", options:[{id:"a",text:"2",is_correct:true},{id:"b",text:"1",is_correct:false},{id:"c",text:"4",is_correct:false},{id:"d",text:"0",is_correct:false}] },
+    { id:"10", prompt:"Isosceles triangle has rotational symmetry?", options:[{id:"a",text:"No (order 1)",is_correct:true},{id:"b",text:"Yes, order 2",is_correct:false},{id:"c",text:"Yes, order 3",is_correct:false},{id:"d",text:"Yes, infinite",is_correct:false}] },
+    { id:"11", prompt:"If smallest rotation angle is 72°, order =", options:[{id:"a",text:"5",is_correct:true},{id:"b",text:"4",is_correct:false},{id:"c",text:"6",is_correct:false},{id:"d",text:"72",is_correct:false}] },
+    { id:"12", prompt:"Regular hexagon order:", options:[{id:"a",text:"6",is_correct:true},{id:"b",text:"3",is_correct:false},{id:"c",text:"12",is_correct:false},{id:"d",text:"4",is_correct:false}] },
+    { id:"13", prompt:"Which has rotational symmetry but no line symmetry?", options:[{id:"a",text:"Parallelogram",is_correct:true},{id:"b",text:"Isosceles triangle",is_correct:false},{id:"c",text:"Square",is_correct:false},{id:"d",text:"Circle",is_correct:false}] },
+    { id:"14", prompt:"Order = 360° ÷ ?", options:[{id:"a",text:"Smallest rotation angle",is_correct:true},{id:"b",text:"Number of sides",is_correct:false},{id:"c",text:"180°",is_correct:false},{id:"d",text:"360°",is_correct:false}] },
+    { id:"15", prompt:"Right-angled scalene triangle:", options:[{id:"a",text:"No rotational symmetry",is_correct:true},{id:"b",text:"Order 2",is_correct:false},{id:"c",text:"Order 3",is_correct:false},{id:"d",text:"Order 4",is_correct:false}] },
+    { id:"16", prompt:"Regular octagon order:", options:[{id:"a",text:"8",is_correct:true},{id:"b",text:"4",is_correct:false},{id:"c",text:"6",is_correct:false},{id:"d",text:"16",is_correct:false}] },
+    { id:"17", prompt:"A shape must have order ≥ ? to have rotational symmetry:", options:[{id:"a",text:"2",is_correct:true},{id:"b",text:"1",is_correct:false},{id:"c",text:"3",is_correct:false},{id:"d",text:"0",is_correct:false}] },
+    { id:"18", prompt:"Rhombus (non-square) order:", options:[{id:"a",text:"2",is_correct:true},{id:"b",text:"4",is_correct:false},{id:"c",text:"1",is_correct:false},{id:"d",text:"6",is_correct:false}] },
+    { id:"19", prompt:"Why study rotational symmetry?", options:[{id:"a",text:"For design, art, engineering, and understanding natural patterns",is_correct:true},{id:"b",text:"Only for exams",is_correct:false},{id:"c",text:"It’s the same as reflection",is_correct:false},{id:"d",text:"Rarely used",is_correct:false}] },
+    { id:"20", prompt:"If order = 6, smallest rotation angle =", options:[{id:"a",text:"60°",is_correct:true},{id:"b",text:"30°",is_correct:false},{id:"c",text:"90°",is_correct:false},{id:"d",text:"120°",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
