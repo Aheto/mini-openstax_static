@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Surface Area of Prisms</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 141;
+const CHAPTER_CONFIG = {
+  title: "Surface Area of Prisms",
+  loTags: ["LO 3.2.2: Calculate surface areas of prisms."],
+  content: `
+    <h2>Key Concept: Surface Area of Prisms</h2>
+    <p>The <strong>surface area (SA)** of a prism is the sum of the areas of all its faces. Prisms have two identical bases and rectangular lateral faces.</p>
+
+    <h3>1. Cube</h3>
+    <p>All faces are squares of side <strong>s**.<br>
+    → <strong>SA = 6s²**</p>
+
+    <h3>2. Cuboid (Rectangular Prism)</h3>
+    <p>Length <strong>l**, width <strong>w**, height <strong>h**.<br>
+    → <strong>SA = 2(lw + lh + wh)**</p>
+
+    <h3>3. Triangular Prism</h3>
+    <p>Two triangular bases (area = ½ × base × height) + three rectangular faces.<br>
+    → <strong>SA = 2 × (area of triangle) + (perimeter of triangle) × height of prism**<br>
+    Or: <strong>SA = 2B + Ph**, where B = base area, P = base perimeter, h = prism height.</p>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:** Cube, side = 4 cm → SA = 6 × 4² = <strong>96 cm²**</p>
+    <p><strong>Example 2:** Cuboid, l=5 cm, w=3 cm, h=2 cm → SA = 2(15 + 10 + 6) = <strong>62 cm²**</p>
+    <p><strong>Example 3:** Triangular prism: triangle base = 6 cm, height = 4 cm; prism height = 10 cm; triangle sides = 6, 5, 5 cm.<br>
+    → Base area = ½ × 6 × 4 = 12 cm²<br>
+    → Perimeter = 6 + 5 + 5 = 16 cm<br>
+    → SA = 2×12 + 16×10 = 24 + 160 = <strong>184 cm²**</p>
+
+    <h3>Key Notes</h3>
+    <ul>
+      <li>Surface area is always in <strong>square units** (cm², m²).</li>
+      <li>Do not confuse with <strong>volume** (cubic units).</li>
+      <li>For triangular prisms, ensure you use the **correct height** of the triangle (not the prism height) for base area.</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in packaging (cardboard needed), painting (wall area), construction (material estimation), and heat transfer calculations.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"Surface area of a cube of side 3 cm is:", options:[{id:"a",text:"54 cm²",is_correct:true},{id:"b",text:"27 cm²",is_correct:false},{id:"c",text:"36 cm²",is_correct:false},{id:"d",text:"9 cm²",is_correct:false}] },
+    { id:"2", prompt:"Cuboid: l=4 cm, w=2 cm, h=3 cm. SA =", options:[{id:"a",text:"52 cm²",is_correct:true},{id:"b",text:"24 cm²",is_correct:false},{id:"c",text:"48 cm²",is_correct:false},{id:"d",text:"36 cm²",is_correct:false}] },
+    { id:"3", prompt:"Triangular prism base area = 10 cm², perimeter = 12 cm, height = 5 cm. SA =", options:[{id:"a",text:"80 cm²",is_correct:true},{id:"b",text:"60 cm²",is_correct:false},{id:"c",text:"50 cm²",is_correct:false},{id:"d",text:"70 cm²",is_correct:false}] },
+    { id:"4", prompt:"Formula for cube surface area:", options:[{id:"a",text:"6s²",is_correct:true},{id:"b",text:"s³",is_correct:false},{id:"c",text:"4s²",is_correct:false},{id:"d",text:"2s²",is_correct:false}] },
+    { id:"5", prompt:"Units for surface area:", options:[{id:"a",text:"Square units",is_correct:true},{id:"b",text:"Cubic units",is_correct:false},{id:"c",text:"Linear units",is_correct:false},{id:"d",text:"Radians",is_correct:false}] },
+    { id:"6", prompt:"Cuboid: l=10 cm, w=5 cm, h=2 cm. SA =", options:[{id:"a",text:"160 cm²",is_correct:true},{id:"b",text:"100 cm²",is_correct:false},{id:"c",text:"200 cm²",is_correct:false},{id:"d",text:"70 cm²",is_correct:false}] },
+    { id:"7", prompt:"SA of cube = 150 cm². Side length =", options:[{id:"a",text:"5 cm",is_correct:true},{id:"b",text:"6 cm",is_correct:false},{id:"c",text:"10 cm",is_correct:false},{id:"d",text:"25 cm",is_correct:false}] },
+    { id:"8", prompt:"Which is NOT a prism?", options:[{id:"a",text:"Cone",is_correct:true},{id:"b",text:"Cube",is_correct:false},{id:"c",text:"Cuboid",is_correct:false},{id:"d",text:"Triangular prism",is_correct:false}] },
+    { id:"9", prompt:"For triangular prism, base triangle sides 3,4,5 cm, height 10 cm. Perimeter =", options:[{id:"a",text:"12 cm",is_correct:true},{id:"b",text:"6 cm",is_correct:false},{id:"c",text:"15 cm",is_correct:false},{id:"d",text:"10 cm",is_correct:false}] },
+    { id:"10", prompt:"Cuboid SA = 2(lw + lh + wh). What is lw?", options:[{id:"a",text:"Area of base",is_correct:true},{id:"b",text:"Perimeter",is_correct:false},{id:"c",text:"Volume",is_correct:false},{id:"d",text:"Height",is_correct:false}] },
+    { id:"11", prompt:"Cube side = 7 cm. SA =", options:[{id:"a",text:"294 cm²",is_correct:true},{id:"b",text:"343 cm²",is_correct:false},{id:"c",text:"147 cm²",is_correct:false},{id:"d",text:"49 cm²",is_correct:false}] },
+    { id:"12", prompt:"Triangular prism: triangle area = 15 cm², rectangle areas = 20, 25, 15 cm². SA =", options:[{id:"a",text:"90 cm²",is_correct:true},{id:"b",text:"60 cm²",is_correct:false},{id:"c",text:"75 cm²",is_correct:false},{id:"d",text:"100 cm²",is_correct:false}] },
+    { id:"13", prompt:"Surface area measures:", options:[{id:"a",text:"Total area of all faces",is_correct:true},{id:"b",text:"Space inside",is_correct:false},{id:"c",text:"Edge length",is_correct:false},{id:"d",text:"Weight",is_correct:false}] },
+    { id:"14", prompt:"Cuboid: l=6 cm, w=4 cm, SA=108 cm². Find h.", options:[{id:"a",text:"3 cm",is_correct:true},{id:"b",text:"4 cm",is_correct:false},{id:"c",text:"5 cm",is_correct:false},{id:"d",text:"2 cm",is_correct:false}] },
+    { id:"15", prompt:"Which prism has 5 faces?", options:[{id:"a",text:"Triangular prism",is_correct:true},{id:"b",text:"Cube",is_correct:false},{id:"c",text:"Cuboid",is_correct:false},{id:"d",text:"Hexagonal prism",is_correct:false}] },
+    { id:"16", prompt:"SA = 2B + Ph applies to:", options:[{id:"a",text:"All prisms",is_correct:true},{id:"b",text:"Only cubes",is_correct:false},{id:"c",text:"Only pyramids",is_correct:false},{id:"d",text:"Cylinders only",is_correct:false}] },
+    { id:"17", prompt:"Cuboid: l=8 cm, w=3 cm, h=1 cm. SA =", options:[{id:"a",text:"70 cm²",is_correct:true},{id:"b",text:"24 cm²",is_correct:false},{id:"c",text:"48 cm²",is_correct:false},{id:"d",text:"56 cm²",is_correct:false}] },
+    { id:"18", prompt:"If cube SA = 600 cm², volume =", options:[{id:"a",text:"1000 cm³",is_correct:true},{id:"b",text:"600 cm³",is_correct:false},{id:"c",text:"200 cm³",is_correct:false},{id:"d",text:"100 cm³",is_correct:false}] },
+    { id:"19", prompt:"Why calculate surface area?", options:[{id:"a",text:"To find material needed for covering",is_correct:true},{id:"b",text:"To find weight",is_correct:false},{id:"c",text:"To measure angles",is_correct:false},{id:"d",text:"Only for exams",is_correct:false}] },
+    { id:"20", prompt:"Triangular prism: equilateral triangle side 4 cm, height 6 cm. SA ≈", options:[{id:"a",text:"85.86 cm²",is_correct:true},{id:"b",text:"96 cm²",is_correct:false},{id:"c",text:"72 cm²",is_correct:false},{id:"d",text:"48 cm²",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
