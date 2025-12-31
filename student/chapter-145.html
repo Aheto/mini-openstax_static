@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Total Surface Area of a Pyramid</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 145;
+const CHAPTER_CONFIG = {
+  title: "Total Surface Area of a Pyramid",
+  loTags: ["LO 3.2.6: Calculate the total surface area of a pyramid."],
+  content: `
+    <h2>Key Concept: Total Surface Area of a Pyramid</h2>
+    <p>A <strong>right pyramid** has a regular polygon base (e.g., square or equilateral triangle) and triangular faces that meet at a common vertex **directly above the center** of the base.</p>
+    <p><strong>Total Surface Area (TSA)** = <strong>Base Area + Lateral (Curved) Surface Area**</p>
+
+    <h3>1. Square-Based Pyramid</h3>
+    <p>– Base: square of side <strong>s** → Base Area = s²<br>
+    – 4 identical triangular faces<br>
+    – Each triangle: base = s, height = <strong>slant height (l)**<br>
+    → Lateral Area = 4 × (½ × s × l) = <strong>2sl**<br>
+    → <strong>TSA = s² + 2sl**</p>
+
+    <h3>2. Triangular-Based (Tetrahedron)</h3>
+    <p>– Base: equilateral triangle of side <strong>s** → Base Area = (√3/4)s²<br>
+    – 3 identical triangular faces (if right pyramid)<br>
+    – Each lateral face: base = s, height = slant height <strong>l**<br>
+    → Lateral Area = 3 × (½ × s × l) = <strong>(3/2)sl**<br>
+    → <strong>TSA = (√3/4)s² + (3/2)sl**</p>
+
+    <h3>Key Notes</h3>
+    <ul>
+      <li><strong>Slant height (l)** is the height of the triangular face — **not** the vertical height from base to apex.</li>
+      <li>If only vertical height <strong>h** and base are given, use Pythagoras to find <strong>l**:<br>
+        For square base: <strong>l = √(h² + (s/2)²)**</li>
+      <li>TSA is always in <strong>square units** (cm², m²).</li>
+      <li>Do not confuse with <strong>volume** (⅓ × base area × height).</li>
+    </ul>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:** Square pyramid, s = 6 cm, l = 5 cm.<br>
+    → Base = 6² = 36 cm²<br>
+    → Lateral = 2 × 6 × 5 = 60 cm²<br>
+    → TSA = 36 + 60 = <strong>96 cm²**</p>
+
+    <p><strong>Example 2:** Square pyramid, s = 4 cm, vertical height h = 3 cm.<br>
+    → Slant height: l = √(3² + (4/2)²) = √(9 + 4) = √13 ≈ 3.606 cm<br>
+    → TSA = 4² + 2×4×√13 = 16 + 8√13 ≈ <strong>44.85 cm²**</p>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in architecture (pyramids, roofs), packaging (pyramid-shaped boxes), and monument design.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"TSA of square pyramid = ", options:[{id:"a",text:"s² + 2sl",is_correct:true},{id:"b",text:"s² + 4l",is_correct:false},{id:"c",text:"4s²",is_correct:false},{id:"d",text:"⅓ s²h",is_correct:false}] },
+    { id:"2", prompt:"Square pyramid: s=4 cm, l=5 cm. TSA =", options:[{id:"a",text:"56 cm²",is_correct:true},{id:"b",text:"40 cm²",is_correct:false},{id:"c",text:"16 cm²",is_correct:false},{id:"d",text:"80 cm²",is_correct:false}] },
+    { id:"3", prompt:"Slant height is:", options:[{id:"a",text:"Height of triangular face",is_correct:true},{id:"b",text:"Vertical height from base to apex",is_correct:false},{id:"c",text:"Base diagonal",is_correct:false},{id:"d",text:"Edge of base",is_correct:false}] },
+    { id:"4", prompt:"TSA includes:", options:[{id:"a",text:"Base + lateral faces",is_correct:true},{id:"b",text:"Lateral faces only",is_correct:false},{id:"c",text:"Volume",is_correct:false},{id:"d",text:"Base only",is_correct:false}] },
+    { id:"5", prompt:"Units for TSA:", options:[{id:"a",text:"Square units",is_correct:true},{id:"b",text:"Cubic units",is_correct:false},{id:"c",text:"Linear units",is_correct:false},{id:"d",text:"Radians",is_correct:false}] },
+    { id:"6", prompt:"Square pyramid: s=6 cm, l=10 cm. TSA =", options:[{id:"a",text:"156 cm²",is_correct:true},{id:"b",text:"120 cm²",is_correct:false},{id:"c",text:"36 cm²",is_correct:false},{id:"d",text:"240 cm²",is_correct:false}] },
+    { id:"7", prompt:"If s=8 cm, vertical h=6 cm, find l:", options:[{id:"a",text:"√(6² + 4²) = √52",is_correct:true},{id:"b",text:"√(8² + 6²)",is_correct:false},{id:"c",text:"6 cm",is_correct:false},{id:"d",text:"8 cm",is_correct:false}] },
+    { id:"8", prompt:"Which is NOT used in pyramid TSA?", options:[{id:"a",text:"Volume",is_correct:true},{id:"b",text:"Slant height",is_correct:false},{id:"c",text:"Base side",is_correct:false},{id:"d",text:"Base area",is_correct:false}] },
+    { id:"9", prompt:"Square pyramid: s=10 cm, l=13 cm. TSA =", options:[{id:"a",text:"360 cm²",is_correct:true},{id:"b",text":"260 cm²",is_correct:false},{id:"c",text:"100 cm²",is_correct:false},{id:"d",text:"520 cm²",is_correct:false}] },
+    { id:"10", prompt:"Lateral area of square pyramid =", options:[{id:"a",text:"2sl",is_correct:true},{id:"b",text:"s²",is_correct:false},{id:"c",text:"4l",is_correct:false},{id:"d",text:"sl",is_correct:false}] },
+    { id:"11", prompt:"s=2 cm, l=3 cm. TSA =", options:[{id:"a",text":"16 cm²",is_correct:true},{id:"b",text:"12 cm²",is_correct:false},{id:"c",text:"4 cm²",is_correct:false},{id:"d",text:"6 cm²",is_correct:false}] },
+    { id:"12", prompt:"For triangular pyramid (equilateral base), base area =", options:[{id:"a",text:"(√3/4)s²",is_correct:true},{id:"b",text:"s²",is_correct:false},{id:"c",text:"½ s²",is_correct:false},{id:"d",text:"3s",is_correct:false}] },
+    { id:"13", prompt:"Common mistake in TSA:", options:[{id:"a",text:"Using vertical height instead of slant height",is_correct:true},{id:"b",text:"Using diameter",is_correct:false},{id:"c",text:"Adding volume",is_correct:false},{id:"d",text:"Using 2πr",is_correct:false}] },
+    { id:"14", prompt:"s=5 cm, l=12 cm. TSA =", options:[{id:"a",text:"145 cm²",is_correct:true},{id:"b",text:"120 cm²",is_correct:false},{id:"c",text:"25 cm²",is_correct:false},{id:"d",text:"300 cm²",is_correct:false}] },
+    { id:"15", prompt:"If l is given, you:", options:[{id:"a",text:"Use it directly for lateral area",is_correct:true},{id:"b",text:"Must find vertical height",is_correct:false},{id:"c",text:"Ignore base",is_correct:false},{id:"d",text:"Calculate volume",is_correct:false}] },
+    { id:"16", prompt:"TSA = s² + 2sl. What is s²?", options:[{id:"a",text:"Base area",is_correct:true},{id:"b",text:"Lateral area",is_correct:false},{id:"c",text:"Slant height",is_correct:false},{id:"d",text:"Perimeter",is_correct:false}] },
+    { id:"17", prompt:"s=7 cm, l=25 cm. TSA =", options:[{id:"a",text:"399 cm²",is_correct:true},{id:"b",text":"350 cm²",is_correct:false},{id:"c",text:"49 cm²",is_correct:false},{id:"d",text:"875 cm²",is_correct:false}] },
+    { id:"18", prompt:"Why is slant height needed?", options:[{id:"a",text:"To find area of triangular faces",is_correct:true},{id:"b",text:"To find volume",is_correct:false},{id:"c",text:"To find base perimeter",is_correct:false},{id:"d",text:"To find edge length",is_correct:false}] },
+    { id:"19", prompt:"Real-life use of pyramid TSA:", options:[{id:"a",text:"Material needed for roofing or cladding",is_correct:true},{id:"b",text:"Only for exams",is_correct:false},{id:"c",text:"To find weight",is_correct:false},{id:"d",text:"Not used in real life",is_correct:false}] },
+    { id:"20", prompt:"s=9 cm, l=15 cm. TSA =", options:[{id:"a",text:"351 cm²",is_correct:true},{id:"b",text:"270 cm²",is_correct:false},{id:"c",text:"81 cm²",is_correct:false},{id:"d",text:"405 cm²",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
