@@ -38,44 +38,50 @@ const CHAPTER_CONFIG = {
   loTags: ["LO 3.2.6: Calculate the total surface area of a pyramid."],
   content: `
     <h2>Key Concept: Total Surface Area of a Pyramid</h2>
-    <p>A <strong>right pyramid** has a regular polygon base (e.g., square or equilateral triangle) and triangular faces that meet at a common vertex **directly above the center** of the base.</p>
-    <p><strong>Total Surface Area (TSA)** = <strong>Base Area + Lateral (Curved) Surface Area**</p>
+    <p>A <strong>right pyramid** has a regular polygon base (e.g., square) and triangular faces that meet at a common vertex (apex) directly above the centre of the base.</p>
+    <p>In SHS 1, we focus on the <strong>square pyramid**.</p>
 
-    <h3>1. Square-Based Pyramid</h3>
-    <p>– Base: square of side <strong>s** → Base Area = s²<br>
-    – 4 identical triangular faces<br>
-    – Each triangle: base = s, height = <strong>slant height (l)**<br>
-    → Lateral Area = 4 × (½ × s × l) = <strong>2sl**<br>
-    → <strong>TSA = s² + 2sl**</p>
-
-    <h3>2. Triangular-Based (Tetrahedron)</h3>
-    <p>– Base: equilateral triangle of side <strong>s** → Base Area = (√3/4)s²<br>
-    – 3 identical triangular faces (if right pyramid)<br>
-    – Each lateral face: base = s, height = slant height <strong>l**<br>
-    → Lateral Area = 3 × (½ × s × l) = <strong>(3/2)sl**<br>
-    → <strong>TSA = (√3/4)s² + (3/2)sl**</p>
-
-    <h3>Key Notes</h3>
+    <h3>Components of Surface Area</h3>
     <ul>
-      <li><strong>Slant height (l)** is the height of the triangular face — **not** the vertical height from base to apex.</li>
-      <li>If only vertical height <strong>h** and base are given, use Pythagoras to find <strong>l**:<br>
-        For square base: <strong>l = √(h² + (s/2)²)**</li>
-      <li>TSA is always in <strong>square units** (cm², m²).</li>
-      <li>Do not confuse with <strong>volume** (⅓ × base area × height).</li>
+      <li><strong>Base Area**: Area of the square base = <strong>s²** (where s = side of base)</li>
+      <li><strong>Lateral Surface Area**: Sum of the areas of the 4 triangular faces</li>
+      <li><strong>Total Surface Area (TSA) = Base Area + Lateral Surface Area**</li>
     </ul>
+
+    <h3>Key Measurements</h3>
+    <p>– <strong>s** = side length of square base<br>
+    – <strong>l** = slant height of triangular face (height of triangle, from base to apex)<br>
+    – <strong>h** = vertical height of pyramid (from base centre to apex) — <strong>not used directly in TSA**</p>
+
+    <h3>Formulas</h3>
+    <p><strong>Area of one triangular face** = ½ × s × l<br>
+    <strong>Lateral Surface Area** = 4 × (½ × s × l) = <strong>2sl**<br>
+    <strong>Total Surface Area** = s² + 2sl</p>
+
+    <h3>How to Find Slant Height (if not given)</h3>
+    <p>If vertical height <strong>h** and base side <strong>s** are given:<br>
+    → The distance from centre of base to midpoint of a side = <strong>s/2**<br>
+    → Slant height <strong>l = √(h² + (s/2)²)** (by Pythagoras)</p>
 
     <h3>Examples</h3>
     <p><strong>Example 1:** Square pyramid, s = 6 cm, l = 5 cm.<br>
-    → Base = 6² = 36 cm²<br>
-    → Lateral = 2 × 6 × 5 = 60 cm²<br>
+    → Base area = 6² = 36 cm²<br>
+    → Lateral area = 2 × 6 × 5 = 60 cm²<br>
     → TSA = 36 + 60 = <strong>96 cm²**</p>
 
-    <p><strong>Example 2:** Square pyramid, s = 4 cm, vertical height h = 3 cm.<br>
-    → Slant height: l = √(3² + (4/2)²) = √(9 + 4) = √13 ≈ 3.606 cm<br>
-    → TSA = 4² + 2×4×√13 = 16 + 8√13 ≈ <strong>44.85 cm²**</p>
+    <p><strong>Example 2:** s = 10 cm, h = 12 cm.<br>
+    → l = √(12² + 5²) = √(144 + 25) = √169 = <strong>13 cm**<br>
+    → TSA = 10² + 2×10×13 = 100 + 260 = <strong>360 cm²**</p>
+
+    <h3>Key Notes</h3>
+    <ul>
+      <li><strong>Slant height (l) is the height of the triangular face**, not the pyramid’s vertical height.</li>
+      <li>Always include the **base** in total surface area (unless specified as “lateral only”).</li>
+      <li>Units are <strong>square units** (cm², m²).</li>
+    </ul>
 
     <h3>Real-Life Use</h3>
-    <p>Used in architecture (pyramids, roofs), packaging (pyramid-shaped boxes), and monument design.</p>
+    <p>Used in architecture (roofing, monuments like pyramids), packaging (pyramid-shaped boxes), and surface material estimation.</p>
 
     <!-- 💬 WhatsApp Support -->
     <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
@@ -115,26 +121,26 @@ const CHAPTER_CONFIG = {
   `,
   whatsappNumber: "233257320201",
   assessmentItems: [
-    { id:"1", prompt:"TSA of square pyramid = ", options:[{id:"a",text:"s² + 2sl",is_correct:true},{id:"b",text:"s² + 4l",is_correct:false},{id:"c",text:"4s²",is_correct:false},{id:"d",text:"⅓ s²h",is_correct:false}] },
-    { id:"2", prompt:"Square pyramid: s=4 cm, l=5 cm. TSA =", options:[{id:"a",text:"56 cm²",is_correct:true},{id:"b",text:"40 cm²",is_correct:false},{id:"c",text:"16 cm²",is_correct:false},{id:"d",text:"80 cm²",is_correct:false}] },
-    { id:"3", prompt:"Slant height is:", options:[{id:"a",text:"Height of triangular face",is_correct:true},{id:"b",text:"Vertical height from base to apex",is_correct:false},{id:"c",text:"Base diagonal",is_correct:false},{id:"d",text:"Edge of base",is_correct:false}] },
-    { id:"4", prompt:"TSA includes:", options:[{id:"a",text:"Base + lateral faces",is_correct:true},{id:"b",text:"Lateral faces only",is_correct:false},{id:"c",text:"Volume",is_correct:false},{id:"d",text:"Base only",is_correct:false}] },
+    { id:"1", prompt:"TSA of square pyramid = ", options:[{id:"a",text:"s² + 2sl",is_correct:true},{id:"b",text:"s² + 4sl",is_correct:false},{id:"c",text:"4 × (½sh)",is_correct:false},{id:"d",text:"s³",is_correct:false}] },
+    { id:"2", prompt:"s = 4 cm, l = 5 cm. TSA =", options:[{id:"a",text:"56 cm²",is_correct:true},{id:"b",text:"40 cm²",is_correct:false},{id:"c",text:"16 cm²",is_correct:false},{id:"d",text:"80 cm²",is_correct:false}] },
+    { id:"3", prompt:"s = 6 cm, h = 4 cm. Find l:", options:[{id:"a",text:"5 cm",is_correct:true},{id:"b",text:"10 cm",is_correct:false},{id:"c",text:"2.5 cm",is_correct:false},{id:"d",text:"7 cm",is_correct:false}] },
+    { id:"4", prompt:"TSA includes:", options:[{id:"a",text:"Base + all triangular faces",is_correct:true},{id:"b",text:"Triangular faces only",is_correct:false},{id:"c",text:"Volume",is_correct:false},{id:"d",text:"Vertical height",is_correct:false}] },
     { id:"5", prompt:"Units for TSA:", options:[{id:"a",text:"Square units",is_correct:true},{id:"b",text:"Cubic units",is_correct:false},{id:"c",text:"Linear units",is_correct:false},{id:"d",text:"Radians",is_correct:false}] },
-    { id:"6", prompt:"Square pyramid: s=6 cm, l=10 cm. TSA =", options:[{id:"a",text:"156 cm²",is_correct:true},{id:"b",text:"120 cm²",is_correct:false},{id:"c",text:"36 cm²",is_correct:false},{id:"d",text:"240 cm²",is_correct:false}] },
-    { id:"7", prompt:"If s=8 cm, vertical h=6 cm, find l:", options:[{id:"a",text:"√(6² + 4²) = √52",is_correct:true},{id:"b",text:"√(8² + 6²)",is_correct:false},{id:"c",text:"6 cm",is_correct:false},{id:"d",text:"8 cm",is_correct:false}] },
-    { id:"8", prompt:"Which is NOT used in pyramid TSA?", options:[{id:"a",text:"Volume",is_correct:true},{id:"b",text:"Slant height",is_correct:false},{id:"c",text:"Base side",is_correct:false},{id:"d",text:"Base area",is_correct:false}] },
-    { id:"9", prompt:"Square pyramid: s=10 cm, l=13 cm. TSA =", options:[{id:"a",text:"360 cm²",is_correct:true},{id:"b",text":"260 cm²",is_correct:false},{id:"c",text:"100 cm²",is_correct:false},{id:"d",text:"520 cm²",is_correct:false}] },
-    { id:"10", prompt:"Lateral area of square pyramid =", options:[{id:"a",text:"2sl",is_correct:true},{id:"b",text:"s²",is_correct:false},{id:"c",text:"4l",is_correct:false},{id:"d",text:"sl",is_correct:false}] },
-    { id:"11", prompt:"s=2 cm, l=3 cm. TSA =", options:[{id:"a",text":"16 cm²",is_correct:true},{id:"b",text:"12 cm²",is_correct:false},{id:"c",text:"4 cm²",is_correct:false},{id:"d",text:"6 cm²",is_correct:false}] },
-    { id:"12", prompt:"For triangular pyramid (equilateral base), base area =", options:[{id:"a",text:"(√3/4)s²",is_correct:true},{id:"b",text:"s²",is_correct:false},{id:"c",text:"½ s²",is_correct:false},{id:"d",text:"3s",is_correct:false}] },
-    { id:"13", prompt:"Common mistake in TSA:", options:[{id:"a",text:"Using vertical height instead of slant height",is_correct:true},{id:"b",text:"Using diameter",is_correct:false},{id:"c",text:"Adding volume",is_correct:false},{id:"d",text:"Using 2πr",is_correct:false}] },
-    { id:"14", prompt:"s=5 cm, l=12 cm. TSA =", options:[{id:"a",text:"145 cm²",is_correct:true},{id:"b",text:"120 cm²",is_correct:false},{id:"c",text:"25 cm²",is_correct:false},{id:"d",text:"300 cm²",is_correct:false}] },
-    { id:"15", prompt:"If l is given, you:", options:[{id:"a",text:"Use it directly for lateral area",is_correct:true},{id:"b",text:"Must find vertical height",is_correct:false},{id:"c",text:"Ignore base",is_correct:false},{id:"d",text:"Calculate volume",is_correct:false}] },
-    { id:"16", prompt:"TSA = s² + 2sl. What is s²?", options:[{id:"a",text:"Base area",is_correct:true},{id:"b",text:"Lateral area",is_correct:false},{id:"c",text:"Slant height",is_correct:false},{id:"d",text:"Perimeter",is_correct:false}] },
-    { id:"17", prompt:"s=7 cm, l=25 cm. TSA =", options:[{id:"a",text:"399 cm²",is_correct:true},{id:"b",text":"350 cm²",is_correct:false},{id:"c",text:"49 cm²",is_correct:false},{id:"d",text:"875 cm²",is_correct:false}] },
-    { id:"18", prompt:"Why is slant height needed?", options:[{id:"a",text:"To find area of triangular faces",is_correct:true},{id:"b",text:"To find volume",is_correct:false},{id:"c",text:"To find base perimeter",is_correct:false},{id:"d",text:"To find edge length",is_correct:false}] },
-    { id:"19", prompt:"Real-life use of pyramid TSA:", options:[{id:"a",text:"Material needed for roofing or cladding",is_correct:true},{id:"b",text:"Only for exams",is_correct:false},{id:"c",text:"To find weight",is_correct:false},{id:"d",text:"Not used in real life",is_correct:false}] },
-    { id:"20", prompt:"s=9 cm, l=15 cm. TSA =", options:[{id:"a",text:"351 cm²",is_correct:true},{id:"b",text:"270 cm²",is_correct:false},{id:"c",text:"81 cm²",is_correct:false},{id:"d",text:"405 cm²",is_correct:false}] }
+    { id:"6", prompt:"s = 10 cm, l = 13 cm. TSA =", options:[{id:"a",text:"360 cm²",is_correct:true},{id:"b",text:"130 cm²",is_correct:false},{id:"c",text:"100 cm²",is_correct:false},{id:"d",text:"260 cm²",is_correct:false}] },
+    { id:"7", prompt:"s = 8 cm, h = 3 cm. l =", options:[{id:"a",text:"5 cm",is_correct:true},{id:"b",text:"11 cm",is_correct:false},{id:"c",text:"4 cm",is_correct:false},{id:"d",text:"6 cm",is_correct:false}] },
+    { id:"8", prompt:"Which is NOT in TSA formula?", options:[{id:"a",text:"Vertical height (h)",is_correct:true},{id:"b",text:"Slant height (l)",is_correct:false},{id:"c",text:"Base side (s)",is_correct:false},{id:"d",text:"Base area",is_correct:false}] },
+    { id:"9", prompt:"s = 5 cm, l = 12 cm. TSA =", options:[{id:"a",text:"145 cm²",is_correct:true},{id:"b",text:"60 cm²",is_correct:false},{id:"c",text:"25 cm²",is_correct:false},{id:"d",text:"120 cm²",is_correct:false}] },
+    { id:"10", prompt:"Area of one triangular face =", options:[{id:"a",text:"½ × s × l",is_correct:true},{id:"b",text:"s × h",is_correct:false},{id:"c",text:"s²",is_correct:false},{id:"d",text:"¼ × s × l",is_correct:false}] },
+    { id:"11", prompt:"s = 2 cm, h = 1.5 cm. l =", options:[{id:"a",text:"1.80 cm",is_correct:true},{id:"b",text:"3.5 cm",is_correct:false},{id:"c",text:"0.5 cm",is_correct:false},{id:"d",text:"2.5 cm",is_correct:false}] },
+    { id:"12", prompt:"s = 12 cm, l = 10 cm. TSA =", options:[{id:"a",text:"384 cm²",is_correct:true},{id:"b",text:"240 cm²",is_correct:false},{id:"c",text:"144 cm²",is_correct:false},{id:"d",text:"480 cm²",is_correct:false}] },
+    { id:"13", prompt:"Slant height is the height of the:", options:[{id:"a",text:"Triangular face",is_correct:true},{id:"b",text:"Pyramid",is_correct:false},{id:"c",text:"Base",is_correct:false},{id:"d",text:"Apex",is_correct:false}] },
+    { id:"14", prompt:"s = 6 cm, h = 8 cm. TSA =", options:[{id:"a",text:"156 cm²",is_correct:true},{id:"b",text:"96 cm²",is_correct:false},{id:"c",text:"36 cm²",is_correct:false},{id:"d",text:"192 cm²",is_correct:false}] },
+    { id:"15", prompt:"If l is given, you:", options:[{id:"a",text:"Use it directly in TSA",is_correct:true},{id:"b",text:"Must find h first",is_correct:false},{id:"c",text:"Ignore s",is_correct:false},{id:"d",text:"Calculate volume",is_correct:false}] },
+    { id:"16", prompt:"TSA = s² + 2sl. What is s²?", options:[{id:"a",text:"Base area",is_correct:true},{id:"b",text:"Lateral area",is_correct:false},{id:"c",text:"Face height",is_correct:false},{id:"d",text:"Perimeter",is_correct:false}] },
+    { id:"17", prompt:"s = 9 cm, l = 15 cm. TSA =", options:[{id:"a",text:"351 cm²",is_correct:true},{id:"b",text:"270 cm²",is_correct:false},{id:"c",text:"81 cm²",is_correct:false},{id:"d",text:"405 cm²",is_correct:false}] },
+    { id:"18", prompt:"Common mistake in TSA:", options:[{id:"a",text:"Using h instead of l",is_correct:true},{id:"b",text:"Using diameter",is_correct:false},{id:"c",text:"Forgetting ½ in triangle area",is_correct:false},{id:"d",text:"All of the above",is_correct:false}] },
+    { id:"19", prompt:"Why study pyramid TSA?", options:[{id:"a",text:"For material estimation in construction",is_correct:true},{id:"b",text:"Only for exams",is_correct:false},{id:"c",text:"To find weight",is_correct:false},{id:"d",text:"Not used in real life",is_correct:false}] },
+    { id:"20", prompt:"s = 7 cm, h = 24 cm. TSA =", options:[{id:"a",text:"490 cm²",is_correct:true},{id:"b",text:"168 cm²",is_correct:false},{id:"c",text:"49 cm²",is_correct:false},{id:"d",text:"336 cm²",is_correct:false}] }
   ]
 };
 
