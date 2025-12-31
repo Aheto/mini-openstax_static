@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Volume of a Cone</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 144;
+const CHAPTER_CONFIG = {
+  title: "Volume of a Cone",
+  loTags: ["LO 3.2.5: Calculate the volume of a cone."],
+  content: `
+    <h2>Key Concept: Volume of a Cone</h2>
+    <p>The <strong>volume** of a right circular cone is the amount of space it occupies. It is exactly <strong>one-third** the volume of a cylinder with the same base and height.</p>
+
+    <h3>Formula</h3>
+    <p>Let:<br>
+    – <strong>r** = radius of the circular base<br>
+    – <strong>h** = vertical height (from base to vertex)</p>
+    <p style="text-align: center; font-size: 1.2rem; margin: 1.5rem 0;">
+      <strong>Volume = ⅓ πr²h**
+    </p>
+
+    <h3>Important Notes</h3>
+    <ul>
+      <li>Use <strong>vertical height (h)**, NOT slant height (l).</li>
+      <li>If diameter is given, divide by 2 to get radius: <strong>r = d/2**.</li>
+      <li>Volume is always in <strong>cubic units** (cm³, m³, etc.).</li>
+      <li>The factor <strong>⅓** is crucial — without it, you get the volume of a cylinder.</li>
+    </ul>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:** Cone, r = 3 cm, h = 4 cm.<br>
+    → V = ⅓ × π × 3² × 4 = ⅓ × π × 9 × 4 = <strong>12π ≈ 37.7 cm³**</p>
+
+    <p><strong>Example 2:** Cone, diameter = 10 cm → r = 5 cm, h = 12 cm.<br>
+    → V = ⅓ × π × 25 × 12 = <strong>100π ≈ 314.2 cm³**</p>
+
+    <p><strong>Example 3:** Cone, r = 7 cm, h = 9 cm.<br>
+    → V = ⅓ × π × 49 × 9 = <strong>147π ≈ 461.8 cm³**</p>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in calculating capacity of conical containers (funnels, ice cream cones), earthworks (piles of sand/gravel), and engineering design (nozzles, hoppers).</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"Volume of cone formula:", options:[{id:"a",text:"⅓ πr²h",is_correct:true},{id:"b",text:"πr²h",is_correct:false},{id:"c",text:"πrl",is_correct:false},{id:"d",text:"⅓ πr²l",is_correct:false}] },
+    { id:"2", prompt:"Cone: r=3 cm, h=4 cm. Volume =", options:[{id:"a",text:"12π cm³",is_correct:true},{id:"b",text:"36π cm³",is_correct:false},{id:"c",text:"9π cm³",is_correct:false},{id:"d",text:"16π cm³",is_correct:false}] },
+    { id:"3", prompt:"Cone: diameter=10 cm, h=12 cm. r =", options:[{id:"a",text:"5 cm",is_correct:true},{id:"b",text:"10 cm",is_correct:false},{id:"c",text:"2.5 cm",is_correct:false},{id:"d",text:"20 cm",is_correct:false}] },
+    { id:"4", prompt:"Which height is used in volume?", options:[{id:"a",text:"Vertical height (h)",is_correct:true},{id:"b",text:"Slant height (l)",is_correct:false},{id:"c",text:"Diameter",is_correct:false},{id:"d",text:"Radius",is_correct:false}] },
+    { id:"5", prompt:"Units for volume:", options:[{id:"a",text:"Cubic units",is_correct:true},{id:"b",text:"Square units",is_correct:false},{id:"c",text:"Linear units",is_correct:false},{id:"d",text:"Degrees",is_correct:false}] },
+    { id:"6", prompt:"Cone: r=5 cm, h=9 cm. Volume =", options:[{id:"a",text:"75π cm³",is_correct:true},{id:"b",text:"225π cm³",is_correct:false},{id:"c",text:"45π cm³",is_correct:false},{id:"d",text:"15π cm³",is_correct:false}] },
+    { id:"7", prompt:"Cone: r=6 cm, h=8 cm. Volume =", options:[{id:"a",text:"96π cm³",is_correct:true},{id:"b",text:"288π cm³",is_correct:false},{id:"c",text:"48π cm³",is_correct:false},{id:"d",text:"144π cm³",is_correct:false}] },
+    { id:"8", prompt:"Which is NOT used in cone volume?", options:[{id:"a",text:"Slant height (l)",is_correct:true},{id:"b",text:"Radius",is_correct:false},{id:"c",text:"Vertical height",is_correct:false},{id:"d",text:"π",is_correct:false}] },
+    { id:"9", prompt:"Cone: r=4 cm, h=3 cm. Volume =", options:[{id:"a",text:"16π cm³",is_correct:true},{id:"b",text:"48π cm³",is_correct:false},{id:"c",text:"12π cm³",is_correct:false},{id:"d",text:"9π cm³",is_correct:false}] },
+    { id:"10", prompt:"Volume of cone vs. cylinder (same r, h):", options:[{id:"a",text:"Cone is ⅓ of cylinder",is_correct:true},{id:"b",text:"Cone is 3× cylinder",is_correct:false},{id:"c",text:"Same volume",is_correct:false},{id:"d",text:"Cone is double",is_correct:false}] },
+    { id:"11", prompt:"Cone: diameter=14 cm, h=9 cm. Volume =", options:[{id:"a",text:"147π cm³",is_correct:true},{id:"b",text:"441π cm³",is_correct:false},{id:"c",text:"63π cm³",is_correct:false},{id:"d",text:"308π cm³",is_correct:false}] },
+    { id:"12", prompt:"Common mistake in cone volume:", options:[{id:"a",text:"Forgetting ⅓",is_correct:true},{id:"b",text:"Using r²h only",is_correct:false},{id:"c",text:"Using l instead of h",is_correct:false},{id:"d",text:"All of the above",is_correct:false}] },
+    { id:"13", prompt:"Cone: r=2 cm, h=6 cm. Volume =", options:[{id:"a",text:"8π cm³",is_correct:true},{id:"b",text:"24π cm³",is_correct:false},{id:"c",text:"4π cm³",is_correct:false},{id:"d",text:"12π cm³",is_correct:false}] },
+    { id:"14", prompt:"Cone: r=7 cm, h=12 cm. Volume =", options:[{id:"a",text:"196π cm³",is_correct:true},{id:"b",text:"588π cm³",is_correct:false},{id:"c",text:"84π cm³",is_correct:false},{id:"d",text:"294π cm³",is_correct:false}] },
+    { id:"15", prompt:"If h is tripled, volume:", options:[{id:"a",text:"Triples",is_correct:true},{id:"b",text:"Doubles",is_correct:false},{id:"c",text:"Nine times",is_correct:false},{id:"d",text:"Unchanged",is_correct:false}] },
+    { id:"16", prompt:"Volume = ⅓ πr²h. What is πr²?", options:[{id:"a",text:"Base area",is_correct:true},{id:"b",text:"Curved area",is_correct:false},{id:"c",text:"Lateral height",is_correct:false},{id:"d",text:"Diameter",is_correct:false}] },
+    { id:"17", prompt:"Cone: r=9 cm, h=6 cm. Volume =", options:[{id:"a",text:"162π cm³",is_correct:true},{id:"b",text:"486π cm³",is_correct:false},{id:"c",text:"54π cm³",is_correct:false},{id:"d",text:"243π cm³",is_correct:false}] },
+    { id:"18", prompt:"Cone: r=5 cm, h=15 cm. Volume =", options:[{id:"a",text:"125π cm³",is_correct:true},{id:"b",text:"375π cm³",is_correct:false},{id:"c",text:"75π cm³",is_correct:false},{id:"d",text:"25π cm³",is_correct:false}] },
+    { id:"19", prompt:"Why study cone volume?", options:[{id:"a",text:"For capacity and material estimation",is_correct:true},{id:"b",text:"Only for exams",is_correct:false},{id:"c",text:"To find surface area",is_correct:false},{id:"d",text:"Not used in real life",is_correct:false}] },
+    { id:"20", prompt:"Cone: r=8 cm, h=6 cm. Volume =", options:[{id:"a",text:"128π cm³",is_correct:true},{id:"b",text:"384π cm³",is_correct:false},{id:"c",text:"64π cm³",is_correct:false},{id:"d",text:"192π cm³",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
