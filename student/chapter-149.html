@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Distance Along Latitude and Longitude</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 149;
+const CHAPTER_CONFIG = {
+  title: "Distance Along Latitude and Longitude",
+  loTags: ["LO (SHS 3): Calculate distance along a given latitude and longitude."],
+  content: `
+    <h2>Key Concept: Earth Geometry</h2>
+    <p>The Earth is modeled as a **sphere** with radius **R ≈ 6370 km** (or **3437 nautical miles**). Locations are given by **latitude** and **longitude**.</p>
+
+    <h3>Key Definitions</h3>
+    <ul>
+      <li><strong>Equator**: 0° latitude (great circle).</li>
+      <li><strong>Meridians (lines of longitude)**: Run from North to South Pole (great circles).</li>
+      <li><strong>Parallels (lines of latitude)**: Run east-west (small circles, except equator).</li>
+      <li><strong>Great Circle**: Circle with same radius as Earth (shortest path between two points).</li>
+    </ul>
+
+    <h3>1. Distance Along a Meridian (Same Longitude)</h3>
+    <p>Points on the same longitude lie on a **great circle**.<br>
+    → <strong>Distance = θ × R**<br>
+    where <strong>θ = difference in latitude** (in radians).<br>
+    In degrees: <strong>Distance = (θ/360) × 2πR = (θ × πR)/180**</p>
+
+    <h3>2. Distance Along the Equator (0° Latitude)</h3>
+    <p>Equator is a great circle.<br>
+    → <strong>Distance = (Δlong/360) × 2πR = (Δlong × πR)/180**<br>
+    where <strong>Δlong = difference in longitude** (in degrees).</p>
+
+    <h3>3. Distance Along a Parallel of Latitude (Same Latitude, ≠ 0°)</h3>
+    <p>Radius of parallel at latitude **φ** is **R cos φ** (not a great circle).<br>
+    → <strong>Distance = (Δlong × π × R × cos φ)/180**</p>
+
+    <h3>Units</h3>
+    <ul>
+      <li>Kilometers (km): Use <strong>R = 6370 km**</li>
+      <li>Nautical miles (nm): Use <strong>R = 3437 nm**, OR remember: <strong>1° of arc = 60 nm** along great circle.</li>
+    </ul>
+
+    <h3>Examples</h3>
+    <p><strong>Example 1:** A(20°N, 30°E), B(50°N, 30°E). Same longitude.<br>
+    → Δlat = 30°<br>
+    → Distance = (30 × π × 6370)/180 ≈ <strong>3336 km**</p>
+
+    <p><strong>Example 2:** C(0°, 10°W), D(0°, 40°E). On equator.<br>
+    → Δlong = 50°<br>
+    → Distance = (50 × π × 6370)/180 ≈ <strong>5557 km**</p>
+
+    <p><strong>Example 3:** E(60°N, 20°W), F(60°N, 10°E). Same latitude.<br>
+    → Δlong = 30°, φ = 60°<br>
+    → Distance = (30 × π × 6370 × cos 60°)/180 = (30 × π × 6370 × 0.5)/180 ≈ <strong>1668 km**</p>
+
+    <h3>Key Notes</h3>
+    <ul>
+      <li>Always use **smallest angle** for Δlat or Δlong (≤ 180°).</li>
+      <li>For **great circle distance** (shortest path), use spherical trigonometry (beyond this scope).</li>
+      <li>In exams, **R = 6400 km** or **3440 nm** may be specified — use given value.</li>
+    </ul>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"Earth's radius for distance calc:", options:[{id:"a",text:"6370 km",is_correct:true},{id:"b",text:"6370 m",is_correct:false},{id:"c",text:"6370 cm",is_correct:false},{id:"d",text:"637 km",is_correct:false}] },
+    { id:"2", prompt:"1° of arc on great circle =", options:[{id:"a",text:"60 nautical miles",is_correct:true},{id:"b",text:"1 nautical mile",is_correct:false},{id:"c",text:"1 km",is_correct:false},{id:"d",text:"100 km",is_correct:false}] },
+    { id:"3", prompt:"A(30°N, 20°E), B(50°N, 20°E). Distance along:", options:[{id:"a",text:"Meridian (great circle)",is_correct:true},{id:"b",text:"Parallel of latitude",is_correct:false},{id:"c",text:"Equator",is_correct:false},{id:"d",text:"Tropic of Cancer",is_correct:false}] },
+    { id:"4", prompt:"Distance along equator uses:", options:[{id:"a",text:"Δlongitude",is_correct:true},{id:"b",text:"Δlatitude",is_correct:false},{id:"c",text:"Cosine of latitude",is_correct:false},{id:"d",text:"Vertical height",is_correct:false}] },
+    { id:"5", prompt:"Radius of parallel at latitude φ:", options:[{id:"a",text:"R cos φ",is_correct:true},{id:"b",text:"R sin φ",is_correct:false},{id:"c",text:"R tan φ",is_correct:false},{id:"d",text:"R",is_correct:false}] },
+    { id:"6", prompt:"C(0°, 10°W), D(0°, 50°E). Δlong =", options:[{id:"a",text:"60°",is_correct:true},{id:"b",text:"40°",is_correct:false},{id:"c",text:"50°",is_correct:false},{id:"d",text:"70°",is_correct:false}] },
+    { id:"7", prompt:"E(45°N, 30°W), F(45°N, 15°W). Δlong =", options:[{id:"a",text:"15°",is_correct:true},{id:"b",text:"45°",is_correct:false},{id:"c",text:"30°",is_correct:false},{id:"d",text:"60°",is_correct:false}] },
+    { id:"8", prompt:"Distance along meridian uses:", options:[{id:"a",text:"Δlatitude",is_correct:true},{id:"b",text:"Δlongitude",is_correct:false},{id:"c",text:"Cos φ",is_correct:false},{id:"d",text:"Sin φ",is_correct:false}] },
+    { id:"9", prompt:"G(60°S, 0°), H(60°S, 60°E). Distance ∝", options:[{id:"a",text:"cos 60°",is_correct:true},{id:"b",text:"sin 60°",is_correct:false},{id:"c",text:"tan 60°",is_correct:false},{id:"d",text:"60°",is_correct:false}] },
+    { id:"10", prompt:"Shortest distance between two points on Earth is along:", options:[{id:"a",text:"Great circle",is_correct:true},{id:"b",text:"Parallel of latitude",is_correct:false},{id:"c",text:"Meridian only",is_correct:false},{id:"d",text:"Equator only",is_correct:false}] },
+    { id:"11", prompt:"A(10°N, 0°), B(10°S, 0°). Δlat =", options:[{id:"a",text:"20°",is_correct:true},{id:"b",text:"10°",is_correct:false},{id:"c",text:"0°",is_correct:false},{id:"d",text:"170°",is_correct:false}] },
+    { id:"12", prompt:"C(30°N, 20°E), D(30°N, 80°E). Distance = (60 × π × R × ?)/180", options:[{id:"a",text:"cos 30°",is_correct:true},{id:"b",text:"sin 30°",is_correct:false},{id:"c",text:"tan 30°",is_correct:false},{id:"d",text:"1",is_correct:false}] },
+    { id:"13", prompt:"Units for nautical miles based on:", options:[{id:"a",text:"1′ of arc = 1 nm",is_correct:true},{id:"b",text:"1 km = 1 nm",is_correct:false},{id:"c",text:"1° = 1 nm",is_correct:false},{id:"d",text:"Earth's diameter",is_correct:false}] },
+    { id:"14", prompt:"E(0°, 0°), F(0°, 180°). Distance ≈", options:[{id:"a",text:"20,000 km",is_correct:true},{id:"b",text:"10,000 km",is_correct:false},{id:"c",text:"40,000 km",is_correct:false},{id:"d",text:"5000 km",is_correct:false}] },
+    { id:"15", prompt:"G(70°N, 10°W), H(70°N, 20°E). Use:", options:[{id:"a",text:"R cos 70°",is_correct:true},{id:"b",text:"R sin 70°",is_correct:false},{id:"c",text:"R",is_correct:false},{id:"d",text:"R tan 70°",is_correct:false}] },
+    { id:"16", prompt:"A(20°S, 30°E), B(40°S, 30°E). Δlat =", options:[{id:"a",text:"20°",is_correct:true},{id:"b",text:"60°",is_correct:false},{id:"c",text:"30°",is_correct:false},{id:"d",text:"10°",is_correct:false}] },
+    { id:"17", prompt:"Distance along parallel is always ______ great circle distance for same Δlong:", options:[{id:"a",text:"Less than",is_correct:true},{id:"b",text:"Greater than",is_correct:false},{id:"c",text:"Equal to",is_correct:false},{id:"d",text:"Twice",is_correct:false}] },
+    { id:"18", prompt:"If R = 6400 km, 1° arc ≈", options:[{id:"a",text:"111.7 km",is_correct:true},{id:"b",text:"60 km",is_correct:false},{id:"c",text:"100 km",is_correct:false},{id:"d",text:"150 km",is_correct:false}] },
+    { id:"19", prompt:"Why study earth geometry?", options:[{id:"a",text:"For navigation, aviation, and shipping",is_correct:true},{id:"b",text:"Only for exams",is_correct:false},{id:"c",text:"To find volume of Earth",is_correct:false},{id:"d",text:"Not used in real life",is_correct:false}] },
+    { id:"20", prompt:"C(60°N, 0°), D(60°N, 60°E). Distance (R=6370 km):", options:[{id:"a",text:"≈3336 km",is_correct:true},{id:"b",text:"≈6672 km",is_correct:false},{id:"c",text:"≈1668 km",is_correct:false},{id:"d",text:"≈5004 km",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
