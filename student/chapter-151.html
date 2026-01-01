@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mini OpenStax: Interactive learning module"/>
+<title>Mini OpenStax — Negation of Statements</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1 id="chapter-title">Loading Chapter...</h1>
+      <div class="lo-tags" id="lo-tags"></div>
+    </div>
+    <div class="role-badge">Student View</div>
+  </div>
+
+  <!-- 📚 5-BUTTON NAVIGATION BAR -->
+  <nav class="chapter-nav" id="chapter-nav" style="margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center;"></nav>
+
+  <main id="main-content">
+    <div class="loading">Loading chapter content...</div>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+//======================
+// 🔧 CONFIGURATION — EDIT PER CHAPTER
+//======================
+const currentChapter = 151;
+const CHAPTER_CONFIG = {
+  title: "Negation of Statements",
+  loTags: ["LO 3.3.2: Form the negation of simple statements."],
+  content: `
+    <h2>Key Concept: Negation</h2>
+    <p>The <strong>negation** of a statement is its <strong>logical opposite**. It has the <strong>opposite truth value**.</p>
+    <p>If a statement <strong>p** is <strong>true**, its negation (written <strong>~p** or <strong>¬p**) is <strong>false**, and vice versa.</p>
+
+    <h3>How to Form a Negation</h3>
+    <p>Common ways to negate a statement:</p>
+    <ul>
+      <li>Add <strong>"not"** or <strong>"It is not true that…"**</li>
+      <li>Use opposite words (e.g., "is" → "is not", "all" → "not all", "some" → "none")</li>
+    </ul>
+
+    <h3>Examples</h3>
+    <p><strong>Statement**: "Accra is the capital of Ghana." (True)<br>
+    → <strong>Negation**: "Accra is **not** the capital of Ghana." (False)</p>
+
+    <p><strong>Statement**: "2 + 3 = 6." (False)<br>
+    → <strong>Negation**: "2 + 3 **≠** 6." or "2 + 3 is **not equal to** 6." (True)</p>
+
+    <p><strong>Statement**: "All birds can fly."<br>
+    → <strong>Negation**: "**Not all** birds can fly." (or "Some birds cannot fly.")</p>
+
+    <p><strong>Statement**: "The sky is blue."<br>
+    → <strong>Negation**: "The sky is **not** blue."</p>
+
+    <h3>Key Notes</h3>
+    <ul>
+      <li>Negation **must be a statement** (declarative and truth-valued).</li>
+      <li>Avoid double negatives (e.g., "It is not untrue" → ambiguous).</li>
+      <li>The negation of a **false** statement is **true**, and vice versa.</li>
+      <li>In logic, we use the symbol <strong>~** or <strong>¬** for negation.</li>
+    </ul>
+
+    <h3>Real-Life Use</h3>
+    <p>Used in computer programming (NOT operator), legal contracts ("shall not"), scientific hypotheses, and critical thinking to test claims.</p>
+
+    <!-- 💬 WhatsApp Support -->
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a
+        href="https://wa.me/+233257320201?text=Hi%20!%20I%20need%20more%20educational%20resources%20from%20Mini%20OpenStax."
+        class="btn"
+        style="background:#25d366; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#475569;">Ask about resources, practice questions, or tutoring</p>
+    </div>
+
+    <!-- 👥 WhatsApp Group -->
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a
+        href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE"
+        class="btn"
+        style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;"
+        target="_blank"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `,
+  whatsappNumber: "233257320201",
+  assessmentItems: [
+    { id:"1", prompt:"Negation of \"Accra is the capital of Ghana\":", options:[{id:"a",text:"Accra is not the capital of Ghana.",is_correct:true},{id:"b",text:"Is Accra the capital?",is_correct:false},{id:"c",text:"Ghana has a capital.",is_correct:false},{id:"d",text:"Accra is a city.",is_correct:false}] },
+    { id:"2", prompt:"Negation of \"2 + 2 = 4\":", options:[{id:"a",text:"2 + 2 ≠ 4",is_correct:true},{id:"b",text:"2 + 2 = 5",is_correct:false},{id:"c",text:"4 = 2 + 2",is_correct:false},{id:"d",text:"Add two and two.",is_correct:false}] },
+    { id:"3", prompt:"Negation of \"The sky is blue\":", options:[{id:"a",text:"The sky is not blue.",is_correct:true},{id:"b",text:"The sky is red.",is_correct:false},{id:"c",text:"Is the sky blue?",is_correct:false},{id:"d",text:"Blue sky.",is_correct:false}] },
+    { id:"4", prompt:"Negation of a true statement is:", options:[{id:"a",text:"False",is_correct:true},{id:"b",text:"True",is_correct:false},{id:"c",text:"Sometimes true",is_correct:false},{id:"d",text:"Unknown",is_correct:false}] },
+    { id:"5", prompt:"Negation of \"All birds can fly\":", options:[{id:"a",text:"Not all birds can fly.",is_correct:true},{id:"b",text:"All birds cannot fly.",is_correct:false},{id:"c",text:"Some birds can fly.",is_correct:false},{id:"d",text:"No birds can fly.",is_correct:false}] },
+    { id:"6", prompt:"Negation of \"Ghana is in Africa\":", options:[{id:"a",text:"Ghana is not in Africa.",is_correct:true},{id:"b",text:"Ghana is in Europe.",is_correct:false},{id:"c",text:"Africa has Ghana.",is_correct:false},{id:"d",text:"Ghana is a country.",is_correct:false}] },
+    { id:"7", prompt:"Negation of a false statement is:", options:[{id:"a",text:"True",is_correct:true},{id:"b",text:"False",is_correct:false},{id:"c",text:"Always false",is_correct:false},{id:"d",text:"Not a statement",is_correct:false}] },
+    { id:"8", prompt:"Which is NOT a valid negation of \"The sun rises in the east\"?", options:[{id:"a",text:"The sun rises in the west.",is_correct:true},{id:"b",text:"The sun does not rise in the east.",is_correct:false},{id:"c",text:"It is false that the sun rises in the east.",is_correct:false},{id:"d",text:"The sun does not rise in the east.",is_correct:false}] },
+    { id:"9", prompt:"Negation of \"5 is an even number\":", options:[{id:"a",text:"5 is not an even number.",is_correct:true},{id:"b",text:"5 is an odd number.",is_correct:false},{id:"c",text:"5 is a number.",is_correct:false},{id:"d",text:"Even numbers include 5.",is_correct:false}] },
+    { id:"10", prompt:"Symbol for negation:", options:[{id:"a",text:"~",is_correct:true},{id:"b",text:"∧",is_correct:false},{id:"c",text:"∨",is_correct:false},{id:"d",text:"→",is_correct:false}] },
+    { id:"11", prompt:"Negation of \"Water boils at 100°C\":", options:[{id:"a",text:"Water does not boil at 100°C.",is_correct:true},{id:"b",text:"Water boils at 90°C.",is_correct:false},{id:"c",text:"Boiling point is 100°C.",is_correct:false},{id:"d",text:"Water is hot.",is_correct:false}] },
+    { id:"12", prompt:"\"Some students like math\" negates to:", options:[{id:"a",text:"No students like math.",is_correct:true},{id:"b",text:"All students like math.",is_correct:false},{id:"c",text:"Some students dislike math.",is_correct:false},{id:"d",text:"Students hate math.",is_correct:false}] },
+    { id:"13", prompt:"Negation must be:", options:[{id:"a",text:"A statement with opposite truth value",is_correct:true},{id:"b",text:"A question",is_correct:false},{id:"c",text:"An opinion",is_correct:false},{id:"d",text:"Longer than original",is_correct:false}] },
+    { id:"14", prompt:"Negation of \"A square has four sides\":", options:[{id:"a",text:"A square does not have four sides.",is_correct:true},{id:"b",text:"A square has five sides.",is_correct:false},{id:"c",text:"Shapes have sides.",is_correct:false},{id:"d",text:"Four sides make a square.",is_correct:false}] },
+    { id:"15", prompt:"If p is \"2 > 5\" (F), then ~p is:", options:[{id:"a",text:"2 ≤ 5 (T)",is_correct:true},{id:"b",text:"5 > 2 (T)",is_correct:false},{id:"c",text:"2 < 5 (T)",is_correct:false},{id:"d",text:"All of the above",is_correct:false}] },
+    { id:"16", prompt:"Negation of \"Kumasi is the capital of Ashanti Region\":", options:[{id:"a",text:"Kumasi is not the capital of Ashanti Region.",is_correct:true},{id:"b",text:"Accra is the capital.",is_correct:false},{id:"c",text:"Ashanti has no capital.",is_correct:false},{id:"d",text:"Kumasi is a city.",is_correct:false}] },
+    { id:"17", prompt:"\"None of the students passed\" negates to:", options:[{id:"a",text:"Some students passed.",is_correct:true},{id:"b",text:"All students passed.",is_correct:false},{id:"c",text:"No students failed.",is_correct:false},{id:"d",text:"Students took the test.",is_correct:false}] },
+    { id:"18", prompt:"Negation of \"The Earth is flat\":", options:[{id:"a",text:"The Earth is not flat.",is_correct:true},{id:"b",text:"The Earth is round.",is_correct:false},{id:"c",text:"Flat Earth.",is_correct:false},{id:"d",text:"Earth is a planet.",is_correct:false}] },
+    { id:"19", prompt:"Why study negation?", options:[{id:"a",text:"To form logical opposites in reasoning",is_correct:true},{id:"b",text:"Only for exams",is_correct:false},{id:"c",text:"To make statements longer",is_correct:false},{id:"d",text:"Not used in real life",is_correct:false}] },
+    { id:"20", prompt:"Negation of \"0 is a positive number\":", options:[{id:"a",text:"0 is not a positive number.",is_correct:true},{id:"b",text:"0 is negative.",is_correct:false},{id:"c",text:"0 is neutral.",is_correct:false},{id:"d",text:"Positive numbers include 0.",is_correct:false}] }
+  ]
+};
+
+//======================
+// RENDER NAVIGATION — UNLIMITED
+//======================
+function renderNavigation(){
+  const nav = document.getElementById('chapter-nav');
+  let buttons = [];
+
+  buttons.push(`<a href="https://aheto.github.io/mini-openstax_static/" class="chapter-btn">HOME</a>`);
+  buttons.push(`<a href="chapter-${currentChapter}.html" class="chapter-btn active">${currentChapter}</a>`);
+  
+  // 🔓 Always show next 3 chapters — NO LIMIT
+  for(let i = 1; i <= 3; i++){
+    const next = currentChapter + i;
+    buttons.push(`<a href="chapter-${next}.html" class="chapter-btn">${next}</a>`);
+  }
+  
+  nav.innerHTML = buttons.join('');
+}
+
+//======================
+// RENDER CHAPTER CONTENT
+//======================
+const main = document.getElementById('main-content');
+const titleEl = document.getElementById('chapter-title');
+const loTagsEl = document.getElementById('lo-tags');
+
+function renderChapter(){
+  titleEl.textContent = CHAPTER_CONFIG.title;
+  loTagsEl.innerHTML = '';
+  CHAPTER_CONFIG.loTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'lo-tag';
+    span.textContent = tag;
+    loTagsEl.appendChild(span);
+  });
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  let quizHTML = '';
+  const items = CHAPTER_CONFIG.assessmentItems;
+  if(items.length > 0){
+    quizHTML = `
+      <section class="card quiz-section">
+        <h2>Check Your Understanding</h2>
+        ${items.map((item, idx) => `
+          <div class="quiz-item" data-item-id="${item.id}">
+            <p>${idx + 1}. ${item.prompt}</p>
+            ${item.options.map(opt => `
+              <label class="quiz-option">
+                <input type="radio" name="q-${item.id}" value="${opt.id}"> ${opt.text}
+              </label>
+            `).join('')}
+          </div>
+        `).join('')}
+        <button class="btn" id="submit-quiz-btn" disabled>Submit Quiz</button>
+      </section>
+    `;
+  }
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  if(quizHTML){
+    main.innerHTML += quizHTML;
+    setupQuizListeners();
+  }
+}
+
+//======================
+// QUIZ LOGIC
+//======================
+function setupQuizListeners(){
+  const btn = document.getElementById('submit-quiz-btn');
+  const answers = {};
+  const items = CHAPTER_CONFIG.assessmentItems;
+
+  items.forEach(item => {
+    document.querySelectorAll(`input[name="q-${item.id}"]`).forEach(input => {
+      input.addEventListener('change', (e) => {
+        answers[item.id] = e.target.value;
+        btn.disabled = Object.keys(answers).length !== items.length;
+      });
+    });
+  });
+
+  if(btn){
+    btn.addEventListener('click', () => showFeedback(answers));
+  }
+}
+
+//======================
+// FEEDBACK & SCORE (ENHANCED WITH ANSWER DETAILS)
+//======================
+function showFeedback(answers){
+  let correct = 0;
+  const items = CHAPTER_CONFIG.assessmentItems;
+  const feedback = items.map(item => {
+    const selected = answers[item.id];
+    const isCorrect = item.options.some(o => o.id === selected && o.is_correct);
+    if(isCorrect) correct++;
+    const correctOpt = item.options.find(o => o.is_correct);
+    const selectedText = item.options.find(o => o.id === selected)?.text || '—';
+    const correctText = correctOpt ? correctOpt.text : '—';
+    return {
+      item,
+      isCorrect,
+      selected,
+      selectedText,
+      correctText
+    };
+  });
+
+  const score = correct / items.length;
+  const scorePercent = Math.round(score * 100);
+
+  // === BUILD DETAILED TEXT FOR WHATSAPP ===
+  let answerLines = [];
+  let correctList = [];
+  let incorrectList = [];
+
+  feedback.forEach((f, idx) => {
+    const qNum = idx + 1;
+    const userAns = f.selectedText || '—';
+    const status = f.isCorrect ? '✅' : '❌';
+    answerLines.push(`${qNum}. ${userAns} ${status}`);
+    
+    if(f.isCorrect) {
+      correctList.push(`Q${qNum}`);
+    } else {
+      incorrectList.push(`Q${qNum} (Answered: ${userAns}, Correct: ${f.correctText})`);
+    }
+  });
+
+  const summaryText = 
+    `My quiz score: ${scorePercent}%\n` +
+    `Chapter: ${CHAPTER_CONFIG.title}\n` +
+    `Student: [Your Name]\n\n` +
+    `Answers:\n${answerLines.join('\n')}\n\n` +
+    `Results:\n` +
+    (correctList.length > 0 ? `✅ Correct: ${correctList.join(', ')}\n` : '') +
+    (incorrectList.length > 0 ? `❌ Incorrect: ${incorrectList.join('; ')}\n` : '');
+  
+  // URL-encode for WhatsApp
+  const encodedSummary = encodeURIComponent(summaryText);
+
+  const feedbackHTML = feedback.map((f, idx) => `
+    <div class="quiz-item">
+      <p>${idx + 1}. ${f.item.prompt}</p>
+      ${f.item.options.map(opt => `
+        <label class="quiz-option">
+          <input type="radio" disabled ${opt.id === f.selected ? 'checked' : ''}> ${opt.text}
+          ${opt.is_correct ? ' <strong>(Correct)</strong>' : ''}
+        </label>
+      `).join('')}
+      <div class="quiz-feedback ${f.isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+        ${f.isCorrect ? '✅ Correct!' : `❌ Incorrect. Correct answer: ${f.correctText}`}
+      </div>
+    </div>
+  `).join('');
+
+  const scoreHTML = `
+    <div class="score-card">
+      <p><strong>Your Score:</strong> ${scorePercent}%</p>
+    </div>
+  `;
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'chapter-content';
+  contentDiv.innerHTML = CHAPTER_CONFIG.content;
+
+  main.innerHTML = '';
+  main.appendChild(contentDiv);
+  main.innerHTML += `
+    <section class="card quiz-section">
+      <h2>Check Your Understanding</h2>
+      ${feedbackHTML}
+      ${scoreHTML}
+    </section>
+  `;
+
+  // Re-inject WhatsApp buttons with DETAILED summary
+  const supportHTML = `
+    <div style="text-align: center; margin: 2rem 0; padding: 1rem; background:#f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+      <p style="margin: 0 0 1rem 0; color:#1e40af; font-weight: 600;">💬 Need more educational resources?</p>
+      <a href="https://wa.me/+233257320201?text=${encodedSummary}" class="btn" style="background:#25D366; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Send Score to Instructor
+      </a>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color:#64748b;">Tap to share your results via WhatsApp</p>
+    </div>
+    <div style="text-align: center; margin: 1rem 0 2rem 0; padding: 1rem; background:#fffbeb; border-radius: 8px; border: 1px solid #fbbf24;">
+      <p style="margin: 0 0 1rem 0; color:#92400e; font-weight: 600;">👥 Join our learning community!</p>
+      <a href="https://chat.whatsapp.com/CFYFC3t7Thv0aDVbMAIkOE" class="btn" style="background:#1e40af; display: inline-flex; align-items: center; gap: 8px;" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67.472-.173.941-.71 1.164-.91.941-.199-.223-1.758-1.755-2.784-1.755-.955 0-1.371.874-1.371 1.371 0 .497.874 1.29 1.371.497.298-.149.52.149.223.297 2.156 3.218 4.4 4.356.596.298 1.068.472 1.415.596.596.199 1.142.174 1.564.124.472-.05 1.37-.596 1.569-1.165.199-.575.199-1.068.149-1.167-.05-.099-.174-.149-.298-.149l-.91-.075c-.149-.05-.323-.05-.447 0z"/>
+          <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"/>
+        </svg>
+        Join Our WhatsApp Group
+      </a>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color:#64748b;">Collaborate with peers, get updates, and stay motivated</p>
+    </div>
+  `;
+  main.innerHTML += supportHTML;
+
+  // Re-inject nav after feedback
+  renderNavigation();
+}
+
+//======================
+// INITIALIZE
+//======================
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavigation();
+  renderChapter();
+});
+})();
+</script>
+
+<style>
+.chapter-nav {
+  margin: 1.2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chapter-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.chapter-btn:hover {
+  background: #f1f5f9;
+}
+.chapter-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+</style>
+</body>
+</html>
